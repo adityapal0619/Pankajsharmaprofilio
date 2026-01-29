@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Agent Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .font-body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0f0a08 100%);
+      position: relative;
+    }
+    
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+    }
+    
+    .stat-card {
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+    
+    .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+      background-size: 1000px 100%;
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes slideInFromLeft {
+      0% {
+        transform: translateX(-100px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideInFromRight {
+      0% {
+        transform: translateX(100px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+    }
+    
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    .animate-slide-left {
+      animation: slideInFromLeft 1s ease-out forwards;
+    }
+    
+    .animate-slide-right {
+      animation: slideInFromRight 1s ease-out forwards;
+    }
+    
+    .animate-scale {
+      animation: scaleIn 0.8s ease-out forwards;
+    }
+    
+    .animate-pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .gradient-animate {
+      background-size: 200% 200%;
+      animation: gradientShift 8s ease infinite;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    
+    .contact-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    }
+    
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .contact-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+    }
+    
+    .contact-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
+    
+    .contact-btn:hover::after {
+      left: 100%;
+    }
+    
+    .skill-badge {
+      transition: all 0.3s ease;
+    }
+    
+    .skill-badge:hover {
+      transform: scale(1.05);
+    }
+    
+    .profile-image-wrapper {
+      position: relative;
+    }
+    
+    .profile-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 20px;
+      opacity: 0.3;
+      z-index: -1;
+    }
+    
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+    }
+    
+    .property-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .property-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .property-card:hover::before {
+      left: 100%;
+    }
+    
+    .property-card:hover {
+      border-color: rgba(212, 175, 55, 0.5);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      box-shadow: 0 15px 50px rgba(212, 175, 55, 0.2);
+    }
+    
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      border-radius: 2px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full m-0 overflow-auto font-body">
+  <div class="min-h-full w-full" id="main-wrapper"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(37, 99, 235, 0.1); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-20">
+      <div class="flex items-center gap-2 animate-slide-left">
+       <div class="w-10 h-10 rounded-lg flex items-center justify-center animate-pulse" style="background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+       </div><span class="font-display text-xl font-bold" style="color: #2563eb;" id="nav-agent-name">PS</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8"><a href="#home" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #2563eb;">Home</a> <a href="#properties" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Properties</a> <a href="#services" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Services</a> <a href="#expertise" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Expertise</a> <a href="#testimonials" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Testimonials</a> <a href="#contact" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Contact</a>
+      </div><button class="hidden md:block px-6 py-2 rounded-lg font-semibold text-sm transition-all hover:shadow-lg" id="nav-cta" style="background: #2563eb; color: #ffffff;"> Get Started </button> <button class="md:hidden" id="mobile-menu-btn" style="color: #2563eb;">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div class="md:hidden hidden" id="mobile-menu" style="background: rgba(255, 255, 255, 0.98); border-top: 1px solid rgba(37, 99, 235, 0.1);">
+     <div class="px-4 py-6 space-y-4"><a href="#home" class="block text-sm font-medium transition-colors" style="color: #2563eb;">Home</a> <a href="#properties" class="block text-sm font-medium transition-colors" style="color: #64748b;">Properties</a> <a href="#services" class="block text-sm font-medium transition-colors" style="color: #64748b;">Services</a> <a href="#expertise" class="block text-sm font-medium transition-colors" style="color: #64748b;">Expertise</a> <a href="#testimonials" class="block text-sm font-medium transition-colors" style="color: #64748b;">Testimonials</a> <a href="#contact" class="block text-sm font-medium transition-colors" style="color: #64748b;">Contact</a> <button class="w-full px-6 py-3 rounded-lg font-semibold text-sm transition-all" style="background: #2563eb; color: #ffffff;"> Get Started </button>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="hero-gradient relative overflow-hidden gradient-animate" id="home" style="padding-top: 80px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);">
+    <div class="absolute inset-0 opacity-20">
+     <div class="absolute top-20 left-20 w-72 h-72 rounded-full blur-3xl animate-pulse" id="hero-blob-1" style="background: #2563eb;"></div>
+     <div class="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse" id="hero-blob-2" style="background: #0ea5e9;"></div>
+    </div><!-- Decorative corner elements -->
+    <div class="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 opacity-30" style="border-color: #2563eb;"></div>
+    <div class="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 opacity-30" style="border-color: #2563eb;"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"><!-- Left: Content -->
+      <div class="order-2 lg:order-1 text-center lg:text-left">
+       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 fade-in animate-slide-left" style="background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.2);">
+        <div class="w-2 h-2 rounded-full animate-pulse" id="status-indicator" style="background: #2563eb;"></div><span class="text-xs sm:text-sm font-medium tracking-wide" id="agent-title-badge" style="color: #1e293b;">SENIOR REAL ESTATE AGENT</span>
+       </div>
+       <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 fade-in delay-1 animate-slide-left" id="agent-name-display" style="color: #1e293b; line-height: 1.1;">Marcus Bennett</h1>
+       <p class="text-lg sm:text-xl mb-6 fade-in delay-2 animate-slide-left" id="agent-tagline-display" style="color: #475569;">Your Trusted Partner in Luxury Real Estate</p>
+       <p class="text-base sm:text-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed fade-in delay-3 animate-slide-left" id="agent-bio-display" style="color: #64748b;">With over 12 years of experience in the luxury real estate market, I specialize in connecting discerning clients with their dream properties. From penthouses to estates, I deliver exceptional results.</p>
+       <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in delay-4 animate-slide-left"><button class="contact-btn px-8 py-4 rounded-xl font-semibold text-base sm:text-lg transition-all relative z-10 hover:shadow-xl" id="cta-button" style="background: #2563eb; color: #ffffff;"> Schedule Consultation </button> <button class="px-8 py-4 rounded-xl font-semibold text-base sm:text-lg transition-all hover:shadow-lg" id="secondary-btn" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.3);"> View Listings </button>
+       </div><!-- Contact Info -->
+       <div class="mt-10 flex flex-wrap gap-6 justify-center lg:justify-start fade-in delay-5 animate-slide-left"><a href="#" class="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity" id="phone-link" style="color: #64748b;">
+         <svg class="w-5 h-5" style="color: #2563eb;" fill="currentColor" viewbox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+         </svg><span id="phone-display">+1 (555) 987-6543</span> </a> <a href="#" class="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity" id="email-link" style="color: #64748b;">
+         <svg class="w-5 h-5" style="color: #2563eb;" fill="currentColor" viewbox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+         </svg><span id="email-display">marcus@luxuryrealty.com</span> </a>
+        <div class="flex items-center gap-2 text-sm" style="color: #64748b;">
+         <svg class="w-5 h-5" style="color: #2563eb;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+         </svg><span id="location-display">Los Angeles, CA</span>
+        </div>
+       </div>
+      </div><!-- Right: Profile Image -->
+      <div class="order-1 lg:order-2 flex justify-center fade-in delay-2 animate-slide-right">
+       <div class="profile-image-wrapper floating">
+        <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(14, 165, 233, 0.1) 100%); border: 3px solid rgba(37, 99, 235, 0.3); box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);">
+         <svg class="w-full h-full" viewbox="0 0 400 400" fill="none"><defs>
+           <lineargradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.4" />
+            <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.3" />
+           </lineargradient>
+          </defs> <circle cx="200" cy="150" r="70" fill="url(#blueGradient)" /> <path d="M100 350 Q100 280 200 280 Q300 280 300 350 L300 400 L100 400 Z" fill="url(#blueGradient)" /> <circle cx="200" cy="150" r="75" fill="none" stroke="rgba(37, 99, 235, 0.3)" stroke-width="2" />
+         </svg>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Stats Section -->
+   <section class="py-12 sm:py-16" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f8fafc 100%); border-top: 1px solid rgba(37, 99, 235, 0.1); border-bottom: 1px solid rgba(37, 99, 235, 0.1);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div class="stat-card rounded-2xl p-6 text-center animate-scale" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
+       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-1-value" style="color: #2563eb;">
+        500+
+       </div>
+       <div class="text-sm font-medium" style="color: #64748b;">
+        Properties Sold
+       </div>
+      </div>
+      <div class="stat-card rounded-2xl p-6 text-center animate-scale delay-1" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
+       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-2-value" style="color: #2563eb;">
+        ₹850Cr+
+       </div>
+       <div class="text-sm font-medium" style="color: #64748b;">
+        Total Sales Value
+       </div>
+      </div>
+      <div class="stat-card rounded-2xl p-6 text-center animate-scale delay-2" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
+       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-3-value" style="color: #2563eb;">
+        15+
+       </div>
+       <div class="text-sm font-medium" style="color: #64748b;">
+        Years Experience
+       </div>
+      </div>
+      <div class="stat-card rounded-2xl p-6 text-center animate-scale delay-3" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
+       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-4-value" style="color: #2563eb;">
+        99%
+       </div>
+       <div class="text-sm font-medium" style="color: #64748b;">
+        Client Satisfaction
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Featured Properties Section -->
+   <section class="py-16 sm:py-20" id="properties" style="background: linear-gradient(180deg, #1a1410 0%, #0a0a0a 100%);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Featured Properties</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">Handpicked luxury properties for discerning clients</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Property 1 -->
+      <div class="property-card rounded-2xl overflow-hidden card-hover group">
+       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(139, 69, 19, 0.3) 100%);">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+         </svg>
+        </div>
+        <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold" style="background: #d4af37; color: #0a0a0a;">
+         Featured
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Luxury Penthouse - South Delhi</h3>
+        <p class="text-sm mb-4" style="color: #707070;">4 BHK • 3500 sq.ft • Premium Location</p>
+        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹8.5 Cr</span>
+         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
+          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg> New Delhi
+         </div>
+        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
+       </div>
+      </div><!-- Property 2 -->
+      <div class="property-card rounded-2xl overflow-hidden card-hover group">
+       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(139, 69, 19, 0.25) 100%);">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+         </svg>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Heritage Villa - Agra</h3>
+        <p class="text-sm mb-4" style="color: #707070;">5 BHK • 5000 sq.ft • Garden &amp; Pool</p>
+        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹12 Cr</span>
+         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
+          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg> Agra
+         </div>
+        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
+       </div>
+      </div><!-- Property 3 -->
+      <div class="property-card rounded-2xl overflow-hidden card-hover group">
+       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 69, 19, 0.2) 100%);">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+         </svg>
+        </div>
+        <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212, 175, 55, 0.2); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.5);">
+         New
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Modern Apartment - Mumbai</h3>
+        <p class="text-sm mb-4" style="color: #707070;">3 BHK • 2200 sq.ft • Sea View</p>
+        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹6.8 Cr</span>
+         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
+          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg> Mumbai
+         </div>
+        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
+       </div>
+      </div><!-- Property 4 -->
+      <div class="property-card rounded-2xl overflow-hidden card-hover group">
+       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(139, 69, 19, 0.22) 100%);">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+         </svg>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Luxury Farmhouse - Gurgaon</h3>
+        <p class="text-sm mb-4" style="color: #707070;">6 BHK • 8000 sq.ft • Private Estate</p>
+        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹18 Cr</span>
+         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
+          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg> Gurgaon
+         </div>
+        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
+       </div>
+      </div><!-- Property 5 -->
+      <div class="property-card rounded-2xl overflow-hidden card-hover group">
+       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(139, 69, 19, 0.28) 100%);">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+         </svg>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Sky Villa - Bangalore</h3>
+        <p class="text-sm mb-4" style="color: #707070;">4 BHK • 4000 sq.ft • Rooftop Access</p>
+        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹9.5 Cr</span>
+         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
+          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg> Bangalore
+         </div>
+        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
+       </div>
+      </div><!-- Property 6 -->
+      <div class="property-card rounded-2xl overflow-hidden card-hover group">
+       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.14) 0%, rgba(139, 69, 19, 0.24) 100%);">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+         </svg>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Waterfront Villa - Goa</h3>
+        <p class="text-sm mb-4" style="color: #707070;">5 BHK • 6000 sq.ft • Beach Access</p>
+        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹15 Cr</span>
+         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
+          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg> Goa
+         </div>
+        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
+       </div>
+      </div>
+     </div>
+     <div class="text-center mt-10"><button class="px-8 py-4 rounded-xl font-semibold text-base transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View All Properties </button>
+     </div>
+    </div>
+   </section><!-- Services Section -->
+   <section class="py-16 sm:py-20" id="services" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 100%);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Premium Services</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">Comprehensive real estate solutions tailored to your needs</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="property-card rounded-2xl p-6 text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
+        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Property Search</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Access exclusive listings and find your perfect property match</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
+        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Market Analysis</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">In-depth market insights and property valuation reports</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
+        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Investment Advice</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Strategic guidance for maximizing property investments</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 text-center">
+       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
+        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Legal Support</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Complete documentation and legal assistance throughout</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Expertise Section -->
+   <section class="py-16 sm:py-20" id="expertise" style="background: #0a0a0a;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Areas of Expertise</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">Specialized knowledge across multiple property sectors</p>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="property-card rounded-2xl p-6 card-hover">
+       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-1-icon">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Luxury Condos</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Premium high-rise properties with exceptional city views and world-class amenities.</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 card-hover">
+       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-2-icon">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Estate Homes</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Sprawling estates with private grounds, perfect for distinguished buyers.</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 card-hover">
+       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-3-icon">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Investment Properties</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Strategic acquisitions with strong ROI potential and market appreciation.</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 card-hover">
+       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-4-icon">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Waterfront Properties</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Exclusive coastal and lakefront residences with breathtaking water access.</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 card-hover">
+       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-5-icon">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">New Developments</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Cutting-edge new construction with modern design and smart technology.</p>
+      </div>
+      <div class="property-card rounded-2xl p-6 card-hover">
+       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-6-icon">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Relocation Services</h3>
+       <p class="text-sm leading-relaxed" style="color: #707070;">Comprehensive support for clients moving from across the country or abroad.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section class="py-16 sm:py-20" id="testimonials" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a1410 100%);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Client Testimonials</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">What my clients say about working with me</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="testimonial-card rounded-2xl p-6">
+       <div class="flex items-center gap-1 mb-4">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-1">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-2">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-3">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-4">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-5">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-sm leading-relaxed mb-4" style="color: #a0a0a0;">"Marcus made our dream home a reality. His expertise and dedication were evident throughout the entire process. Highly recommended!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
+        <div>
+         <div class="font-semibold text-sm" style="color: #ffffff;">
+          Sarah &amp; James K.
+         </div>
+         <div class="text-xs" style="color: #606060;">
+          Beverly Hills
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card rounded-2xl p-6">
+       <div class="flex items-center gap-1 mb-4">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-1">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-2">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-3">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-4">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-5">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-sm leading-relaxed mb-4" style="color: #a0a0a0;">"Professional, knowledgeable, and truly cares about his clients. Marcus found us the perfect investment property with excellent ROI."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
+        <div>
+         <div class="font-semibold text-sm" style="color: #ffffff;">
+          Michael R.
+         </div>
+         <div class="text-xs" style="color: #606060;">
+          Santa Monica
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card rounded-2xl p-6">
+       <div class="flex items-center gap-1 mb-4">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-1">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-2">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-3">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-4">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-5">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-sm leading-relaxed mb-4" style="color: #a0a0a0;">"Exceptional service from start to finish. Marcus's market knowledge and negotiation skills saved us over $100K on our purchase."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
+        <div>
+         <div class="font-semibold text-sm" style="color: #ffffff;">
+          Patricia L.
+         </div>
+         <div class="text-xs" style="color: #606060;">
+          Malibu
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer CTA -->
+   <section class="py-16 sm:py-20" id="contact" style="background: #0a0a0a; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style="color: #ffffff;">Ready to Find Your Dream Property?</h2>
+     <p class="text-lg mb-8 max-w-2xl mx-auto" style="color: #808080;">Let's discuss your real estate goals and find the perfect property that matches your vision and lifestyle.</p><button class="contact-btn px-10 py-5 rounded-xl font-semibold text-lg transition-all relative" id="footer-cta" style="color: #ffffff;"> Get in Touch Today </button> <!-- Social Links -->
+     <div class="flex justify-center gap-4 mt-10"><a href="#" class="social-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255,255,255,0.05); color: #a0a0a0;">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+       </svg></a> <a href="#" class="social-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255,255,255,0.05); color: #a0a0a0;">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+       </svg></a> <a href="#" class="social-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255,255,255,0.05); color: #a0a0a0;">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+       </svg></a>
+     </div>
+    </div>
+   </section>
+  </div>
+  <script>
+    const defaultConfig = {
+      agent_name: 'Pankaj Sharma',
+      agent_title: 'SENIOR REAL ESTATE AGENT',
+      agent_tagline: 'Your Trusted Partner in Luxury Real Estate',
+      agent_bio: 'With over 15 years of distinguished experience in the luxury real estate market, I specialize in connecting discerning clients with their dream properties across India and internationally. From penthouses to estates, I deliver exceptional results with unmatched expertise.',
+      phone: '+91 98765 43210',
+      email: 'pankaj@luxuryrealty.com',
+      location: 'Agra, India',
+      cta_button_text: 'Schedule Consultation',
+      primary_color: '#2563eb',
+      secondary_color: '#f8fafc',
+      accent_color: '#0ea5e9',
+      text_color: '#1e293b',
+      background_color: '#ffffff',
+      font_family: 'Montserrat',
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+
+    async function onConfigChange(cfg) {
+      const primaryColor = cfg.primary_color || defaultConfig.primary_color;
+      const secondaryColor = cfg.secondary_color || defaultConfig.secondary_color;
+      const accentColor = cfg.accent_color || defaultConfig.accent_color;
+      const textColor = cfg.text_color || defaultConfig.text_color;
+      const backgroundColor = cfg.background_color || defaultConfig.background_color;
+      const fontFamily = cfg.font_family || defaultConfig.font_family;
+      const fontSize = cfg.font_size || defaultConfig.font_size;
+
+      // Update text content
+      document.getElementById('agent-name-display').textContent = cfg.agent_name || defaultConfig.agent_name;
+      document.getElementById('agent-title-badge').textContent = cfg.agent_title || defaultConfig.agent_title;
+      document.getElementById('agent-tagline-display').textContent = cfg.agent_tagline || defaultConfig.agent_tagline;
+      document.getElementById('agent-bio-display').textContent = cfg.agent_bio || defaultConfig.agent_bio;
+      document.getElementById('phone-display').textContent = cfg.phone || defaultConfig.phone;
+      document.getElementById('email-display').textContent = cfg.email || defaultConfig.email;
+      document.getElementById('location-display').textContent = cfg.location || defaultConfig.location;
+      document.getElementById('cta-button').textContent = cfg.cta_button_text || defaultConfig.cta_button_text;
+      document.getElementById('footer-cta').textContent = cfg.cta_button_text || defaultConfig.cta_button_text;
+      
+      // Update nav initials
+      const name = cfg.agent_name || defaultConfig.agent_name;
+      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+      document.getElementById('nav-agent-name').textContent = initials;
+
+      // Update colors
+      document.getElementById('hero-blob-1').style.background = primaryColor;
+      document.getElementById('hero-blob-2').style.background = secondaryColor;
+      document.getElementById('status-indicator').style.background = primaryColor;
+      
+      // CTA buttons
+      document.getElementById('cta-button').style.background = primaryColor;
+      document.getElementById('footer-cta').style.background = primaryColor;
+      
+      // Section title underlines
+      const sectionTitles = document.querySelectorAll('.section-title::after, .section-title');
+      sectionTitles.forEach(title => {
+        const style = document.createElement('style');
+        style.textContent = `.section-title::after { background: ${primaryColor}; }`;
+        if (!document.getElementById('section-style')) {
+          style.id = 'section-style';
+          document.head.appendChild(style);
+        }
+      });
+
+      // Expertise icons
+      document.getElementById('expertise-1-icon').style.background = `${primaryColor}20`;
+      document.getElementById('expertise-1-icon').style.color = primaryColor;
+      document.getElementById('expertise-2-icon').style.background = `${primaryColor}20`;
+      document.getElementById('expertise-2-icon').style.color = primaryColor;
+      document.getElementById('expertise-3-icon').style.background = `${secondaryColor}20`;
+      document.getElementById('expertise-3-icon').style.color = secondaryColor;
+      document.getElementById('expertise-4-icon').style.background = `${secondaryColor}20`;
+      document.getElementById('expertise-4-icon').style.color = secondaryColor;
+      document.getElementById('expertise-5-icon').style.background = `${accentColor}20`;
+      document.getElementById('expertise-5-icon').style.color = accentColor;
+      document.getElementById('expertise-6-icon').style.background = `${accentColor}20`;
+      document.getElementById('expertise-6-icon').style.color = accentColor;
+
+      // Star ratings
+      const stars = document.querySelectorAll('[id^="star-"]');
+      stars.forEach(star => {
+        star.style.color = primaryColor;
+      });
+
+      // Stats
+      document.getElementById('stat-1-value').style.color = textColor;
+      document.getElementById('stat-2-value').style.color = textColor;
+      document.getElementById('stat-3-value').style.color = textColor;
+      document.getElementById('stat-4-value').style.color = textColor;
+
+      // Background
+      document.getElementById('main-wrapper').style.background = backgroundColor;
+
+      // Font
+      const baseFontStack = 'sans-serif';
+      document.body.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
+      document.getElementById('agent-name-display').style.fontSize = `${fontSize * 3}px`;
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.primary_color || defaultConfig.primary_color,
+            set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+          },
+          {
+            get: () => cfg.secondary_color || defaultConfig.secondary_color,
+            set: (value) => { config.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => { config.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['agent_name', cfg.agent_name || defaultConfig.agent_name],
+        ['agent_title', cfg.agent_title || defaultConfig.agent_title],
+        ['agent_tagline', cfg.agent_tagline || defaultConfig.agent_tagline],
+        ['agent_bio', cfg.agent_bio || defaultConfig.agent_bio],
+        ['phone', cfg.phone || defaultConfig.phone],
+        ['email', cfg.email || defaultConfig.email],
+        ['location', cfg.location || defaultConfig.location],
+        ['cta_button_text', cfg.cta_button_text || defaultConfig.cta_button_text]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+      config = window.elementSdk.config || defaultConfig;
+    }
+    
+    onConfigChange(config);
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const targetPosition = target.offsetTop - offset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Update nav agent name initials
+    function updateNavInitials() {
+      const name = config.agent_name || defaultConfig.agent_name;
+      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+      document.getElementById('nav-agent-name').textContent = initials;
+    }
+    
+    updateNavInitials();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c55f7dcd1767a0c',t:'MTc2OTY2MDc1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
