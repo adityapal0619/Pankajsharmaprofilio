@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paradise Globaol Properties – Premium Plots &amp; Villas in Agra</title>
+  <meta name="description" content="Own your dream villa or plot in Agra's most premium location. Limited inventory. High ROI. Book your site visit today.">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF6A;
+      --gold-light: #E8D4A2;
+      --gold-dark: #A0853D;
+      --bg-primary: #0F0F0F;
+      --bg-secondary: #1A1A1A;
+      --bg-card: #1F1F1F;
+      --text-primary: #F5F5F5;
+      --text-muted: #A0A0A0;
+      --border-light: #2A2A2A;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Outfit', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .serif { font-family: 'Cormorant Garamond', serif; }
+
+    /* Gold gradient text */
+    .gold-text {
+      background: linear-gradient(135deg, #C9A84C 0%, #E8C96D 50%, #A07828 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Gold border shimmer */
+    .gold-border {
+      border: 1px solid rgba(201,168,76,0.4);
+    }
+
+    /* Hero background */
+    .hero-bg {
+      background:
+        linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 50%, #151515 100%),
+        radial-gradient(ellipse at 30% 40%, rgba(212,175,106,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(212,175,106,0.05) 0%, transparent 50%);
+      background-color: #0F0F0F;
+    }
+
+    /* Luxury pattern overlay */
+    .pattern-overlay {
+      background-image:
+        repeating-linear-gradient(45deg, rgba(212,175,106,0.02) 0px, rgba(212,175,106,0.02) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(-45deg, rgba(212,175,106,0.02) 0px, rgba(212,175,106,0.02) 1px, transparent 1px, transparent 60px);
+    }
+
+    /* Gold button */
+    .btn-gold {
+      background: linear-gradient(135deg, #D4AF6A 0%, #E8D4A2 50%, #A0853D 100%);
+      color: #FFFFFF;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-gold:hover::before { left: 100%; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,106,0.3); }
+
+    /* Outline gold button */
+    .btn-outline-gold {
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-gold:hover {
+      background: rgba(201,168,76,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Card style */
+    .luxury-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+    }
+    .luxury-card:hover {
+      border-color: rgba(212,175,106,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(212,175,106,0.08);
+    }
+
+    /* Section divider */
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(212,175,106,0.3), transparent);
+    }
+
+    /* Sticky nav */
+    .sticky-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(15,15,15,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    /* Floating buttons */
+    .float-btn {
+      position: fixed;
+      z-index: 100;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .float-call {
+      bottom: 24px;
+      left: 20px;
+      background: linear-gradient(135deg, #D4AF6A, #E8D4A2);
+      color: #FFFFFF;
+    }
+    .float-call:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(212,175,106,0.4); }
+    .float-whatsapp {
+      bottom: 24px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+    }
+    .float-whatsapp:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+
+    /* ROI comparison bars */
+    .roi-bar {
+      height: 8px;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .roi-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      animation: fillBar 1.5s ease forwards;
+      transform-origin: left;
+    }
+    @keyframes fillBar {
+      from { width: 0; }
+    }
+
+    /* Pulse animation for urgency badges */
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,106,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(212,175,106,0); }
+    }
+    .pulse-gold { animation: pulse-gold 2s infinite; }
+
+    /* Counter animation */
+    .counter-val { font-variant-numeric: tabular-nums; }
+
+    /* Form input */
+    .luxury-input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border-light);
+      color: var(--text-primary);
+      transition: border-color 0.3s;
+    }
+    .luxury-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: rgba(212,175,106,0.12);
+    }
+    .luxury-input::placeholder { color: rgba(160,160,160,0.5); }
+
+    /* Section fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Amenity icon */
+    .amenity-icon {
+      width: 48px; height: 48px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Success toast */
+    #success-toast {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 200;
+      background: linear-gradient(135deg, #1B4D2F, #2D6A47);
+      border: 1px solid #4CAF50;
+      color: #A5D6A7;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateX(120%);
+      transition: transform 0.4s ease;
+    }
+    #success-toast.show { transform: translateX(0); }
+
+    /* Error toast */
+    #error-toast {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 200;
+      background: linear-gradient(135deg, #4D1F1F, #6A2D2D);
+      border: 1px solid #EF5350;
+      color: #EF9A9A;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateX(120%);
+      transition: transform 0.4s ease;
+    }
+    #error-toast.show { transform: translateX(0); }
+
+    /* Grid and Flex Utilities */
+    .grid { display: grid; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-6 { grid-template-columns: repeat(6, 1fr); }
+    .grid-gap-4 { gap: 16px; }
+    .grid-gap-5 { gap: 20px; }
+    .grid-gap-6 { gap: 24px; }
+    
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .flex-row { flex-direction: row; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .items-end { align-items: flex-end; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 8px; }
+    .gap-3 { gap: 12px; }
+    .gap-4 { gap: 16px; }
+    .gap-5 { gap: 20px; }
+    .gap-6 { gap: 24px; }
+
+    /* Width utilities */
+    .w-full { width: 100%; }
+    .w-auto { width: auto; }
+
+    /* Margin utilities */
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-5 { margin-bottom: 20px; }
+    .mb-6 { margin-bottom: 24px; }
+    .mb-8 { margin-bottom: 32px; }
+    .mb-10 { margin-bottom: 40px; }
+    .mb-12 { margin-bottom: 48px; }
+    .mt-2 { margin-top: 8px; }
+    .mt-4 { margin-top: 16px; }
+    .mt-6 { margin-top: 24px; }
+    .mt-8 { margin-top: 32px; }
+    .mt-10 { margin-top: 40px; }
+    .mt-12 { margin-top: 48px; }
+    .mt-14 { margin-top: 56px; }
+
+    /* Padding utilities */
+    .p-4 { padding: 16px; }
+    .p-5 { padding: 20px; }
+    .p-6 { padding: 24px; }
+    .p-7 { padding: 28px; }
+    .p-8 { padding: 32px; }
+    .p-10 { padding: 40px; }
+    .px-4 { padding-left: 16px; padding-right: 16px; }
+    .px-5 { padding-left: 20px; padding-right: 20px; }
+    .px-8 { padding-left: 32px; padding-right: 32px; }
+    .px-10 { padding-left: 40px; padding-right: 40px; }
+    .py-2 { padding-top: 8px; padding-bottom: 8px; }
+    .py-3 { padding-top: 12px; padding-bottom: 12px; }
+    .py-4 { padding-top: 16px; padding-bottom: 16px; }
+    .py-6 { padding-top: 24px; padding-bottom: 24px; }
+    .py-10 { padding-top: 40px; padding-bottom: 40px; }
+    .py-16 { padding-top: 64px; padding-bottom: 64px; }
+    .py-20 { padding-top: 80px; padding-bottom: 80px; }
+
+    /* Text alignment */
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+
+    /* Responsive utilities */
+    @media (max-width: 768px) {
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .grid-6 { grid-template-columns: repeat(3, 1fr); }
+      .hero-headline { font-size: 2rem !important; }
+      .float-btn span { display: none; }
+      .float-btn { padding: 14px; border-radius: 50%; }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-6 { grid-template-columns: repeat(2, 1fr); }
+      .hero-headline { font-size: 1.8rem !important; }
+      .flex-col-mobile { flex-direction: column; }
+      .flex-row-mobile { flex-direction: row; }
+    }
+
+    /* Limit warning */
+    #limit-warning {
+      display: none;
+      background: rgba(212,175,106,0.08);
+      border: 1px solid rgba(212,175,106,0.3);
+      color: #A0853D;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-top: 8px;
+      text-align: center;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+ </head>
+ <body class="h-full w-full overflow-auto">
+  <nav class="sticky-nav" style="padding:12px 16px;">
+   <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:12px;">
+     <div style="width:36px;height:36px;background:linear-gradient(135deg,#D4AF6A,#E8D4A2);border-radius:8px;display:flex;align-items:center;justify-content:center;"><span style="font-size:16px;font-weight:700;color:#FFFFFF;font-family:'Cormorant Garamond',serif;">P</span>
+     </div>
+     <div>
+      <div class="serif font-bold text-sm gold-text" style="font-size:14px;font-weight:700;">
+        Paradise Globaol Properties
+      </div>
+      <div style="font-size:9px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;">
+       Premium Real Estate
+      </div>
+     </div>
+    </div><a id="nav-call-btn" href="tel:6399021515" class="btn-gold" style="padding:10px 16px;border-radius:8px;text-align:center;text-decoration:none;font-size:14px;font-weight:600;"> 📞 Call Now </a>
+   </div>
+  </nav><!-- HERO SECTION -->
+  <section class="hero-bg pattern-overlay" style="padding-top:80px;min-height:100%;position:relative;"><!-- Decorative architectural lines -->
+   <div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;">
+    <div style="position:absolute;top:20%;left:5%;width:120px;height:120px;border:1px solid rgba(212,175,106,0.12);border-radius:50%;"></div>
+    <div style="position:absolute;top:15%;left:3%;width:200px;height:200px;border:1px solid rgba(212,175,106,0.08);border-radius:50%;"></div>
+    <div style="position:absolute;bottom:20%;right:5%;width:150px;height:150px;border:1px solid rgba(212,175,106,0.1);border-radius:50%;"></div>
+    <div style="position:absolute;top:40%;right:2%;width:250px;height:250px;border:1px solid rgba(212,175,106,0.06);border-radius:50%;"></div>
+   </div>
+   <div class="max-w-5xl mx-auto px-4 py-16 text-center" style="position:relative;z-index:1;"><!-- Urgency badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 pulse-gold" style="background:rgba(212,175,106,0.12);border:1px solid rgba(212,175,106,0.35);font-size:13px;letter-spacing:1px;"><span style="width:8px;height:8px;background:#D4AF6A;border-radius:50%;display:inline-block;"></span> <span id="hero-tagline-el" style="color:#A0853D;font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:11px;">Live Royal. Invest Smart.</span>
+    </div><!-- Main Headline -->
+    <h1 id="hero-headline-el" class="serif hero-headline fade-in" style="font-size:3rem;font-weight:700;line-height:1.15;margin-bottom:1.5rem;color:#fffafa;">Own Your Dream Villa or Plot in<br><span class="gold-text">Agra's Most Premium Location</span></h1><!-- Subheadline -->
+    <p id="hero-sub-el" class="fade-in" style="font-size:1.1rem;color:rgb(255, 255, 255);max-width:600px;margin:0 auto 2.5rem;line-height:1.7;transition-delay:0.15s;">Powered by <span style="color:#A0853D;font-weight:600;">Paradise Globaol Properties</span> | Trusted Real Estate Experts</p><!-- Stats Row -->
+    <div class="flex justify-center gap-6 flex-wrap mb-10 fade-in" style="transition-delay:0.2s;">
+     <div class="text-center">
+      <div class="serif gold-text" style="font-size:2.2rem;font-weight:700;line-height:1;">
+       300+
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">
+       Sq. Yards Min.
+      </div>
+     </div>
+     <div style="width:1px;background:rgba(201,168,76,0.2);"></div>
+     <div class="text-center">
+      <div class="serif gold-text" style="font-size:2.2rem;font-weight:700;line-height:1;">
+       5–7%
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">
+       Quarterly Growth
+      </div>
+     </div>
+     <div style="width:1px;background:rgba(201,168,76,0.2);"></div>
+     <div class="text-center">
+      <div class="serif gold-text" style="font-size:2.2rem;font-weight:700;line-height:1;">
+       60%
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">
+       Already Sold
+      </div>
+     </div>
+    </div><!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center gap-3 fade-in mb-4" style="transition-delay:0.3s;"><button onclick="document.getElementById('lead-form-section').scrollIntoView({behavior:'smooth'})" class="btn-gold px-8 py-4 rounded-xl text-base"> 📩 Get Free Investment Plan </button> <a id="hero-call-btn" href="tel:6399021515" class="btn-outline-gold px-8 py-4 rounded-xl text-base font-semibold flex items-center justify-center gap-2" style="text-decoration:none;"> 📞 Call Now: <span id="hero-phone-display">63990 21515</span> </a> <a id="hero-wa-btn" href="https://wa.me/6399021515?text=Hi%2C+I'm+interested+in+Rajdarbar+Spaces+Agra" target="_blank" rel="noopener noreferrer" class="float-btn" style="position:static;background:#25D366;color:white;border-radius:12px;padding:14px 24px;font-size:15px;text-decoration:none;"> 💬 WhatsApp Now </a>
+    </div><!-- Urgency Strip -->
+    <div class="fade-in" style="transition-delay:0.4s;">
+     <div class="inline-block px-5 py-2 rounded-lg" style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);font-size:13px;color:rgba(245,240,232,0.6);">
+      🔥 Only a <strong style="color:var(--gold);">few plots remaining</strong> — Prices increasing every month
+     </div>
+    </div><!-- Hero Visual -->
+    <div class="fade-in mt-12" style="transition-delay:0.5s;position:relative;max-width:800px;margin:3rem auto 0;">
+     <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);box-shadow:0 40px 100px rgba(0,0,0,0.6),0 0 0 1px rgba(201,168,76,0.05);"><!-- SVG Villa Illustration -->
+      <svg viewbox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:linear-gradient(180deg,#0D0D12 0%,#12121A 100%);"><!-- Sky gradient --> <defs>
+        <lineargradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+         <stop offset="0%" stop-color="#0A0A12" />
+         <stop offset="100%" stop-color="#151520" />
+        </lineargradient>
+        <lineargradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+         <stop offset="0%" stop-color="#C9A84C" />
+         <stop offset="50%" stop-color="#E8C96D" />
+         <stop offset="100%" stop-color="#A07828" />
+        </lineargradient>
+        <radialgradient id="moonGlow" cx="50%" cy="50%" r="50%">
+         <stop offset="0%" stop-color="#E8C96D" stop-opacity="0.3" />
+         <stop offset="100%" stop-color="#E8C96D" stop-opacity="0" />
+        </radialgradient>
+        <lineargradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+         <stop offset="0%" stop-color="#1A1A20" />
+         <stop offset="100%" stop-color="#0D0D12" />
+        </lineargradient>
+       </defs> <rect width="800" height="360" fill="url(#skyGrad)" /> <!-- Moon glow --> <circle cx="680" cy="70" r="80" fill="url(#moonGlow)" /> <circle cx="680" cy="70" r="28" fill="#E8C96D" opacity="0.15" /> <circle cx="680" cy="70" r="16" fill="#E8C96D" opacity="0.2" /> <!-- Stars --> <circle cx="100" cy="40" r="1" fill="#E8C96D" opacity="0.6" /> <circle cx="200" cy="25" r="1.5" fill="#E8C96D" opacity="0.4" /> <circle cx="320" cy="50" r="1" fill="#E8C96D" opacity="0.5" /> <circle cx="450" cy="20" r="1" fill="#E8C96D" opacity="0.6" /> <circle cx="560" cy="38" r="1.5" fill="#E8C96D" opacity="0.3" /> <circle cx="730" cy="120" r="1" fill="#E8C96D" opacity="0.5" /> <circle cx="50" cy="80" r="1" fill="#E8C96D" opacity="0.4" /> <circle cx="380" cy="30" r="1" fill="#E8C96D" opacity="0.5" /> <!-- Ground --> <rect x="0" y="280" width="800" height="80" fill="url(#groundGrad)" /> <!-- Ground line --> <line x1="0" y1="280" x2="800" y2="280" stroke="#C9A84C" stroke-width="0.5" opacity="0.3" /> <!-- Trees left --> <ellipse cx="60" cy="230" rx="22" ry="50" fill="#0D1F0D" opacity="0.8" /> <rect x="57" y="270" width="6" height="14" fill="#0A150A" /> <ellipse cx="120" cy="220" rx="18" ry="60" fill="#0E200E" opacity="0.7" /> <rect x="117" y="272" width="5" height="10" fill="#0A150A" /> <!-- Trees right --> <ellipse cx="730" cy="235" rx="20" ry="45" fill="#0D1F0D" opacity="0.8" /> <rect x="727" y="270" width="6" height="12" fill="#0A150A" /> <ellipse cx="770" cy="225" rx="16" ry="55" fill="#0E200E" opacity="0.7" /> <!-- Main Villa --> <!-- Base body --> <rect x="220" y="170" width="360" height="112" fill="#1C1C25" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.3" /> <!-- Center tower --> <rect x="330" y="120" width="140" height="162" fill="#1A1A24" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.4" /> <!-- Roof main --> <polygon points="300,170 500,170 430,120 370,120" fill="#141420" stroke="#C9A84C" stroke-width="0.8" stroke-opacity="0.5" /> <!-- Center gable --> <polygon points="330,120 470,120 400,75" fill="#121218" stroke="#C9A84C" stroke-width="1" stroke-opacity="0.6" /> <!-- Gold roof trim --> <line x1="300" y1="170" x2="500" y2="170" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.8" /> <line x1="330" y1="120" x2="470" y2="120" stroke="url(#goldGrad)" stroke-width="1" opacity="0.6" /> <!-- Windows center tower --> <rect x="355" y="135" width="30" height="36" rx="15" ry="4" fill="#0A0A12" stroke="#C9A84C" stroke-width="0.8" stroke-opacity="0.5" /> <rect x="415" y="135" width="30" height="36" rx="15" ry="4" fill="#0A0A12" stroke="#C9A84C" stroke-width="0.8" stroke-opacity="0.5" /> <!-- Warm window glow --> <rect x="357" y="137" width="26" height="32" rx="13" ry="3" fill="#C9A84C" opacity="0.12" /> <rect x="417" y="137" width="26" height="32" rx="13" ry="3" fill="#C9A84C" opacity="0.12" /> <!-- Windows main body --> <rect x="240" y="190" width="36" height="46" rx="4" fill="#0A0A12" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.4" /> <rect x="310" y="190" width="36" height="46" rx="4" fill="#0A0A12" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.4" /> <rect x="454" y="190" width="36" height="46" rx="4" fill="#0A0A12" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.4" /> <rect x="524" y="190" width="36" height="46" rx="4" fill="#0A0A12" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.4" /> <!-- Window glows --> <rect x="242" y="192" width="32" height="42" rx="3" fill="#C9A84C" opacity="0.1" /> <rect x="456" y="192" width="32" height="42" rx="3" fill="#C9A84C" opacity="0.08" /> <!-- Main door --> <rect x="375" y="215" width="50" height="67" rx="4" fill="#0E0E18" stroke="#C9A84C" stroke-width="1" stroke-opacity="0.6" /> <rect x="376" y="216" width="48" height="38" rx="3" fill="#C9A84C" opacity="0.06" /> <!-- Door handle --> <circle cx="418" cy="252" r="3" fill="#C9A84C" opacity="0.6" /> <!-- Pillars --> <rect x="350" y="200" width="8" height="82" fill="#1A1A24" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.3" /> <rect x="442" y="200" width="8" height="82" fill="#1A1A24" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.3" /> <!-- Balcony rail --> <rect x="336" y="170" width="128" height="4" fill="#C9A84C" opacity="0.4" /> <!-- Path --> <path d="M370,282 L380,360 L420,360 L430,282 Z" fill="#1A1A1E" opacity="0.6" /> <!-- Pool / water feature left --> <ellipse cx="160" cy="275" rx="55" ry="8" fill="#0D2035" stroke="#C9A84C" stroke-width="0.5" stroke-opacity="0.3" /> <!-- Landscape lighting --> <circle cx="250" cy="279" r="4" fill="#C9A84C" opacity="0.4" /> <circle cx="250" cy="279" r="8" fill="#C9A84C" opacity="0.08" /> <circle cx="550" cy="279" r="4" fill="#C9A84C" opacity="0.4" /> <circle cx="550" cy="279" r="8" fill="#C9A84C" opacity="0.08" /> <!-- Gold accent lines on building --> <line x1="220" y1="170" x2="220" y2="282" stroke="#C9A84C" stroke-width="0.5" opacity="0.2" /> <line x1="580" y1="170" x2="580" y2="282" stroke="#C9A84C" stroke-width="0.5" opacity="0.2" /> <!-- "RAJDARBAR SPACES" label --> <text x="400" y="340" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="13" fill="#C9A84C" opacity="0.5" letter-spacing="4">
+        RAJDARBAR SPACES · AGRA
+       </text>
+      </svg>
+     </div><!-- Label tags -->
+     <div style="position:absolute;top:-12px;right:20px;background:linear-gradient(135deg,#C9A84C,#E8C96D);color:#0A0A0B;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">
+      RERA Approved
+     </div>
+     <div style="position:absolute;bottom:20px;left:-10px;background:rgba(10,10,11,0.9);border:1px solid rgba(201,168,76,0.4);color:var(--text-primary);padding:8px 14px;border-radius:12px;font-size:12px;font-weight:600;">
+      🏅 Premium Gated Community
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="gold-divider"></div><!-- WHY CHOOSE US -->
+  <section class="py-20 px-4 fade-in" style="background:var(--bg-surface);">
+   <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+     <div style="font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">
+      Why Choose Us
+     </div>
+     <h2 class="serif" style="font-size:2.4rem;font-weight:700;color:var(--text-primary);">The <span class="gold-text">Rajdarbar</span> Advantage</h2>
+     <p style="color:var(--text-muted);margin-top:10px;font-size:1rem;">Crafted for those who deserve the finest</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"><!-- Card 1 -->
+     <div class="luxury-card p-7 rounded-2xl">
+      <div class="amenity-icon mb-4"><i data-lucide="map-pin" style="width:22px;height:22px;color:var(--gold);"></i>
+      </div>
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Prime Location in Agra</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">Strategically located at Agra's fastest-growing corridor — close to highways, schools, and key landmarks.</p>
+     </div><!-- Card 2 -->
+     <div class="luxury-card p-7 rounded-2xl">
+      <div class="amenity-icon mb-4"><i data-lucide="home" style="width:22px;height:22px;color:var(--gold);"></i>
+      </div>
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Premium Villas &amp; Plots</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">Plots from 300 to 1000+ sq. yards. Choose your canvas and build your legacy with zero compromise.</p>
+     </div><!-- Card 3 -->
+     <div class="luxury-card p-7 rounded-2xl">
+      <div class="amenity-icon mb-4"><i data-lucide="shield-check" style="width:22px;height:22px;color:var(--gold);"></i>
+      </div>
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;">24/7 Security &amp; Gated</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">Live worry-free with round-the-clock security, CCTV surveillance, and controlled gated access.</p>
+     </div><!-- Card 4 -->
+     <div class="luxury-card p-7 rounded-2xl">
+      <div class="amenity-icon mb-4"><i data-lucide="dumbbell" style="width:22px;height:22px;color:var(--gold);"></i>
+      </div>
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Clubhouse, Gym &amp; Greens</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">World-class clubhouse, state-of-the-art gym, and sprawling landscaped green spaces.</p>
+     </div><!-- Card 5 -->
+     <div class="luxury-card p-7 rounded-2xl">
+      <div class="amenity-icon mb-4"><i data-lucide="trending-up" style="width:22px;height:22px;color:var(--gold);"></i>
+      </div>
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;">5–7% Quarterly Growth</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">One of Agra's highest appreciation corridors. Your investment grows while you sleep.</p>
+     </div><!-- Card 6 -->
+     <div class="luxury-card p-7 rounded-2xl" style="border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04);">
+      <div style="width:48px;height:48px;background:linear-gradient(135deg,#C9A84C,#E8C96D);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><i data-lucide="star" style="width:22px;height:22px;color:#0A0A0B;"></i>
+      </div>
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Limited Luxury Inventory</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;"><strong style="color:var(--gold);">60% already sold.</strong> Only a select few plots remain. Exclusivity is the rarest luxury.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="gold-divider"></div><!-- PROJECT HIGHLIGHTS -->
+  <section class="py-20 px-4 fade-in" style="background:var(--bg-dark);">
+   <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+     <div style="font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">
+      Project Highlights
+     </div>
+     <h2 class="serif" style="font-size:2.4rem;font-weight:700;color:var(--text-primary);">Numbers That <span class="gold-text">Speak</span></h2>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+     <div class="text-center p-7 rounded-2xl luxury-card">
+      <div class="serif gold-text counter-val" style="font-size:3rem;font-weight:700;line-height:1;">
+       60%
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;line-height:1.4;letter-spacing:0.5px;">
+       Inventory<br>
+        Already Sold
+      </div>
+     </div>
+     <div class="text-center p-7 rounded-2xl luxury-card">
+      <div class="serif gold-text counter-val" style="font-size:3rem;font-weight:700;line-height:1;">
+       &lt;20
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;line-height:1.4;letter-spacing:0.5px;">
+       Premium Plots<br>
+        Remaining
+      </div>
+     </div>
+     <div class="text-center p-7 rounded-2xl luxury-card">
+      <div class="serif gold-text counter-val" style="font-size:3rem;font-weight:700;line-height:1;">
+       28%
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;line-height:1.4;letter-spacing:0.5px;">
+       Annual<br>
+        Appreciation
+      </div>
+     </div>
+     <div class="text-center p-7 rounded-2xl luxury-card">
+      <div class="serif gold-text counter-val" style="font-size:3rem;font-weight:700;line-height:1;">
+       1000+
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;line-height:1.4;letter-spacing:0.5px;">
+       Sq. Yards<br>
+        Max Plot Size
+      </div>
+     </div>
+    </div><!-- Urgency bar -->
+    <div class="mt-8 p-6 rounded-2xl" style="background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.2);">
+     <div class="flex justify-between mb-2"><span style="font-size:13px;font-weight:600;color:var(--text-primary);">Inventory Status</span> <span style="font-size:13px;color:var(--gold);font-weight:700;">60% SOLD</span>
+     </div>
+     <div style="height:10px;background:rgba(255,255,255,0.06);border-radius:5px;overflow:hidden;">
+      <div class="roi-bar-fill" style="width:60%;background:linear-gradient(to right,#C9A84C,#E8C96D);"></div>
+     </div>
+     <div class="flex justify-between mt-2"><span style="font-size:11px;color:var(--text-muted);">Plots Sold</span> <span style="font-size:11px;color:#ef4444;font-weight:600;">⚠️ Very Limited Remaining</span>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="gold-divider"></div><!-- AMENITIES -->
+  <section class="py-20 px-4 fade-in" style="background:var(--bg-surface);">
+   <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+     <div style="font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">
+      World-Class Living
+     </div>
+     <h2 class="serif" style="font-size:2.4rem;font-weight:700;color:var(--text-primary);">Premium <span class="gold-text">Amenities</span></h2>
+     <p style="color:var(--text-muted);font-size:1rem;margin-top:8px;">Everything you need. Nothing less than extraordinary.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"><!-- Amenity items -->
+     <div class="text-center p-5 rounded-xl luxury-card">
+      <div class="amenity-icon mx-auto mb-3">
+       <i data-lucide="waves" style="width:20px;height:20px;color:var(--gold);"></i>
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;color:var(--text-primary);">
+       Swimming Pool
+      </div>
+     </div>
+     <div class="text-center p-5 rounded-xl luxury-card">
+      <div class="amenity-icon mx-auto mb-3">
+       <i data-lucide="building-2" style="width:20px;height:20px;color:var(--gold);"></i>
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;color:var(--text-primary);">
+       Clubhouse
+      </div>
+     </div>
+     <div class="text-center p-5 rounded-xl luxury-card">
+      <div class="amenity-icon mx-auto mb-3">
+       <i data-lucide="dumbbell" style="width:20px;height:20px;color:var(--gold);"></i>
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;color:var(--text-primary);">
+       Modern Gym
+      </div>
+     </div>
+     <div class="text-center p-5 rounded-xl luxury-card">
+      <div class="amenity-icon mx-auto mb-3">
+       <i data-lucide="tree-pine" style="width:20px;height:20px;color:var(--gold);"></i>
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;color:var(--text-primary);">
+       Landscaped Gardens
+      </div>
+     </div>
+     <div class="text-center p-5 rounded-xl luxury-card">
+      <div class="amenity-icon mx-auto mb-3">
+       <i data-lucide="baby" style="width:20px;height:20px;color:var(--gold);"></i>
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;color:var(--text-primary);">
+       Kids Play Area
+      </div>
+     </div>
+     <div class="text-center p-5 rounded-xl luxury-card">
+      <div class="amenity-icon mx-auto mb-3">
+       <i data-lucide="shield-check" style="width:20px;height:20px;color:var(--gold);"></i>
+      </div>
+      <div style="font-size:0.8rem;font-weight:600;color:var(--text-primary);">
+       24/7 Security
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="gold-divider"></div><!-- INVESTMENT COMPARISON -->
+  <section class="py-20 px-4 fade-in" style="background:var(--bg-dark);">
+   <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+     <div style="font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">
+      Smart Money Moves
+     </div>
+     <h2 class="serif" style="font-size:2.4rem;font-weight:700;color:var(--text-primary);">Why <span class="gold-text">Land Beats</span> Every Investment</h2>
+     <p style="color:var(--text-muted);font-size:1rem;margin-top:8px;">Annual return comparison — your money, working harder</p>
+    </div>
+    <div class="luxury-card rounded-2xl p-8"><!-- Comparison rows -->
+     <div class="flex flex-col gap-6"><!-- Land -->
+      <div>
+       <div class="flex justify-between mb-2">
+        <div class="flex items-center gap-2"><span style="font-size:18px;">🏡</span> <span style="font-weight:700;color:var(--text-primary);font-size:0.95rem;">Rajdarbar Land Investment</span> <span style="font-size:10px;background:rgba(201,168,76,0.15);color:var(--gold);padding:2px 8px;border-radius:4px;font-weight:700;">BEST CHOICE</span>
+        </div><span class="gold-text" style="font-weight:700;font-size:1rem;">28% p.a.</span>
+       </div>
+       <div class="roi-bar" style="background:rgba(255,255,255,0.06);">
+        <div class="roi-bar-fill" style="width:92%;background:linear-gradient(to right,#C9A84C,#E8C96D);"></div>
+       </div>
+      </div><!-- Stocks -->
+      <div>
+       <div class="flex justify-between mb-2">
+        <div class="flex items-center gap-2"><span style="font-size:18px;">📈</span> <span style="font-weight:600;color:rgba(245,240,232,0.7);font-size:0.95rem;">Stock Market</span>
+        </div><span style="font-weight:700;color:rgba(245,240,232,0.5);">12–15% p.a.</span>
+       </div>
+       <div class="roi-bar" style="background:rgba(255,255,255,0.06);">
+        <div class="roi-bar-fill" style="width:52%;background:rgba(100,150,200,0.5);"></div>
+       </div>
+      </div><!-- Gold -->
+      <div>
+       <div class="flex justify-between mb-2">
+        <div class="flex items-center gap-2"><span style="font-size:18px;">🥇</span> <span style="font-weight:600;color:rgba(245,240,232,0.7);font-size:0.95rem;">Gold</span>
+        </div><span style="font-weight:700;color:rgba(245,240,232,0.5);">8–10% p.a.</span>
+       </div>
+       <div class="roi-bar" style="background:rgba(255,255,255,0.06);">
+        <div class="roi-bar-fill" style="width:36%;background:rgba(200,180,80,0.4);"></div>
+       </div>
+      </div><!-- FD -->
+      <div>
+       <div class="flex justify-between mb-2">
+        <div class="flex items-center gap-2"><span style="font-size:18px;">🏦</span> <span style="font-weight:600;color:rgba(245,240,232,0.7);font-size:0.95rem;">Fixed Deposit</span>
+        </div><span style="font-weight:700;color:rgba(245,240,232,0.5);">6–7% p.a.</span>
+       </div>
+       <div class="roi-bar" style="background:rgba(255,255,255,0.06);">
+        <div class="roi-bar-fill" style="width:24%;background:rgba(150,150,150,0.35);"></div>
+       </div>
+      </div>
+     </div>
+     <div class="mt-8 p-4 rounded-xl text-center" style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.15);">
+      <p style="font-size:0.88rem;color:rgba(245,240,232,0.55);line-height:1.6;">Land is the only asset that never depreciates. It cannot be manufactured. It can only become scarcer — and more valuable.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="gold-divider"></div><!-- URGENCY SECTION -->
+  <section class="py-16 px-4 fade-in" style="background:linear-gradient(135deg,#0D0A04 0%,#120E04 50%,#0A0A0B 100%);">
+   <div class="max-w-4xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 pulse-gold" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);"><span style="width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;"></span> <span style="color:#ef4444;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Limited Time</span>
+    </div>
+    <h2 class="serif" style="font-size:2.6rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;">Only a <span class="gold-text">Few Premium Plots</span> Left</h2>
+    <p style="font-size:1.05rem;color:rgba(245,240,232,0.6);max-width:550px;margin:0 auto 2.5rem;line-height:1.7;">Prices are increasing every month. Every day you wait is money left on the table. Secure your plot before it's gone forever.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+     <div class="p-5 rounded-xl" style="background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);">
+      <div style="font-size:1.8rem;margin-bottom:6px;">
+       🔥
+      </div>
+      <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem;">
+       Prices Rising Monthly
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;">
+       Lock in today's rate now
+      </div>
+     </div>
+     <div class="p-5 rounded-xl" style="background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);">
+      <div style="font-size:1.8rem;margin-bottom:6px;">
+       ⚡
+      </div>
+      <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem;">
+       High Demand Zone
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;">
+       Multiple buyers for each plot
+      </div>
+     </div>
+     <div class="p-5 rounded-xl" style="background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);">
+      <div style="font-size:1.8rem;margin-bottom:6px;">
+       🏅
+      </div>
+      <div style="font-weight:700;color:var(--text-primary);font-size:0.9rem;">
+       No Second Chances
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-top:4px;">
+       Once sold, gone forever
+      </div>
+     </div>
+    </div><button onclick="document.getElementById('lead-form-section').scrollIntoView({behavior:'smooth'})" class="btn-gold px-10 py-4 rounded-xl text-base"> 📩 Book Your Plot Now — Before It's Too Late </button>
+   </div>
+  </section>
+  <div class="gold-divider"></div><!-- LEAD FORM -->
+  <section id="lead-form-section" class="py-20 px-4 fade-in" style="background:var(--bg-surface);">
+   <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-10">
+     <div style="font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">
+      Free Consultation
+     </div>
+     <h2 class="serif" style="font-size:2.3rem;font-weight:700;color:var(--text-primary);">Get Your <span class="gold-text">Free Investment Plan</span></h2>
+     <p style="color:var(--text-muted);font-size:1rem;margin-top:8px;">Our experts will call you within 30 minutes</p>
+    </div>
+    <div class="luxury-card rounded-2xl p-8" style="border-color:rgba(201,168,76,0.25);">
+     <form id="lead-form" novalidate>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+       <div><label for="f-name" style="display:block;font-size:12px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">Your Name *</label> <input id="f-name" type="text" placeholder="e.g. Rahul Sharma" class="luxury-input w-full px-4 py-3 rounded-xl text-sm" required>
+       </div>
+       <div><label for="f-phone" style="display:block;font-size:12px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">Phone Number *</label> <input id="f-phone" type="tel" placeholder="e.g. 98765 43210" class="luxury-input w-full px-4 py-3 rounded-xl text-sm" required>
+       </div>
+       <div><label for="f-email" style="display:block;font-size:12px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">Email Address</label> <input id="f-email" type="email" placeholder="you@example.com" class="luxury-input w-full px-4 py-3 rounded-xl text-sm">
+       </div>
+       <div><label for="f-budget" style="display:block;font-size:12px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">Your Budget</label> <select id="f-budget" class="luxury-input w-full px-4 py-3 rounded-xl text-sm" style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.25);color:var(--text-primary);"> <option value="" style="background:#111114;">Select Budget Range</option> <option value="Under 50L" style="background:#111114;">Under ₹50 Lakhs</option> <option value="50L-1Cr" style="background:#111114;">₹50 Lakhs – 1 Crore</option> <option value="1Cr-2Cr" style="background:#111114;">₹1 Crore – 2 Crore</option> <option value="2Cr+" style="background:#111114;">₹2 Crore+</option> </select>
+       </div>
+      </div>
+      <div id="limit-warning">
+       ⚠️ We've received maximum submissions. Please call us directly at 63990 21515.
+      </div><button id="form-submit-btn" type="submit" class="btn-gold w-full py-4 rounded-xl text-base mt-2 flex items-center justify-center gap-2"> <span id="submit-btn-text">📩 Get Free Investment Plan</span> <span id="submit-spinner" style="display:none;width:18px;height:18px;border:2px solid rgba(10,10,11,0.3);border-top-color:#0A0A0B;border-radius:50%;animation:spin 0.7s linear infinite;"></span> </button>
+     </form>
+     <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:14px;">🔒 Your details are 100% secure. No spam, ever.</p>
+    </div>
+   </div>
+  </section>
+  <div class="gold-divider"></div><!-- FINAL CTA -->
+  <section class="py-20 px-4 fade-in" style="background:linear-gradient(135deg,#0D0A04 0%,#0A0A0B 100%);">
+   <div class="max-w-4xl mx-auto text-center">
+    <div class="serif" style="font-size:11px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;">
+     Last Chance
+    </div>
+    <h2 class="serif" style="font-size:2.8rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;line-height:1.2;">Don't Miss This <span class="gold-text">Once-in-a-Lifetime</span> Opportunity</h2>
+    <p style="color:rgba(245,240,232,0.55);font-size:1rem;max-width:500px;margin:0 auto 2.5rem;line-height:1.7;">Book your site visit today. Come see why Rajdarbar Spaces is Agra's most sought-after address.</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4"><a id="final-call-btn" href="tel:6399021515" class="btn-gold px-10 py-4 rounded-xl text-base font-semibold flex items-center justify-center gap-2" style="text-decoration:none;"> 📞 Call Now: <span id="final-phone-display">63990 21515</span> </a> <button onclick="document.getElementById('lead-form-section').scrollIntoView({behavior:'smooth'})" class="btn-outline-gold px-10 py-4 rounded-xl text-base font-semibold"> 📅 Book Site Visit </button>
+    </div>
+   </div>
+  </section><!-- FOOTER -->
+  <footer class="py-10 px-4 text-center" style="background:var(--bg-dark);border-top:1px solid rgba(201,168,76,0.1);">
+   <div class="serif gold-text" style="font-size:1.4rem;font-weight:700;margin-bottom:4px;">
+    Paradise Globaol Properties
+   </div>
+   <div style="font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">
+    Premium Real Estate · Agra, Uttar Pradesh
+   </div>
+   <p style="font-size:12px;color:rgba(138,128,112,0.5);">© 2025 Paradise Globaol Properties. All rights reserved. </p>
+  </footer><!-- Floating Buttons --> <a id="sticky-call" href="tel:6399021515" class="float-btn float-call"> <i data-lucide="phone" style="width:18px;height:18px;flex-shrink:0;"></i> <span>Call Now</span> </a> <a id="sticky-wa" href="https://wa.me/6399021515?text=Hi%2C+I'm+interested+in+Rajdarbar+Spaces+Agra" target="_blank" rel="noopener noreferrer" class="float-btn float-whatsapp">
+   <svg width="18" height="18" viewbox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+   </svg><span>WhatsApp</span> </a> <!-- Toasts -->
+  <div id="success-toast">
+   <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M20 6L9 17l-5-5" />
+   </svg><span>✅ Thank you! Our expert will call you within 30 minutes.</span>
+  </div>
+  <div id="error-toast">
+   <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+   </svg><span id="error-toast-msg">Something went wrong. Please call us directly.</span>
+  </div>
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <script>
+    // ── Init SDKs ──────────────────────────────────────────────────────────────
+    let recordCount = 0;
+
+    const defaultConfig = {
+      hero_tagline: "Live Royal. Invest Smart.",
+      hero_headline: "Own Your Dream Villa or Plot in Agra's Most Premium Location",
+      hero_subheadline: "Where Heritage Meets Modern Luxury | Limited Plots Available",
+      phone_number: "63990 21515",
+      whatsapp_number: "6399021515",
+      form_cta: "Get Free Investment Plan",
+      background_color: "#0A0A0B",
+      surface_color: "#111114",
+      text_color: "#F5F0E8",
+      gold_color: "#C9A84C",
+      action_color: "#C9A84C"
+    };
+
+    // Data SDK
+    window.dataSdk && (async () => {
+      const handler = {
+        onDataChanged(data) {
+          recordCount = data.length;
+          if (recordCount >= 999) {
+            document.getElementById('limit-warning').style.display = 'block';
+          }
+        }
+      };
+      await window.dataSdk.init(handler);
+    })();
+
+    // Element SDK
+    window.elementSdk && window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => {
+        // Tagline
+        const taglineEl = document.getElementById('hero-tagline-el');
+        if (taglineEl) taglineEl.textContent = config.hero_tagline || defaultConfig.hero_tagline;
+
+        // Headline
+        const headlineEl = document.getElementById('hero-headline-el');
+        if (headlineEl) {
+          const parts = (config.hero_headline || defaultConfig.hero_headline).split(' in ');
+          if (parts.length === 2) {
+            headlineEl.innerHTML = parts[0] + ' in<br><span class="gold-text">' + parts[1] + '</span>';
+          } else {
+            headlineEl.textContent = config.hero_headline || defaultConfig.hero_headline;
+          }
+        }
+
+        // Sub
+        const subEl = document.getElementById('hero-sub-el');
+        if (subEl) {
+          const sub = config.hero_subheadline || defaultConfig.hero_subheadline;
+          const pipeIdx = sub.indexOf('|');
+          if (pipeIdx > -1) {
+            subEl.innerHTML = sub.substring(0, pipeIdx + 1) + ' <span style="color:var(--gold);">' + sub.substring(pipeIdx + 1).trim() + '</span>';
+          } else {
+            subEl.textContent = sub;
+          }
+        }
+
+        // Phone
+        const phone = config.phone_number || defaultConfig.phone_number;
+        const wa = config.whatsapp_number || defaultConfig.whatsapp_number;
+
+        ['hero-phone-display','final-phone-display'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = phone;
+        });
+
+        ['hero-call-btn','nav-call-btn','final-call-btn','sticky-call'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.href = 'tel:' + phone.replace(/\s/g,'');
+        });
+
+        ['hero-wa-btn','sticky-wa'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.href = `https://wa.me/${wa}?text=Hi%2C+I'm+interested+in+Rajdarbar+Spaces+Agra`;
+        });
+
+        // Form CTA
+        const formCta = config.form_cta || defaultConfig.form_cta;
+        const submitText = document.getElementById('submit-btn-text');
+        if (submitText) submitText.textContent = '📩 ' + formCta;
+
+        // Colors
+        const gold = config.gold_color || defaultConfig.gold_color;
+        document.documentElement.style.setProperty('--gold', gold);
+        document.documentElement.style.setProperty('--gold-light', gold);
+        document.body.style.background = config.background_color || defaultConfig.background_color;
+        document.body.style.color = config.text_color || defaultConfig.text_color;
+      },
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+          },
+          {
+            get: () => config.gold_color || defaultConfig.gold_color,
+            set: (v) => { config.gold_color = v; window.elementSdk.setConfig({ gold_color: v }); }
+          },
+          {
+            get: () => config.action_color || defaultConfig.action_color,
+            set: (v) => { config.action_color = v; window.elementSdk.setConfig({ action_color: v }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ['hero_tagline', config.hero_tagline || defaultConfig.hero_tagline],
+        ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+        ['hero_subheadline', config.hero_subheadline || defaultConfig.hero_subheadline],
+        ['phone_number', config.phone_number || defaultConfig.phone_number],
+        ['whatsapp_number', config.whatsapp_number || defaultConfig.whatsapp_number],
+        ['form_cta', config.form_cta || defaultConfig.form_cta]
+      ])
+    });
+
+    // ── Toast helpers ─────────────────────────────────────────────────────────
+    function showToast(id, duration = 4000) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), duration);
+    }
+
+    // ── Form submission ───────────────────────────────────────────────────────
+    document.getElementById('lead-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const budget = document.getElementById('f-budget').value;
+
+      if (!name || !phone) {
+        document.getElementById('error-toast-msg').textContent = 'Please enter your name and phone number.';
+        showToast('error-toast');
+        return;
+      }
+
+      if (recordCount >= 999) {
+        document.getElementById('limit-warning').style.display = 'block';
+        return;
+      }
+
+      // Loading state
+      const btn = document.getElementById('form-submit-btn');
+      const btnText = document.getElementById('submit-btn-text');
+      const spinner = document.getElementById('submit-spinner');
+      btn.disabled = true;
+      btnText.textContent = 'Submitting...';
+      spinner.style.display = 'inline-block';
+
+      const result = await window.dataSdk.create({
+        name,
+        phone,
+        email: email || '',
+        budget: budget || 'Not specified',
+        submitted_at: new Date().toISOString()
+      });
+
+      btn.disabled = false;
+      spinner.style.display = 'none';
+
+      const cfg = window.elementSdk ? window.elementSdk.config : defaultConfig;
+      btnText.textContent = '📩 ' + (cfg.form_cta || defaultConfig.form_cta);
+
+      if (result.isOk) {
+        // Reset form
+        document.getElementById('lead-form').reset();
+        showToast('success-toast');
+      } else {
+        document.getElementById('error-toast-msg').textContent = 'Submission failed. Please call us directly at 63990 21515.';
+        showToast('error-toast');
+      }
+    });
+
+    // ── Scroll fade-in ────────────────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Lucide icons ──────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e1645e31731b28e',t:'MTc3NDM2MTU3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
