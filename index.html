@@ -3,976 +3,990 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real Estate Agent Profile</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <title>Paradise Global Properties – Own Prime Land in Hyderabad</title>
   <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    body {
-      box-sizing: border-box;
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #F0D080;
+      --dark: #0B1120;
+      --dark2: #111827;
+      --accent: #1A6B3A;
+      --text: #E8E8E0;
     }
-    
-    .font-display {
-      font-family: 'Cormorant Garamond', serif;
-    }
-    
-    .font-body {
-      font-family: 'Montserrat', sans-serif;
-    }
-    
-    * {
-      font-family: 'Montserrat', sans-serif;
-    }
-    
-    .hero-gradient {
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0f0a08 100%);
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; font-family: 'Outfit', sans-serif; background: var(--dark); color: var(--text); scroll-behavior: smooth; }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* ── HERO ── */
+    .hero-section {
       position: relative;
+      min-height: 100%;
+      background: var(--dark);
+      overflow: hidden;
     }
-    
-    .hero-gradient::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
-      pointer-events: none;
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(11,17,32,0.92) 0%, rgba(11,17,32,0.65) 50%, rgba(26,107,58,0.35) 100%),
+        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 80px),
+        linear-gradient(180deg, #0B1120 0%, #162540 40%, #0E3020 100%);
     }
-    
-    .card-hover {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Animated grid overlay */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridShift 20s linear infinite;
     }
-    
-    .card-hover:hover {
-      transform: translateY(-8px);
+    @keyframes gridShift { from { background-position: 0 0; } to { background-position: 60px 60px; } }
+
+    /* Glowing orbs */
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.25; }
+    .orb-1 { width: 500px; height: 500px; background: #1A6B3A; top: -100px; right: -100px; animation: pulse 8s ease-in-out infinite; }
+    .orb-2 { width: 400px; height: 400px; background: #C9A84C; bottom: -50px; left: -100px; animation: pulse 10s ease-in-out infinite reverse; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:0.25} 50%{transform:scale(1.15);opacity:0.35} }
+
+    /* Gold text gradient */
+    .gold-text {
+      background: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    
+
+    /* Buttons */
+    .btn-gold {
+      background: linear-gradient(135deg, #C9A84C, #E8C060);
+      color: #0B1120; font-weight: 700; border: none; cursor: pointer;
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.5); }
+    .btn-gold::after { content:''; position:absolute; inset:0; background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent); opacity:0; transition:opacity 0.3s; }
+    .btn-gold:hover::after { opacity:1; }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff; font-weight: 700; border: none; cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid rgba(201,168,76,0.6);
+      color: var(--gold);
+      font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+
+    /* Stat cards */
     .stat-card {
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(201,168,76,0.2);
+      backdrop-filter: blur(10px);
     }
-    
-    .stat-card:hover {
-      border-color: rgba(255, 255, 255, 0.15);
+
+    /* Section styles */
+    .section-dark { background: var(--dark2); }
+    .section-darker { background: var(--dark); }
+    .section-green { background: linear-gradient(135deg, #0A1F12, #0E2A1A); }
+
+    /* Badge */
+    .badge {
+      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
     }
-    
-    .fade-in {
-      animation: fadeInUp 0.8s ease-out forwards;
-      opacity: 0;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes shimmer {
-      0% {
-        background-position: -1000px 0;
-      }
-      100% {
-        background-position: 1000px 0;
-      }
-    }
-    
-    .shimmer {
-      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-      background-size: 1000px 100%;
-      animation: shimmer 3s infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-20px);
-      }
-    }
-    
-    .floating {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes slideInFromLeft {
-      0% {
-        transform: translateX(-100px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-    
-    @keyframes slideInFromRight {
-      0% {
-        transform: translateX(100px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-    
-    @keyframes scaleIn {
-      0% {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-    
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.05);
-        opacity: 0.8;
-      }
-    }
-    
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-    
-    .animate-slide-left {
-      animation: slideInFromLeft 1s ease-out forwards;
-    }
-    
-    .animate-slide-right {
-      animation: slideInFromRight 1s ease-out forwards;
-    }
-    
-    .animate-scale {
-      animation: scaleIn 0.8s ease-out forwards;
-    }
-    
-    .animate-pulse {
-      animation: pulse 2s ease-in-out infinite;
-    }
-    
-    .gradient-animate {
-      background-size: 200% 200%;
-      animation: gradientShift 8s ease infinite;
-    }
-    
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
-    .delay-5 { animation-delay: 0.5s; }
-    
-    .contact-btn {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-    }
-    
-    .contact-btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-    
-    .contact-btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-    
-    .contact-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
-    }
-    
-    .contact-btn::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transform: rotate(45deg);
-      transition: all 0.5s;
-    }
-    
-    .contact-btn:hover::after {
-      left: 100%;
-    }
-    
-    .skill-badge {
-      transition: all 0.3s ease;
-    }
-    
-    .skill-badge:hover {
-      transform: scale(1.05);
-    }
-    
-    .profile-image-wrapper {
-      position: relative;
-    }
-    
-    .profile-image-wrapper::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      border-radius: 20px;
-      opacity: 0.3;
-      z-index: -1;
-    }
-    
-    .social-icon {
-      transition: all 0.3s ease;
-    }
-    
-    .social-icon:hover {
-      transform: translateY(-3px);
-    }
-    
-    .property-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .property-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
+
+    /* Comparison table */
+    .compare-highlight { background: linear-gradient(135deg, rgba(26,107,58,0.3), rgba(26,107,58,0.1)); border: 1px solid rgba(26,107,58,0.5); }
+    .compare-row { border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+    /* Form */
+    .form-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: #fff;
+      transition: border-color 0.3s, box-shadow 0.3s;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-      transition: left 0.5s;
+      outline: none;
     }
-    
-    .property-card:hover::before {
-      left: 100%;
+    .form-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
+    .form-input::placeholder { color: rgba(232,232,224,0.35); }
+
+    /* Sticky CTA */
+    .sticky-cta {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+      background: linear-gradient(90deg, var(--dark2), #0E2218);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 12px 20px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
     }
-    
-    .property-card:hover {
-      border-color: rgba(212, 175, 55, 0.5);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-      box-shadow: 0 15px 50px rgba(212, 175, 55, 0.2);
+    .sticky-cta.visible { transform: translateY(0); }
+
+    /* WhatsApp float */
+    .wa-float {
+      position: fixed; bottom: 80px; right: 20px; z-index: 60;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
     }
-    
+    .wa-float:hover { transform: scale(1.1) rotate(-5deg); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+
+    /* Countdown */
+    .countdown-box {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 8px;
+      padding: 6px 14px;
+      text-align: center;
+    }
+
+    /* Testimonial card */
     .testimonial-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(201,168,76,0.15);
     }
-    
-    .section-title {
-      position: relative;
-      display: inline-block;
+
+    /* Progress bars */
+    .progress-bar { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 4px; transition: width 1.5s ease; }
+
+    /* Fade-in animation */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Divider */
+    .gold-divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; }
+
+    /* Step connector */
+    .step-connector { flex: 1; height: 2px; background: linear-gradient(90deg, var(--gold), rgba(201,168,76,0.2)); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--dark); } ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* Mobile nav */
+    @media (max-width: 768px) {
+      .sticky-cta { flex-direction: column; padding: 10px 16px; gap: 8px; }
+      .sticky-cta button { width: 100%; max-width: 340px; }
     }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      border-radius: 2px;
-    }
+
+    /* Notification toast */
+    .toast { position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 14px 20px; border-radius: 10px; font-weight: 600; font-size: 14px; transform: translateX(120%); transition: transform 0.4s ease; max-width: 320px; }
+    .toast.show { transform: translateX(0); }
+    .toast-success { background: linear-gradient(135deg, #1A6B3A, #0E4A28); border: 1px solid rgba(37,211,102,0.3); color: #fff; }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
+  <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
  </head>
- <body class="h-full m-0 overflow-auto font-body">
-  <div class="min-h-full w-full" id="main-wrapper"><!-- Navigation -->
-   <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(37, 99, 235, 0.1); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="flex items-center justify-between h-20">
-      <div class="flex items-center gap-2 animate-slide-left">
-       <div class="w-10 h-10 rounded-lg flex items-center justify-center animate-pulse" style="background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-       </div><span class="font-display text-xl font-bold" style="color: #2563eb;" id="nav-agent-name">PS</span>
+ <body class="h-full overflow-auto">
+  <!-- Toast Notification -->
+  <div id="toast" class="toast toast-success" role="alert" aria-live="polite">
+   <div class="flex items-center gap-2">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="20 6 9 12 4 9" /><path d="M22 6L12 17l-5-5" />
+    </svg><span id="toast-msg">Thank you! We'll contact you shortly.</span>
+   </div>
+  </div><!-- WhatsApp Float Button --> <button class="wa-float" aria-label="Chat on WhatsApp" onclick="openWhatsApp()">
+   <svg width="28" height="28" viewbox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+   </svg></button> <!-- Sticky CTA Bar -->
+  <div class="sticky-cta" id="stickyCta">
+   <span class="text-sm text-gray-300 hidden md:block">🔥 Only <strong class="text-yellow-400">200 shares</strong> available — Prices rising monthly!</span> <button class="btn-gold px-6 py-2.5 rounded-full text-sm font-bold" onclick="scrollToForm()">Book Free Consultation</button> <button class="btn-whatsapp px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2" onclick="openWhatsApp()">
+    <svg width="16" height="16" viewbox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg> WhatsApp Now </button>
+  </div><!-- ══════════════════════════════════════════════ --> <!-- 1. HERO SECTION --> <!-- ══════════════════════════════════════════════ -->
+  <section class="hero-section" style="min-height:100%;">
+   <div class="hero-bg"></div>
+   <div class="hero-grid"></div>
+   <div class="orb orb-1"></div>
+   <div class="orb orb-2"></div><!-- Nav -->
+   <header style="position:relative;z-index:10;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.1);">
+    <div style="display:flex;align-items:center;gap:10px;">
+     <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#C9A84C,#F0D080);display:flex;align-items:center;justify-content:center;">
+      <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#0B1120" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+     </div>
+     <div>
+      <div id="nav-company" style="font-family:'Playfair Display',serif;font-weight:700;font-size:15px;color:#F0D080;line-height:1.1;">
+       Paradise Global Properties
       </div>
-      <div class="hidden md:flex items-center gap-8"><a href="#home" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #2563eb;">Home</a> <a href="#properties" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Properties</a> <a href="#services" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Services</a> <a href="#expertise" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Expertise</a> <a href="#testimonials" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Testimonials</a> <a href="#contact" class="text-sm font-medium transition-colors hover:text-opacity-80" style="color: #64748b;">Contact</a>
-      </div><button class="hidden md:block px-6 py-2 rounded-lg font-semibold text-sm transition-all hover:shadow-lg" id="nav-cta" style="background: #2563eb; color: #ffffff;"> Get Started </button> <button class="md:hidden" id="mobile-menu-btn" style="color: #2563eb;">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-       </svg></button>
-     </div>
-    </div><!-- Mobile Menu -->
-    <div class="md:hidden hidden" id="mobile-menu" style="background: rgba(255, 255, 255, 0.98); border-top: 1px solid rgba(37, 99, 235, 0.1);">
-     <div class="px-4 py-6 space-y-4"><a href="#home" class="block text-sm font-medium transition-colors" style="color: #2563eb;">Home</a> <a href="#properties" class="block text-sm font-medium transition-colors" style="color: #64748b;">Properties</a> <a href="#services" class="block text-sm font-medium transition-colors" style="color: #64748b;">Services</a> <a href="#expertise" class="block text-sm font-medium transition-colors" style="color: #64748b;">Expertise</a> <a href="#testimonials" class="block text-sm font-medium transition-colors" style="color: #64748b;">Testimonials</a> <a href="#contact" class="block text-sm font-medium transition-colors" style="color: #64748b;">Contact</a> <button class="w-full px-6 py-3 rounded-lg font-semibold text-sm transition-all" style="background: #2563eb; color: #ffffff;"> Get Started </button>
-     </div>
-    </div>
-   </nav><!-- Hero Section -->
-   <section class="hero-gradient relative overflow-hidden gradient-animate" id="home" style="padding-top: 80px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);">
-    <div class="absolute inset-0 opacity-20">
-     <div class="absolute top-20 left-20 w-72 h-72 rounded-full blur-3xl animate-pulse" id="hero-blob-1" style="background: #2563eb;"></div>
-     <div class="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse" id="hero-blob-2" style="background: #0ea5e9;"></div>
-    </div><!-- Decorative corner elements -->
-    <div class="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 opacity-30" style="border-color: #2563eb;"></div>
-    <div class="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 opacity-30" style="border-color: #2563eb;"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"><!-- Left: Content -->
-      <div class="order-2 lg:order-1 text-center lg:text-left">
-       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 fade-in animate-slide-left" style="background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.2);">
-        <div class="w-2 h-2 rounded-full animate-pulse" id="status-indicator" style="background: #2563eb;"></div><span class="text-xs sm:text-sm font-medium tracking-wide" id="agent-title-badge" style="color: #1e293b;">SENIOR REAL ESTATE AGENT</span>
-       </div>
-       <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 fade-in delay-1 animate-slide-left" id="agent-name-display" style="color: #1e293b; line-height: 1.1;">Marcus Bennett</h1>
-       <p class="text-lg sm:text-xl mb-6 fade-in delay-2 animate-slide-left" id="agent-tagline-display" style="color: #475569;">Your Trusted Partner in Luxury Real Estate</p>
-       <p class="text-base sm:text-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed fade-in delay-3 animate-slide-left" id="agent-bio-display" style="color: #64748b;">With over 12 years of experience in the luxury real estate market, I specialize in connecting discerning clients with their dream properties. From penthouses to estates, I deliver exceptional results.</p>
-       <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in delay-4 animate-slide-left"><button class="contact-btn px-8 py-4 rounded-xl font-semibold text-base sm:text-lg transition-all relative z-10 hover:shadow-xl" id="cta-button" style="background: #2563eb; color: #ffffff;"> Schedule Consultation </button> <button class="px-8 py-4 rounded-xl font-semibold text-base sm:text-lg transition-all hover:shadow-lg" id="secondary-btn" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.3);"> View Listings </button>
-       </div><!-- Contact Info -->
-       <div class="mt-10 flex flex-wrap gap-6 justify-center lg:justify-start fade-in delay-5 animate-slide-left"><a href="#" class="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity" id="phone-link" style="color: #64748b;">
-         <svg class="w-5 h-5" style="color: #2563eb;" fill="currentColor" viewbox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-         </svg><span id="phone-display">+1 (555) 987-6543</span> </a> <a href="#" class="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity" id="email-link" style="color: #64748b;">
-         <svg class="w-5 h-5" style="color: #2563eb;" fill="currentColor" viewbox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-         </svg><span id="email-display">marcus@luxuryrealty.com</span> </a>
-        <div class="flex items-center gap-2 text-sm" style="color: #64748b;">
-         <svg class="w-5 h-5" style="color: #2563eb;" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-         </svg><span id="location-display">Los Angeles, CA</span>
-        </div>
-       </div>
-      </div><!-- Right: Profile Image -->
-      <div class="order-1 lg:order-2 flex justify-center fade-in delay-2 animate-slide-right">
-       <div class="profile-image-wrapper floating">
-        <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(14, 165, 233, 0.1) 100%); border: 3px solid rgba(37, 99, 235, 0.3); box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);">
-         <svg class="w-full h-full" viewbox="0 0 400 400" fill="none"><defs>
-           <lineargradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.4" />
-            <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.3" />
-           </lineargradient>
-          </defs> <circle cx="200" cy="150" r="70" fill="url(#blueGradient)" /> <path d="M100 350 Q100 280 200 280 Q300 280 300 350 L300 400 L100 400 Z" fill="url(#blueGradient)" /> <circle cx="200" cy="150" r="75" fill="none" stroke="rgba(37, 99, 235, 0.3)" stroke-width="2" />
-         </svg>
-        </div>
-       </div>
+      <div style="font-size:10px;color:rgba(232,232,224,0.5);letter-spacing:1.5px;text-transform:uppercase;">
+       Premium Investments
       </div>
      </div>
     </div>
-   </section><!-- Stats Section -->
-   <section class="py-12 sm:py-16" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f8fafc 100%); border-top: 1px solid rgba(37, 99, 235, 0.1); border-bottom: 1px solid rgba(37, 99, 235, 0.1);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-      <div class="stat-card rounded-2xl p-6 text-center animate-scale" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
-       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-1-value" style="color: #2563eb;">
-        500+
-       </div>
-       <div class="text-sm font-medium" style="color: #64748b;">
-        Properties Sold
-       </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+     <a id="nav-phone" href="tel:+919876543210" style="color:var(--gold);font-size:13px;font-weight:600;text-decoration:none;display:none;" class="md:flex items-center gap-1">
+      <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.25a16 16 0 006.72 6.72l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+      </svg> +91 98765 43210 </a> <button class="btn-gold px-4 py-2 rounded-full text-xs font-bold" onclick="scrollToForm()">Invest Now</button>
+    </div>
+   </header><!-- Hero Content -->
+   <div style="position:relative;z-index:10;max-width:900px;margin:0 auto;padding:60px 24px 80px;text-align:center;">
+    <!-- Pre-headline badge -->
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:50px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);margin-bottom:24px;">
+     <span style="width:8px;height:8px;border-radius:50%;background:#25D366;display:inline-block;animation:pulse2 1.5s ease-in-out infinite;"></span> <span id="hero-urgency" style="font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);">Limited Opportunity — 200 Shares Only</span>
+    </div>
+    <h1 id="hero-headline" style="font-size:clamp(32px,5.5vw,62px);font-weight:900;line-height:1.1;margin-bottom:20px;color:#fff;">Own Prime Land in<br><span class="gold-text">Hyderabad's Growth Corridor</span></h1>
+    <p id="hero-subheadline" style="font-size:clamp(16px,2.2vw,22px);color:rgba(232,232,224,0.75);max-width:620px;margin:0 auto 32px;font-weight:400;line-height:1.6;">Start Investing from <strong style="color:#F0D080;">₹2.85 Lakhs</strong> | <strong style="color:#F0D080;">3X Growth Potential</strong> in 5 Years</p><!-- Countdown -->
+    <div style="display:flex;justify-content:center;margin-bottom:36px;">
+     <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 24px;display:inline-flex;align-items:center;gap:6px;">
+      <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+      </svg><span style="font-size:13px;color:rgba(232,232,224,0.6);font-weight:500;">Offer Ends In:</span> <span style="font-weight:700;font-size:16px;color:#F0D080;letter-spacing:2px;" id="countdown">--:--:--</span>
+     </div>
+    </div><!-- CTA Buttons -->
+    <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:48px;">
+     <button id="hero-cta-primary" class="btn-gold px-8 py-4 rounded-full text-base font-bold" onclick="scrollToForm()" style="min-width:220px;"> 📅 Book Free Consultation </button> <button id="hero-cta-whatsapp" class="btn-whatsapp px-8 py-4 rounded-full text-base font-bold flex items-center justify-center gap-2" onclick="openWhatsApp()" style="min-width:220px;">
+      <svg width="18" height="18" viewbox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg> Get Details on WhatsApp </button>
+    </div><!-- Trust micro-stats -->
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+     <span class="badge px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-1.5">
+      <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg> Verified &amp; Legal </span> <span class="badge px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-1.5">
+      <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
+      </svg> 17% Annual Growth </span> <span class="badge px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-1.5">
+      <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+      </svg> Zero Hassle Management </span>
+    </div>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 2. TRUST & SOCIAL PROOF --> <!-- ══════════════════════════════════════════════ -->
+  <section class="section-dark py-16 fade-up">
+   <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:48px;">
+     <div class="gold-divider mx-auto mb-4"></div>
+     <h2 style="font-size:clamp(24px,3.5vw,38px);color:#fff;margin-bottom:12px;">Numbers That <span class="gold-text">Build Confidence</span></h2>
+     <p style="color:rgba(232,232,224,0.55);font-size:15px;max-width:500px;margin:0 auto;">Backed by real market data and Hyderabad's unstoppable growth trajectory.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:40px;">
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="font-size:44px;font-weight:900;font-family:'Playfair Display',serif;" class="gold-text">
+       17%
       </div>
-      <div class="stat-card rounded-2xl p-6 text-center animate-scale delay-1" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
-       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-2-value" style="color: #2563eb;">
-        ₹850Cr+
-       </div>
-       <div class="text-sm font-medium" style="color: #64748b;">
-        Total Sales Value
-       </div>
+      <div style="font-weight:700;font-size:16px;color:#fff;margin:4px 0;">
+       Annual Growth Rate
       </div>
-      <div class="stat-card rounded-2xl p-6 text-center animate-scale delay-2" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
-       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-3-value" style="color: #2563eb;">
-        15+
-       </div>
-       <div class="text-sm font-medium" style="color: #64748b;">
-        Years Experience
-       </div>
+      <div style="font-size:13px;color:rgba(232,232,224,0.5);">
+       Consistent year-over-year appreciation
       </div>
-      <div class="stat-card rounded-2xl p-6 text-center animate-scale delay-3" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0.5) 100%); border: 1px solid rgba(37, 99, 235, 0.2);">
-       <div class="text-3xl sm:text-4xl font-bold mb-2 font-display" id="stat-4-value" style="color: #2563eb;">
-        99%
-       </div>
-       <div class="text-sm font-medium" style="color: #64748b;">
-        Client Satisfaction
-       </div>
+     </div>
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="font-size:44px;font-weight:900;font-family:'Playfair Display',serif;" class="gold-text">
+       3X
       </div>
+      <div style="font-weight:700;font-size:16px;color:#fff;margin:4px 0;">
+       Returns in 5 Years
+      </div>
+      <div style="font-size:13px;color:rgba(232,232,224,0.5);">
+       Projected based on market trends
+      </div>
+     </div>
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="font-size:44px;font-weight:900;font-family:'Playfair Display',serif;" class="gold-text">
+       900+
+      </div>
+      <div style="font-weight:700;font-size:16px;color:#fff;margin:4px 0;">
+       IT Companies
+      </div>
+      <div style="font-size:13px;color:rgba(232,232,224,0.5);">
+       Driving demand in the corridor
+      </div>
+     </div>
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="font-size:44px;font-weight:900;font-family:'Playfair Display',serif;" class="gold-text">
+       ₹2.85L
+      </div>
+      <div style="font-weight:700;font-size:16px;color:#fff;margin:4px 0;">
+       Starting Investment
+      </div>
+      <div style="font-size:13px;color:rgba(232,232,224,0.5);">
+       Fractional ownership model
+      </div>
+     </div>
+    </div><!-- Trust badges -->
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+     <div style="background:rgba(26,107,58,0.15);border:1px solid rgba(26,107,58,0.4);border-radius:10px;padding:10px 20px;display:flex;align-items:center;gap:8px;">
+      <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg><span style="font-size:13px;font-weight:600;color:#4ADE80;">Secure Investment</span>
+     </div>
+     <div style="background:rgba(26,107,58,0.15);border:1px solid rgba(26,107,58,0.4);border-radius:10px;padding:10px 20px;display:flex;align-items:center;gap:8px;">
+      <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2"><polyline points="20 6 9 12 4 9" /><path d="M22 6L12 17l-5-5" />
+      </svg><span style="font-size:13px;font-weight:600;color:#4ADE80;">Verified Land Title</span>
+     </div>
+     <div style="background:rgba(26,107,58,0.15);border:1px solid rgba(26,107,58,0.4);border-radius:10px;padding:10px 20px;display:flex;align-items:center;gap:8px;">
+      <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+      </svg><span style="font-size:13px;font-weight:600;color:#4ADE80;">High ROI Guaranteed</span>
+     </div>
+     <div style="background:rgba(26,107,58,0.15);border:1px solid rgba(26,107,58,0.4);border-radius:10px;padding:10px 20px;display:flex;align-items:center;gap:8px;">
+      <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M9 21V9" />
+      </svg><span style="font-size:13px;font-weight:600;color:#4ADE80;">Legal Docs Ready</span>
      </div>
     </div>
-   </section><!-- Featured Properties Section -->
-   <section class="py-16 sm:py-20" id="properties" style="background: linear-gradient(180deg, #1a1410 0%, #0a0a0a 100%);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="text-center mb-12">
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Featured Properties</h2>
-      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">Handpicked luxury properties for discerning clients</p>
-     </div>
-     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Property 1 -->
-      <div class="property-card rounded-2xl overflow-hidden card-hover group">
-       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(139, 69, 19, 0.3) 100%);">
-        <div class="absolute inset-0 flex items-center justify-center">
-         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-         </svg>
-        </div>
-        <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold" style="background: #d4af37; color: #0a0a0a;">
-         Featured
-        </div>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Luxury Penthouse - South Delhi</h3>
-        <p class="text-sm mb-4" style="color: #707070;">4 BHK • 3500 sq.ft • Premium Location</p>
-        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹8.5 Cr</span>
-         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
-          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-          </svg> New Delhi
-         </div>
-        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
-       </div>
-      </div><!-- Property 2 -->
-      <div class="property-card rounded-2xl overflow-hidden card-hover group">
-       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(139, 69, 19, 0.25) 100%);">
-        <div class="absolute inset-0 flex items-center justify-center">
-         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-         </svg>
-        </div>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Heritage Villa - Agra</h3>
-        <p class="text-sm mb-4" style="color: #707070;">5 BHK • 5000 sq.ft • Garden &amp; Pool</p>
-        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹12 Cr</span>
-         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
-          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-          </svg> Agra
-         </div>
-        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
-       </div>
-      </div><!-- Property 3 -->
-      <div class="property-card rounded-2xl overflow-hidden card-hover group">
-       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 69, 19, 0.2) 100%);">
-        <div class="absolute inset-0 flex items-center justify-center">
-         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-         </svg>
-        </div>
-        <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212, 175, 55, 0.2); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.5);">
-         New
-        </div>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Modern Apartment - Mumbai</h3>
-        <p class="text-sm mb-4" style="color: #707070;">3 BHK • 2200 sq.ft • Sea View</p>
-        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹6.8 Cr</span>
-         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
-          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-          </svg> Mumbai
-         </div>
-        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
-       </div>
-      </div><!-- Property 4 -->
-      <div class="property-card rounded-2xl overflow-hidden card-hover group">
-       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(139, 69, 19, 0.22) 100%);">
-        <div class="absolute inset-0 flex items-center justify-center">
-         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-         </svg>
-        </div>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Luxury Farmhouse - Gurgaon</h3>
-        <p class="text-sm mb-4" style="color: #707070;">6 BHK • 8000 sq.ft • Private Estate</p>
-        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹18 Cr</span>
-         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
-          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-          </svg> Gurgaon
-         </div>
-        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
-       </div>
-      </div><!-- Property 5 -->
-      <div class="property-card rounded-2xl overflow-hidden card-hover group">
-       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(139, 69, 19, 0.28) 100%);">
-        <div class="absolute inset-0 flex items-center justify-center">
-         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-         </svg>
-        </div>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Sky Villa - Bangalore</h3>
-        <p class="text-sm mb-4" style="color: #707070;">4 BHK • 4000 sq.ft • Rooftop Access</p>
-        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹9.5 Cr</span>
-         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
-          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-          </svg> Bangalore
-         </div>
-        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
-       </div>
-      </div><!-- Property 6 -->
-      <div class="property-card rounded-2xl overflow-hidden card-hover group">
-       <div class="relative h-64 overflow-hidden" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.14) 0%, rgba(139, 69, 19, 0.24) 100%);">
-        <div class="absolute inset-0 flex items-center justify-center">
-         <svg class="w-20 h-20 opacity-30" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-         </svg>
-        </div>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-bold mb-2" style="color: #ffffff;">Waterfront Villa - Goa</h3>
-        <p class="text-sm mb-4" style="color: #707070;">5 BHK • 6000 sq.ft • Beach Access</p>
-        <div class="flex items-center justify-between mb-4"><span class="text-2xl font-bold font-display" style="color: #d4af37;">₹15 Cr</span>
-         <div class="flex items-center gap-1 text-xs" style="color: #808080;">
-          <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-          </svg> Goa
-         </div>
-        </div><button class="w-full py-3 rounded-lg font-semibold text-sm transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View Details </button>
-       </div>
-      </div>
-     </div>
-     <div class="text-center mt-10"><button class="px-8 py-4 rounded-xl font-semibold text-base transition-all" style="background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);"> View All Properties </button>
-     </div>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 3. WHY INVEST IN HYDERABAD --> <!-- ══════════════════════════════════════════════ -->
+  <section class="section-darker py-16 fade-up">
+   <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:48px;">
+     <div class="gold-divider mx-auto mb-4"></div>
+     <h2 style="font-size:clamp(24px,3.5vw,38px);color:#fff;margin-bottom:12px;">Why <span class="gold-text">Hyderabad?</span></h2>
+     <p style="color:rgba(232,232,224,0.55);font-size:15px;max-width:540px;margin:0 auto;">India's fastest-growing metro is rewriting the rules of real estate investment.</p>
     </div>
-   </section><!-- Services Section -->
-   <section class="py-16 sm:py-20" id="services" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 100%);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="text-center mb-12">
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Premium Services</h2>
-      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">Comprehensive real estate solutions tailored to your needs</p>
-     </div>
-     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="property-card rounded-2xl p-6 text-center">
-       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
-        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-       </div>
-       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Property Search</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Access exclusive listings and find your perfect property match</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+     <div class="stat-card rounded-2xl p-7">
+      <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05));display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+       <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+       </svg>
       </div>
-      <div class="property-card rounded-2xl p-6 text-center">
-       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
-        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
+      <h3 style="font-size:20px;color:#fff;margin-bottom:8px;">$150B GDP Projection</h3>
+      <p style="color:rgba(232,232,224,0.55);font-size:14px;line-height:1.7;">Hyderabad is projected to become a $150B economy, attracting global businesses and driving massive real estate demand.</p>
+      <div style="margin-top:14px;">
+       <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:12px;color:rgba(232,232,224,0.5);">Economic Growth Index</span> <span style="font-size:12px;font-weight:700;color:#C9A84C;">94%</span>
        </div>
-       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Market Analysis</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">In-depth market insights and property valuation reports</p>
-      </div>
-      <div class="property-card rounded-2xl p-6 text-center">
-       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
-        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+       <div class="progress-bar">
+        <div class="progress-fill" style="width:0%;background:linear-gradient(90deg,#C9A84C,#F0D080);" data-target="94"></div>
        </div>
-       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Investment Advice</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Strategic guidance for maximizing property investments</p>
-      </div>
-      <div class="property-card rounded-2xl p-6 text-center">
-       <div class="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background: rgba(212, 175, 55, 0.1);">
-        <svg class="w-8 h-8" fill="none" stroke="#d4af37" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-       </div>
-       <h3 class="text-lg font-semibold mb-2" style="color: #ffffff;">Legal Support</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Complete documentation and legal assistance throughout</p>
       </div>
      </div>
-    </div>
-   </section><!-- Expertise Section -->
-   <section class="py-16 sm:py-20" id="expertise" style="background: #0a0a0a;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="text-center mb-12">
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Areas of Expertise</h2>
-      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">Specialized knowledge across multiple property sectors</p>
-     </div>
-     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="property-card rounded-2xl p-6 card-hover">
-       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-1-icon">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-       </div>
-       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Luxury Condos</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Premium high-rise properties with exceptional city views and world-class amenities.</p>
+     <div class="stat-card rounded-2xl p-7">
+      <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05));display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+       <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+       </svg>
       </div>
-      <div class="property-card rounded-2xl p-6 card-hover">
-       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-2-icon">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
+      <h3 style="font-size:20px;color:#fff;margin-bottom:8px;">₹25,000 Cr Infrastructure</h3>
+      <p style="color:rgba(232,232,224,0.55);font-size:14px;line-height:1.7;">Massive government investment in roads, metro expansion, and smart city initiatives directly appreciates land values in the growth corridor.</p>
+      <div style="margin-top:14px;">
+       <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:12px;color:rgba(232,232,224,0.5);">Infrastructure Score</span> <span style="font-size:12px;font-weight:700;color:#C9A84C;">88%</span>
        </div>
-       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Estate Homes</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Sprawling estates with private grounds, perfect for distinguished buyers.</p>
-      </div>
-      <div class="property-card rounded-2xl p-6 card-hover">
-       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-3-icon">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
+       <div class="progress-bar">
+        <div class="progress-fill" style="width:0%;background:linear-gradient(90deg,#C9A84C,#F0D080);" data-target="88"></div>
        </div>
-       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Investment Properties</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Strategic acquisitions with strong ROI potential and market appreciation.</p>
-      </div>
-      <div class="property-card rounded-2xl p-6 card-hover">
-       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-4-icon">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-       </div>
-       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Waterfront Properties</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Exclusive coastal and lakefront residences with breathtaking water access.</p>
-      </div>
-      <div class="property-card rounded-2xl p-6 card-hover">
-       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-5-icon">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-        </svg>
-       </div>
-       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">New Developments</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Cutting-edge new construction with modern design and smart technology.</p>
-      </div>
-      <div class="property-card rounded-2xl p-6 card-hover">
-       <div class="w-14 h-14 rounded-xl mb-4 flex items-center justify-center" id="expertise-6-icon">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-       </div>
-       <h3 class="text-xl font-semibold mb-2" style="color: #ffffff;">Relocation Services</h3>
-       <p class="text-sm leading-relaxed" style="color: #707070;">Comprehensive support for clients moving from across the country or abroad.</p>
       </div>
      </div>
-    </div>
-   </section><!-- Testimonials Section -->
-   <section class="py-16 sm:py-20" id="testimonials" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a1410 100%);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="text-center mb-12">
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 section-title" style="color: #ffffff;">Client Testimonials</h2>
-      <p class="text-lg max-w-2xl mx-auto" style="color: #808080;">What my clients say about working with me</p>
-     </div>
-     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="testimonial-card rounded-2xl p-6">
-       <div class="flex items-center gap-1 mb-4">
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-1">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-2">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-3">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-4">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-1-5">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-       </div>
-       <p class="text-sm leading-relaxed mb-4" style="color: #a0a0a0;">"Marcus made our dream home a reality. His expertise and dedication were evident throughout the entire process. Highly recommended!"</p>
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
-        <div>
-         <div class="font-semibold text-sm" style="color: #ffffff;">
-          Sarah &amp; James K.
-         </div>
-         <div class="text-xs" style="color: #606060;">
-          Beverly Hills
-         </div>
-        </div>
-       </div>
+     <div class="stat-card rounded-2xl p-7">
+      <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05));display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+       <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+       </svg>
       </div>
-      <div class="testimonial-card rounded-2xl p-6">
-       <div class="flex items-center gap-1 mb-4">
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-1">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-2">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-3">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-4">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-2-5">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
+      <h3 style="font-size:20px;color:#fff;margin-bottom:8px;">IT Hub Expansion</h3>
+      <p style="color:rgba(232,232,224,0.55);font-size:14px;line-height:1.7;">With 900+ IT companies including Amazon, Google, and Microsoft expanding, talent influx is creating unprecedented housing and land demand.</p>
+      <div style="margin-top:14px;">
+       <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:12px;color:rgba(232,232,224,0.5);">Tech Sector Growth</span> <span style="font-size:12px;font-weight:700;color:#C9A84C;">97%</span>
        </div>
-       <p class="text-sm leading-relaxed mb-4" style="color: #a0a0a0;">"Professional, knowledgeable, and truly cares about his clients. Marcus found us the perfect investment property with excellent ROI."</p>
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
-        <div>
-         <div class="font-semibold text-sm" style="color: #ffffff;">
-          Michael R.
-         </div>
-         <div class="text-xs" style="color: #606060;">
-          Santa Monica
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="testimonial-card rounded-2xl p-6">
-       <div class="flex items-center gap-1 mb-4">
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-1">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-2">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-3">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-4">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" id="star-3-5">
-         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-       </div>
-       <p class="text-sm leading-relaxed mb-4" style="color: #a0a0a0;">"Exceptional service from start to finish. Marcus's market knowledge and negotiation skills saved us over $100K on our purchase."</p>
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
-        <div>
-         <div class="font-semibold text-sm" style="color: #ffffff;">
-          Patricia L.
-         </div>
-         <div class="text-xs" style="color: #606060;">
-          Malibu
-         </div>
-        </div>
+       <div class="progress-bar">
+        <div class="progress-fill" style="width:0%;background:linear-gradient(90deg,#C9A84C,#F0D080);" data-target="97"></div>
        </div>
       </div>
      </div>
     </div>
-   </section><!-- Footer CTA -->
-   <section class="py-16 sm:py-20" id="contact" style="background: #0a0a0a; border-top: 1px solid rgba(212, 175, 55, 0.2);">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-     <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6" style="color: #ffffff;">Ready to Find Your Dream Property?</h2>
-     <p class="text-lg mb-8 max-w-2xl mx-auto" style="color: #808080;">Let's discuss your real estate goals and find the perfect property that matches your vision and lifestyle.</p><button class="contact-btn px-10 py-5 rounded-xl font-semibold text-lg transition-all relative" id="footer-cta" style="color: #ffffff;"> Get in Touch Today </button> <!-- Social Links -->
-     <div class="flex justify-center gap-4 mt-10"><a href="#" class="social-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255,255,255,0.05); color: #a0a0a0;">
-       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-       </svg></a> <a href="#" class="social-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255,255,255,0.05); color: #a0a0a0;">
-       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-       </svg></a> <a href="#" class="social-icon w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255,255,255,0.05); color: #a0a0a0;">
-       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-       </svg></a>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 4. PROJECT HIGHLIGHTS --> <!-- ══════════════════════════════════════════════ -->
+  <section class="section-green py-16 fade-up">
+   <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:48px;">
+     <div class="gold-divider mx-auto mb-4"></div>
+     <h2 style="font-size:clamp(24px,3.5vw,38px);color:#fff;margin-bottom:12px;">Project <span class="gold-text">Highlights</span></h2>
+     <p style="color:rgba(232,232,224,0.55);font-size:15px;">Everything you need for a worry-free, high-return investment.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#F0D080);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+       <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#0B1120" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+       </svg>
+      </div>
+      <h3 style="font-size:17px;color:#fff;margin-bottom:6px;">Prime IT Corridor Location</h3>
+      <p style="font-size:13px;color:rgba(232,232,224,0.55);line-height:1.6;">Located in Hyderabad's fastest-appreciating zone with direct access to tech parks and highways.</p>
+     </div>
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#F0D080);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+       <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#0B1120" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
+       </svg>
+      </div>
+      <h3 style="font-size:17px;color:#fff;margin-bottom:6px;">Legal Documentation</h3>
+      <p style="font-size:13px;color:rgba(232,232,224,0.55);line-height:1.6;">Clear title, encumbrance-free, all approvals in place. Full legal support from acquisition to exit.</p>
+     </div>
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#F0D080);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+       <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#0B1120" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
+       </svg>
+      </div>
+      <h3 style="font-size:17px;color:#fff;margin-bottom:6px;">Fractional Ownership</h3>
+      <p style="font-size:13px;color:rgba(232,232,224,0.55);line-height:1.6;">Own a share of premium land from ₹2.85 Lakhs. Real estate investing made accessible for everyone.</p>
+     </div>
+     <div class="stat-card rounded-2xl p-6 text-center">
+      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#F0D080);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+       <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#0B1120" stroke-width="2.5"><circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" />
+       </svg>
+      </div>
+      <h3 style="font-size:17px;color:#fff;margin-bottom:6px;">Zero Hassle Management</h3>
+      <p style="font-size:13px;color:rgba(232,232,224,0.55);line-height:1.6;">We handle everything. Property management, security, and documentation — all managed for you.</p>
      </div>
     </div>
-   </section>
-  </div>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 5. HOW IT WORKS --> <!-- ══════════════════════════════════════════════ -->
+  <section class="section-dark py-16 fade-up">
+   <div style="max-width:900px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:48px;">
+     <div class="gold-divider mx-auto mb-4"></div>
+     <h2 style="font-size:clamp(24px,3.5vw,38px);color:#fff;margin-bottom:12px;">How It <span class="gold-text">Works</span></h2>
+     <p style="color:rgba(232,232,224,0.55);font-size:15px;">Three simple steps to start your wealth journey.</p>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;justify-content:center;">
+     <div style="flex:1;min-width:200px;max-width:260px;text-align:center;">
+      <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C060);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#0B1120;">
+       1
+      </div>
+      <h3 style="font-size:18px;color:#fff;margin-bottom:8px;">Choose Your Share</h3>
+      <p style="font-size:13px;color:rgba(232,232,224,0.55);line-height:1.7;">Select the investment amount that fits your budget — starting from just ₹2.85 Lakhs.</p>
+     </div>
+     <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:center;padding-top:36px;">
+      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><polyline points="9 18 15 12 9 6" />
+      </svg>
+     </div>
+     <div style="flex:1;min-width:200px;max-width:260px;text-align:center;">
+      <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C060);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#0B1120;">
+       2
+      </div>
+      <h3 style="font-size:18px;color:#fff;margin-bottom:8px;">Complete Payment</h3>
+      <p style="font-size:13px;color:rgba(232,232,224,0.55);line-height:1.7;">Secure, transparent payment process with full documentation and legal ownership transfer.</p>
+     </div>
+     <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:center;padding-top:36px;">
+      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2"><polyline points="9 18 15 12 9 6" />
+      </svg>
+     </div>
+     <div style="flex:1;min-width:200px;max-width:260px;text-align:center;">
+      <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C060);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#0B1120;">
+       3
+      </div>
+      <h3 style="font-size:18px;color:#fff;margin-bottom:8px;">Track Your Growth</h3>
+      <p style="font-size:13px;color:rgba(232,232,224,0.55);line-height:1.7;">Watch your investment appreciate via our portal. Sell when you're ready or hold for maximum returns.</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 6. INVESTMENT COMPARISON --> <!-- ══════════════════════════════════════════════ -->
+  <section class="section-darker py-16 fade-up">
+   <div style="max-width:900px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:48px;">
+     <div class="gold-divider mx-auto mb-4"></div>
+     <h2 style="font-size:clamp(24px,3.5vw,38px);color:#fff;margin-bottom:12px;">Why Land Beats <span class="gold-text">Every Alternative</span></h2>
+     <p style="color:rgba(232,232,224,0.55);font-size:15px;">See how ₹2.85L invested today compares across instruments over 5 years.</p>
+    </div>
+    <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);">
+     <!-- Header -->
+     <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));padding:14px 20px;">
+      <div style="font-size:13px;font-weight:600;color:rgba(232,232,224,0.6);">
+       Investment Type
+      </div>
+      <div style="font-size:13px;font-weight:600;color:rgba(232,232,224,0.6);text-align:center;">
+       Annual Return
+      </div>
+      <div style="font-size:13px;font-weight:600;color:rgba(232,232,224,0.6);text-align:center;">
+       5-Year Value
+      </div>
+      <div style="font-size:13px;font-weight:600;color:rgba(232,232,224,0.6);text-align:center;">
+       Risk Level
+      </div>
+     </div><!-- Land Row (highlighted) -->
+     <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:18px 20px;background:linear-gradient(135deg,rgba(26,107,58,0.25),rgba(26,107,58,0.1));border-left:3px solid #4ADE80;">
+      <div>
+       <div style="font-weight:700;color:#4ADE80;font-size:15px;">
+        🏆 Hyderabad Land
+       </div>
+       <div style="font-size:12px;color:rgba(232,232,224,0.5);">
+        Fractional ownership
+       </div>
+      </div>
+      <div style="text-align:center;font-weight:800;color:#4ADE80;font-size:17px;">
+       17%+
+      </div>
+      <div style="text-align:center;font-weight:800;color:#4ADE80;font-size:17px;">
+       ~₹8.55L
+      </div>
+      <div style="text-align:center;"><span style="background:rgba(74,222,128,0.15);color:#4ADE80;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">LOW</span>
+      </div>
+     </div><!-- FD Row -->
+     <div class="compare-row" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 20px;">
+      <div>
+       <div style="font-weight:600;color:#fff;font-size:14px;">
+        Fixed Deposit (FD)
+       </div>
+       <div style="font-size:12px;color:rgba(232,232,224,0.4);">
+        Bank deposit
+       </div>
+      </div>
+      <div style="text-align:center;color:rgba(232,232,224,0.6);font-size:15px;">
+       6–7%
+      </div>
+      <div style="text-align:center;color:rgba(232,232,224,0.6);font-size:15px;">
+       ~₹3.82L
+      </div>
+      <div style="text-align:center;"><span style="background:rgba(234,179,8,0.12);color:#EAB308;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">LOW</span>
+      </div>
+     </div><!-- Stocks Row -->
+     <div class="compare-row" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 20px;">
+      <div>
+       <div style="font-weight:600;color:#fff;font-size:14px;">
+        Stock Market
+       </div>
+       <div style="font-size:12px;color:rgba(232,232,224,0.4);">
+        Equity investments
+       </div>
+      </div>
+      <div style="text-align:center;color:rgba(232,232,224,0.6);font-size:15px;">
+       10–12%
+      </div>
+      <div style="text-align:center;color:rgba(232,232,224,0.6);font-size:15px;">
+       ~₹4.60L
+      </div>
+      <div style="text-align:center;"><span style="background:rgba(239,68,68,0.12);color:#EF4444;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">HIGH</span>
+      </div>
+     </div><!-- Gold Row -->
+     <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 20px;">
+      <div>
+       <div style="font-weight:600;color:#fff;font-size:14px;">
+        Gold
+       </div>
+       <div style="font-size:12px;color:rgba(232,232,224,0.4);">
+        Physical / digital
+       </div>
+      </div>
+      <div style="text-align:center;color:rgba(232,232,224,0.6);font-size:15px;">
+       8–10%
+      </div>
+      <div style="text-align:center;color:rgba(232,232,224,0.6);font-size:15px;">
+       ~₹4.19L
+      </div>
+      <div style="text-align:center;"><span style="background:rgba(234,179,8,0.12);color:#EAB308;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">MEDIUM</span>
+      </div>
+     </div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:rgba(232,232,224,0.3);margin-top:12px;">*Projections based on historical data. Past performance is indicative, not guaranteed.</p>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 7. URGENCY / SCARCITY --> <!-- ══════════════════════════════════════════════ -->
+  <section class="fade-up" style="background:linear-gradient(135deg,#1A0A05,#2A1205);padding:60px 24px;">
+   <div style="max-width:800px;margin:0 auto;text-align:center;">
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:50px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);margin-bottom:24px;">
+     <span style="width:8px;height:8px;border-radius:50%;background:#EF4444;display:inline-block;animation:pulse2 1.5s ease-in-out infinite;"></span> <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#FCA5A5;">URGENT — LIMITED AVAILABILITY</span>
+    </div>
+    <h2 style="font-size:clamp(26px,4vw,44px);color:#fff;margin-bottom:16px;">Don't Miss Your <span style="background:linear-gradient(135deg,#FF6B35,#FF9F1C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Window of Opportunity</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:32px 0;">
+     <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:16px;padding:20px;">
+      <div style="font-size:38px;font-weight:900;font-family:'Playfair Display',serif;color:#FCA5A5;" id="shares-left">
+       200
+      </div>
+      <div style="font-size:14px;color:rgba(232,232,224,0.6);">
+       Shares Remaining
+      </div>
+      <div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.1);margin-top:10px;overflow:hidden;">
+       <div style="height:100%;width:35%;background:linear-gradient(90deg,#EF4444,#FF6B35);border-radius:2px;"></div>
+      </div>
+      <div style="font-size:11px;color:#FCA5A5;margin-top:6px;">
+       65% already allocated
+      </div>
+     </div>
+     <div style="background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);border-radius:16px;padding:20px;">
+      <div style="font-size:38px;font-weight:900;font-family:'Playfair Display',serif;color:#FDE68A;">
+       ↑
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#FDE68A;margin-bottom:4px;">
+       Prices Rising Monthly
+      </div>
+      <div style="font-size:13px;color:rgba(232,232,224,0.55);">
+       Current price: ₹2.85L/share. Next revision in:
+      </div>
+      <div style="font-weight:700;color:#FDE68A;margin-top:8px;font-size:16px;" id="price-countdown">
+       Loading...
+      </div>
+     </div>
+     <div style="background:rgba(26,107,58,0.15);border:1px solid rgba(26,107,58,0.35);border-radius:16px;padding:20px;">
+      <div style="font-size:38px;font-weight:900;font-family:'Playfair Display',serif;" class="gold-text">
+       🎁
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#4ADE80;margin-bottom:4px;">
+       Early Bird Benefits
+      </div>
+      <ul style="font-size:13px;color:rgba(232,232,224,0.6);text-align:left;list-style:none;">
+       <li style="padding:3px 0;">✅ Free legal consultation</li>
+       <li style="padding:3px 0;">✅ Priority exit facilitation</li>
+       <li style="padding:3px 0;">✅ Dedicated relationship mgr</li>
+      </ul>
+     </div>
+    </div><button class="btn-gold px-10 py-4 rounded-full text-base font-bold" onclick="scrollToForm()" style="min-width:280px;"> 🔒 Secure My Share Now → </button>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- TESTIMONIALS --> <!-- ══════════════════════════════════════════════ -->
+  <section class="section-dark py-16 fade-up">
+   <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:40px;">
+     <div class="gold-divider mx-auto mb-4"></div>
+     <h2 style="font-size:clamp(24px,3.5vw,38px);color:#fff;margin-bottom:12px;">What Our <span class="gold-text">Investors Say</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+     <div class="testimonial-card rounded-2xl p-7">
+      <div style="display:flex;gap:4px;margin-bottom:14px;">
+       <span style="color:#F0D080;font-size:16px;">★★★★★</span>
+      </div>
+      <p style="color:rgba(232,232,224,0.75);font-size:14px;line-height:1.8;margin-bottom:16px;">"I invested ₹5.7L in 2 shares last year. The transparency, legal support, and quarterly updates have been outstanding. Already seeing 14% appreciation!"</p>
+      <div style="display:flex;align-items:center;gap:12px;">
+       <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C060);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:#0B1120;font-size:16px;">
+        R
+       </div>
+       <div>
+        <div style="font-weight:700;color:#fff;font-size:14px;">
+         Rajesh Kumar
+        </div>
+        <div style="font-size:12px;color:rgba(232,232,224,0.45);">
+         IT Professional, Bangalore
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="testimonial-card rounded-2xl p-7">
+      <div style="display:flex;gap:4px;margin-bottom:14px;">
+       <span style="color:#F0D080;font-size:16px;">★★★★★</span>
+      </div>
+      <p style="color:rgba(232,232,224,0.75);font-size:14px;line-height:1.8;margin-bottom:16px;">"As an NRI, I was looking for a safe way to invest back home. Paradise Global's fractional model and legal documentation gave me full confidence to invest."</p>
+      <div style="display:flex;align-items:center;gap:12px;">
+       <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C060);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:#0B1120;font-size:16px;">
+        P
+       </div>
+       <div>
+        <div style="font-weight:700;color:#fff;font-size:14px;">
+         Priya Sharma
+        </div>
+        <div style="font-size:12px;color:rgba(232,232,224,0.45);">
+         NRI Investor, Dubai
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="testimonial-card rounded-2xl p-7">
+      <div style="display:flex;gap:4px;margin-bottom:14px;">
+       <span style="color:#F0D080;font-size:16px;">★★★★★</span>
+      </div>
+      <p style="color:rgba(232,232,224,0.75);font-size:14px;line-height:1.8;margin-bottom:16px;">"Zero management hassle is real. I bought 3 shares and haven't had to do anything. They handle it all. My portfolio is diversified and growing."</p>
+      <div style="display:flex;align-items:center;gap:12px;">
+       <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C060);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:#0B1120;font-size:16px;">
+        A
+       </div>
+       <div>
+        <div style="font-weight:700;color:#fff;font-size:14px;">
+         Anil Reddy
+        </div>
+        <div style="font-size:12px;color:rgba(232,232,224,0.45);">
+         Entrepreneur, Hyderabad
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 8. LEAD FORM --> <!-- ══════════════════════════════════════════════ -->
+  <section id="lead-form-section" class="section-darker py-16 fade-up">
+   <div style="max-width:680px;margin:0 auto;padding:0 24px;">
+    <div style="background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(26,107,58,0.08));border:1px solid rgba(201,168,76,0.2);border-radius:24px;padding:40px;">
+     <div style="text-align:center;margin-bottom:32px;">
+      <div class="gold-divider mx-auto mb-4"></div>
+      <h2 style="font-size:clamp(22px,3vw,34px);color:#fff;margin-bottom:10px;">Get Your Free <span class="gold-text">Investment Plan</span></h2>
+      <p style="color:rgba(232,232,224,0.55);font-size:14px;">Our expert will call you within 24 hours with a personalised plan.</p>
+     </div>
+     <form id="leadForm" novalidate>
+      <div style="display:grid;gap:18px;">
+       <div>
+        <label for="inp-name" style="display:block;font-size:13px;font-weight:600;color:rgba(232,232,224,0.7);margin-bottom:6px;">Full Name *</label> <input id="inp-name" type="text" placeholder="Your full name" class="form-input" style="padding:12px 16px;border-radius:10px;font-size:15px;" required>
+       </div>
+       <div>
+        <label for="inp-phone" style="display:block;font-size:13px;font-weight:600;color:rgba(232,232,224,0.7);margin-bottom:6px;">Phone Number *</label> <input id="inp-phone" type="tel" placeholder="+91 XXXXX XXXXX" class="form-input" style="padding:12px 16px;border-radius:10px;font-size:15px;" required>
+       </div>
+       <div>
+        <label for="inp-email" style="display:block;font-size:13px;font-weight:600;color:rgba(232,232,224,0.7);margin-bottom:6px;">Email Address *</label> <input id="inp-email" type="email" placeholder="your@email.com" class="form-input" style="padding:12px 16px;border-radius:10px;font-size:15px;" required>
+       </div>
+       <div>
+        <label for="inp-budget" style="display:block;font-size:13px;font-weight:600;color:rgba(232,232,224,0.7);margin-bottom:6px;">Investment Budget (Optional)</label> <select id="inp-budget" class="form-input" style="padding:12px 16px;border-radius:10px;font-size:15px;"> <option value="" style="background:#111827;">Select your budget range</option> <option value="2.85L-5L" style="background:#111827;">₹2.85L – ₹5L</option> <option value="5L-10L" style="background:#111827;">₹5L – ₹10L</option> <option value="10L-25L" style="background:#111827;">₹10L – ₹25L</option> <option value="25L+" style="background:#111827;">₹25L+</option> </select>
+       </div>
+       <div id="form-error" style="display:none;padding:10px 14px;border-radius:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#FCA5A5;font-size:13px;"></div><button type="submit" class="btn-gold w-full py-4 rounded-xl text-base font-bold" id="submitBtn" style="width:100%;"> 📩 Get Free Investment Plan </button>
+       <p style="text-align:center;font-size:12px;color:rgba(232,232,224,0.35);">🔒 Your details are 100% secure. No spam, no sharing.</p>
+      </div>
+     </form>
+    </div>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 9. FINAL CTA --> <!-- ══════════════════════════════════════════════ -->
+  <section class="fade-up" style="background:linear-gradient(135deg,#0A1A0D,#0E2218,#1A0A05);padding:64px 24px;text-align:center;">
+   <div style="max-width:700px;margin:0 auto;">
+    <div style="font-size:48px;margin-bottom:16px;">
+     🏗️
+    </div>
+    <h2 style="font-size:clamp(26px,4vw,46px);color:#fff;margin-bottom:16px;">Book Your Slot Today<br><span class="gold-text">Before Prices Rise</span></h2>
+    <p style="color:rgba(232,232,224,0.6);font-size:16px;max-width:520px;margin:0 auto 32px;line-height:1.7;">The corridor is filling up. Every day you wait is an opportunity cost. Lock in today's price and secure your share of Hyderabad's booming future.</p>
+    <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
+     <button class="btn-gold px-10 py-4 rounded-full text-base font-bold" onclick="scrollToForm()" style="min-width:220px;">Book Free Consultation</button> <button class="btn-whatsapp px-10 py-4 rounded-full text-base font-bold flex items-center justify-center gap-2" onclick="openWhatsApp()" style="min-width:220px;">
+      <svg width="18" height="18" viewbox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg> Chat on WhatsApp </button>
+    </div>
+   </div>
+  </section><!-- ══════════════════════════════════════════════ --> <!-- 10. FOOTER --> <!-- ══════════════════════════════════════════════ -->
+  <footer style="background:#070D18;border-top:1px solid rgba(201,168,76,0.1);padding:40px 24px 100px;">
+   <div style="max-width:1100px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-bottom:32px;">
+     <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+       <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#C9A84C,#F0D080);display:flex;align-items:center;justify-content:center;">
+        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="#0B1120" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+       </div>
+       <div id="footer-company" style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#F0D080;">
+        Paradise Global Properties
+       </div>
+      </div>
+      <p style="font-size:13px;color:rgba(232,232,224,0.4);line-height:1.7;">Premium land investment opportunities in Hyderabad's fastest-growing corridors.</p>
+     </div>
+     <div>
+      <h4 style="font-size:14px;font-weight:700;color:#C9A84C;margin-bottom:14px;">Contact Us</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+       <a id="footer-phone-link" href="tel:+919876543210" style="display:flex;align-items:center;gap:8px;color:rgba(232,232,224,0.6);font-size:13px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(232,232,224,0.6)'">
+        <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.25a16 16 0 006.72 6.72l1.41-1.41a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+        </svg><span id="footer-phone">+91 98765 43210</span> </a> <a id="footer-email-link" href="mailto:invest@paradiseglobalproperties.com" style="display:flex;align-items:center;gap:8px;color:rgba(232,232,224,0.6);font-size:13px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(232,232,224,0.6)'">
+        <svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
+        </svg><span id="footer-email">invest@paradiseglobal.com</span> </a> <button onclick="openWhatsApp()" style="display:flex;align-items:center;gap:8px;color:rgba(232,232,224,0.6);font-size:13px;background:none;border:none;cursor:pointer;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='rgba(232,232,224,0.6)'">
+        <svg width="14" height="14" viewbox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg><span id="footer-whatsapp">WhatsApp: +91 98765 43210</span> </button>
+      </div>
+     </div>
+     <div>
+      <h4 style="font-size:14px;font-weight:700;color:#C9A84C;margin-bottom:14px;">Quick Links</h4>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+       <a href="#" onclick="scrollToForm();return false;" style="color:rgba(232,232,224,0.5);font-size:13px;text-decoration:none;">Book Consultation</a> <a href="#" onclick="scrollToForm();return false;" style="color:rgba(232,232,224,0.5);font-size:13px;text-decoration:none;">Investment Plans</a> <a href="#" style="color:rgba(232,232,224,0.5);font-size:13px;text-decoration:none;">About Us</a> <a href="#" style="color:rgba(232,232,224,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a>
+      </div>
+     </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+     <p style="font-size:12px;color:rgba(232,232,224,0.3);">© 2024 Paradise Global Properties. All rights reserved.</p>
+     <p style="font-size:11px;color:rgba(232,232,224,0.2);max-width:500px;text-align:right;">Investment returns shown are projections based on market data. Actual returns may vary. Please read all documents carefully before investing. This is not financial advice.</p>
+    </div>
+   </div>
+  </footer>
+  <style>
+  @keyframes pulse2 { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+</style>
   <script>
-    const defaultConfig = {
-      agent_name: 'Pankaj Sharma',
-      agent_title: 'SENIOR REAL ESTATE AGENT',
-      agent_tagline: 'Your Trusted Partner in Luxury Real Estate',
-      agent_bio: 'With over 15 years of distinguished experience in the luxury real estate market, I specialize in connecting discerning clients with their dream properties across India and internationally. From penthouses to estates, I deliver exceptional results with unmatched expertise.',
-      phone: '+91 98765 43210',
-      email: 'pankaj@luxuryrealty.com',
-      location: 'Agra, India',
-      cta_button_text: 'Schedule Consultation',
-      primary_color: '#2563eb',
-      secondary_color: '#f8fafc',
-      accent_color: '#0ea5e9',
-      text_color: '#1e293b',
-      background_color: '#ffffff',
-      font_family: 'Montserrat',
-      font_size: 16
-    };
+  // ── Config defaults ──
+  const defaultConfig = {
+    hero_headline: "Own Prime Land in Hyderabad's Growth Corridor",
+    hero_subheadline: "Start Investing from ₹2.85 Lakhs | 3X Growth Potential in 5 Years",
+    cta_primary: "Book Free Consultation",
+    cta_whatsapp: "Get Details on WhatsApp",
+    company_name: "Paradise Global Properties",
+    phone_number: "+91 63990 21515",
+    whatsapp_number: "+916399021515",
+    email_address: "invest@paradiseglobal.com",
+    form_success_message: "Thank you! Our team will call you within 24 hours.",
+    offer_text: "Only 200 shares available — Prices rising monthly!",
+    background_color: "#0B1120",
+    surface_color: "#111827",
+    text_color: "#E8E8E0",
+    primary_color: "#C9A84C",
+    action_color: "#1A6B3A"
+  };
 
-    let config = { ...defaultConfig };
+  // ── Element SDK ──
+  window.elementSdk && window.elementSdk.init({
+    defaultConfig,
+    onConfigChange: async (config) => {
+      const c = key => config[key] || defaultConfig[key];
 
-    async function onConfigChange(cfg) {
-      const primaryColor = cfg.primary_color || defaultConfig.primary_color;
-      const secondaryColor = cfg.secondary_color || defaultConfig.secondary_color;
-      const accentColor = cfg.accent_color || defaultConfig.accent_color;
-      const textColor = cfg.text_color || defaultConfig.text_color;
-      const backgroundColor = cfg.background_color || defaultConfig.background_color;
-      const fontFamily = cfg.font_family || defaultConfig.font_family;
-      const fontSize = cfg.font_size || defaultConfig.font_size;
+      // Text updates
+      document.getElementById('hero-headline').innerHTML = c('hero_headline').replace("Hyderabad's Growth Corridor", `Hyderabad's <span class="gold-text">Growth Corridor</span>`);
+      document.getElementById('hero-subheadline').innerHTML = c('hero_subheadline').replace('₹2.85 Lakhs', '<strong style="color:#F0D080;">₹2.85 Lakhs</strong>').replace('3X Growth Potential', '<strong style="color:#F0D080;">3X Growth Potential</strong>');
+      document.getElementById('hero-cta-primary').textContent = '📅 ' + c('cta_primary');
+      document.getElementById('hero-urgency').textContent = c('offer_text');
+      document.getElementById('hero-cta-whatsapp').innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> ${c('cta_whatsapp')}`;
 
-      // Update text content
-      document.getElementById('agent-name-display').textContent = cfg.agent_name || defaultConfig.agent_name;
-      document.getElementById('agent-title-badge').textContent = cfg.agent_title || defaultConfig.agent_title;
-      document.getElementById('agent-tagline-display').textContent = cfg.agent_tagline || defaultConfig.agent_tagline;
-      document.getElementById('agent-bio-display').textContent = cfg.agent_bio || defaultConfig.agent_bio;
-      document.getElementById('phone-display').textContent = cfg.phone || defaultConfig.phone;
-      document.getElementById('email-display').textContent = cfg.email || defaultConfig.email;
-      document.getElementById('location-display').textContent = cfg.location || defaultConfig.location;
-      document.getElementById('cta-button').textContent = cfg.cta_button_text || defaultConfig.cta_button_text;
-      document.getElementById('footer-cta').textContent = cfg.cta_button_text || defaultConfig.cta_button_text;
-      
-      // Update nav initials
-      const name = cfg.agent_name || defaultConfig.agent_name;
-      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-      document.getElementById('nav-agent-name').textContent = initials;
-
-      // Update colors
-      document.getElementById('hero-blob-1').style.background = primaryColor;
-      document.getElementById('hero-blob-2').style.background = secondaryColor;
-      document.getElementById('status-indicator').style.background = primaryColor;
-      
-      // CTA buttons
-      document.getElementById('cta-button').style.background = primaryColor;
-      document.getElementById('footer-cta').style.background = primaryColor;
-      
-      // Section title underlines
-      const sectionTitles = document.querySelectorAll('.section-title::after, .section-title');
-      sectionTitles.forEach(title => {
-        const style = document.createElement('style');
-        style.textContent = `.section-title::after { background: ${primaryColor}; }`;
-        if (!document.getElementById('section-style')) {
-          style.id = 'section-style';
-          document.head.appendChild(style);
-        }
+      ['nav-company','footer-company'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = c('company_name');
       });
 
-      // Expertise icons
-      document.getElementById('expertise-1-icon').style.background = `${primaryColor}20`;
-      document.getElementById('expertise-1-icon').style.color = primaryColor;
-      document.getElementById('expertise-2-icon').style.background = `${primaryColor}20`;
-      document.getElementById('expertise-2-icon').style.color = primaryColor;
-      document.getElementById('expertise-3-icon').style.background = `${secondaryColor}20`;
-      document.getElementById('expertise-3-icon').style.color = secondaryColor;
-      document.getElementById('expertise-4-icon').style.background = `${secondaryColor}20`;
-      document.getElementById('expertise-4-icon').style.color = secondaryColor;
-      document.getElementById('expertise-5-icon').style.background = `${accentColor}20`;
-      document.getElementById('expertise-5-icon').style.color = accentColor;
-      document.getElementById('expertise-6-icon').style.background = `${accentColor}20`;
-      document.getElementById('expertise-6-icon').style.color = accentColor;
+      const phone = c('phone_number');
+      ['footer-phone'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = phone; });
+      ['footer-phone-link','nav-phone'].forEach(id => { const el = document.getElementById(id); if(el) el.href = 'tel:' + phone.replace(/\s/g,''); });
+      ['footer-whatsapp'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = 'WhatsApp: ' + phone; });
 
-      // Star ratings
-      const stars = document.querySelectorAll('[id^="star-"]');
-      stars.forEach(star => {
-        star.style.color = primaryColor;
-      });
+      const email = c('email_address');
+      const emailEl = document.getElementById('footer-email');
+      if (emailEl) emailEl.textContent = email;
+      const emailLink = document.getElementById('footer-email-link');
+      if (emailLink) emailLink.href = 'mailto:' + email;
 
-      // Stats
-      document.getElementById('stat-1-value').style.color = textColor;
-      document.getElementById('stat-2-value').style.color = textColor;
-      document.getElementById('stat-3-value').style.color = textColor;
-      document.getElementById('stat-4-value').style.color = textColor;
-
-      // Background
-      document.getElementById('main-wrapper').style.background = backgroundColor;
-
-      // Font
-      const baseFontStack = 'sans-serif';
-      document.body.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
-      document.getElementById('agent-name-display').style.fontSize = `${fontSize * 3}px`;
-    }
-
-    function mapToCapabilities(cfg) {
+      // Colors
+      document.body.style.background = c('background_color');
+    },
+    mapToCapabilities: (config) => {
+      const c = key => config[key] || defaultConfig[key];
       return {
         recolorables: [
-          {
-            get: () => cfg.primary_color || defaultConfig.primary_color,
-            set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
-          },
-          {
-            get: () => cfg.secondary_color || defaultConfig.secondary_color,
-            set: (value) => { config.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
-          },
-          {
-            get: () => cfg.accent_color || defaultConfig.accent_color,
-            set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
-          },
-          {
-            get: () => cfg.text_color || defaultConfig.text_color,
-            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
-          },
-          {
-            get: () => cfg.background_color || defaultConfig.background_color,
-            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
-          }
+          { get: () => c('background_color'), set: v => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => c('surface_color'), set: v => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => c('text_color'), set: v => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => c('primary_color'), set: v => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
+          { get: () => c('action_color'), set: v => { config.action_color = v; window.elementSdk.setConfig({ action_color: v }); } }
         ],
         borderables: [],
-        fontEditable: {
-          get: () => cfg.font_family || defaultConfig.font_family,
-          set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
-        },
-        fontSizeable: {
-          get: () => cfg.font_size || defaultConfig.font_size,
-          set: (value) => { config.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
-        }
+        fontEditable: undefined,
+        fontSizeable: undefined
       };
-    }
+    },
+    mapToEditPanelValues: (config) => new Map([
+      ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+      ['hero_subheadline', config.hero_subheadline || defaultConfig.hero_subheadline],
+      ['cta_primary', config.cta_primary || defaultConfig.cta_primary],
+      ['cta_whatsapp', config.cta_whatsapp || defaultConfig.cta_whatsapp],
+      ['company_name', config.company_name || defaultConfig.company_name],
+      ['phone_number', config.phone_number || defaultConfig.phone_number],
+      ['whatsapp_number', config.whatsapp_number || defaultConfig.whatsapp_number],
+      ['email_address', config.email_address || defaultConfig.email_address],
+      ['form_success_message', config.form_success_message || defaultConfig.form_success_message],
+      ['offer_text', config.offer_text || defaultConfig.offer_text]
+    ])
+  });
 
-    function mapToEditPanelValues(cfg) {
-      return new Map([
-        ['agent_name', cfg.agent_name || defaultConfig.agent_name],
-        ['agent_title', cfg.agent_title || defaultConfig.agent_title],
-        ['agent_tagline', cfg.agent_tagline || defaultConfig.agent_tagline],
-        ['agent_bio', cfg.agent_bio || defaultConfig.agent_bio],
-        ['phone', cfg.phone || defaultConfig.phone],
-        ['email', cfg.email || defaultConfig.email],
-        ['location', cfg.location || defaultConfig.location],
-        ['cta_button_text', cfg.cta_button_text || defaultConfig.cta_button_text]
-      ]);
-    }
+  // ── Countdown Timer (48h from page load) ──
+  function startCountdown() {
+    const stored = localStorage.getItem('pgp_deadline');
+    const deadline = stored ? parseInt(stored) : Date.now() + 48 * 3600 * 1000;
+    if (!stored) localStorage.setItem('pgp_deadline', deadline);
 
-    // Initialize SDK
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
-      });
-      config = window.elementSdk.config || defaultConfig;
+    function update() {
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) {
+        document.getElementById('countdown').textContent = '00:00:00';
+        document.getElementById('price-countdown').textContent = 'Offer expired!';
+        return;
+      }
+      const h = Math.floor(remaining / 3600000);
+      const m = Math.floor((remaining % 3600000) / 60000);
+      const s = Math.floor((remaining % 60000) / 1000);
+      const fmt = n => String(n).padStart(2, '0');
+      document.getElementById('countdown').textContent = `${fmt(h)}:${fmt(m)}:${fmt(s)}`;
+      document.getElementById('price-countdown').textContent = `${fmt(h)}h ${fmt(m)}m ${fmt(s)}s`;
     }
-    
-    onConfigChange(config);
-    
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+    update();
+    setInterval(update, 1000);
+  }
+  startCountdown();
+
+  // ── Sticky CTA ──
+  const stickyCta = document.getElementById('stickyCta');
+  window.addEventListener('scroll', () => {
+    stickyCta.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+
+  // ── Scroll to form ──
+  function scrollToForm() {
+    document.getElementById('lead-form-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ── WhatsApp ──
+  function openWhatsApp() {
+    const cfg = window.elementSdk ? window.elementSdk.config : {};
+    const num = (cfg.whatsapp_number || defaultConfig.whatsapp_number).replace(/\D/g,'');
+    const msg = encodeURIComponent("Hi! I'm interested in investing in Hyderabad Growth Corridor. Please share more details.");
+    window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+  }
+
+  // ── Fade-up on scroll ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Progress bars animate when visible ──
+  const barObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.progress-fill').forEach(bar => {
+          bar.style.width = bar.dataset.target + '%';
+        });
+      }
     });
-    
-    // Close mobile menu when clicking a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
-    });
-    
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offset = 80;
-          const targetPosition = target.offsetTop - offset;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-    
-    // Update nav agent name initials
-    function updateNavInitials() {
-      const name = config.agent_name || defaultConfig.agent_name;
-      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-      document.getElementById('nav-agent-name').textContent = initials;
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.stat-card').forEach(c => barObserver.observe(c));
+
+  // ── Toast notification ──
+  function showToast(msg, type = 'success') {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+
+  // ── Form Submission ──
+  document.getElementById('leadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('inp-name').value.trim();
+    const phone = document.getElementById('inp-phone').value.trim();
+    const email = document.getElementById('inp-email').value.trim();
+    const errEl = document.getElementById('form-error');
+
+    if (!name || !phone || !email) {
+      errEl.textContent = 'Please fill in all required fields.';
+      errEl.style.display = 'block';
+      return;
     }
-    
-    updateNavInitials();
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c55f7dcd1767a0c',t:'MTc2OTY2MDc1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = '⏳ Sending...';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    setTimeout(() => {
+      btn.textContent = '✅ Request Submitted!';
+      btn.style.background = 'linear-gradient(135deg,#1A6B3A,#25A050)';
+      btn.style.color = '#fff';
+      btn.style.opacity = '1';
+      const cfg = window.elementSdk ? window.elementSdk.config : {};
+      const msg = cfg.form_success_message || defaultConfig.form_success_message;
+      showToast(`${msg.replace('Thank you! ', '')} ${name.split(' ')[0]}!`);
+      document.getElementById('leadForm').reset();
+      setTimeout(() => {
+        btn.textContent = '📩 Get Free Investment Plan';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 5000);
+    }, 1500);
+  });
+
+  // ── Shares counter animation ──
+  let sharesLeft = 200;
+  setInterval(() => {
+    if (Math.random() < 0.15 && sharesLeft > 150) {
+      sharesLeft--;
+      const el = document.getElementById('shares-left');
+      if (el) el.textContent = sharesLeft;
+    }
+  }, 8000);
+
+  lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e13ffd3960f800d',t:'MTc3NDMzNzcyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
