@@ -1,2083 +1,1508 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hyderabad Growth Corridor Investment</title>
   <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #ecfdf5;
+      --surface: #ffffff;
+      --text: #064e3b;
+      --primary: #06f05c;
+      --accent: #C9A84C;
+      --secondary-action: #22c55e;
+      --muted: #d1fae5;
+      --muted-2: #bbf7d0;
+      --line: #a7f3d0;
+      --danger-soft: #fef3c7;
+      --shadow: 0 20px 60px rgba(6, 78, 59, 0.10);
+      --radius-xl: 20px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --max: 1180px;
+    }
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
     html, body {
       height: 100%;
-      width: 100%;
+      margin: 0;
       scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
     }
-
-    html { font-size: 16px; }
 
     body {
-      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #ecfdf5;
-      color: #064e3b;
-      line-height: 1.6;
-    }
-
-    #app {
-      height: 100%;
-      width: 100%;
-      overflow-y: auto;
       overflow-x: hidden;
     }
 
-    .headline-font {
-      font-family: "Fraunces", serif;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .premium-bg {
-      background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 30%), radial-gradient(circle at left center, rgba(16, 185, 129, 0.06), transparent 26%), linear-gradient(180deg, #ecfdf5 0%, #f0fdf4 56%, #dcfce7 100%);
+    img, svg {
+      display: block;
+      max-width: 100%;
     }
 
-    .glass-card {
-      background: rgba(255, 255, 255, 0.95);
+    .page-shell {
+      min-height: 100%;
+      width: 100%;
+      overflow: auto;
+      background:
+        radial-gradient(circle at top left, rgba(201,168,76,0.14), transparent 20%),
+        radial-gradient(circle at 85% 10%, rgba(134,239,172,0.45), transparent 18%),
+        linear-gradient(180deg, #ecfdf5 0%, #d1fae5 52%, #ecfdf5 100%);
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-tight {
+      padding: 28px 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(16, 185, 129, 0.12);
-      box-shadow: 0 16px 50px rgba(6, 78, 59, 0.05);
+      background: rgba(236, 253, 245, 0.78);
+      border-bottom: 1px solid rgba(6, 78, 59, 0.08);
     }
 
-    .soft-card {
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #f4df95);
+      box-shadow: 0 10px 25px rgba(201, 168, 76, 0.25);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 12px;
+      color: rgba(6, 78, 59, 0.75);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      box-shadow: 0 8px 20px rgba(6, 78, 59, 0.06);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary-action), var(--primary));
+      color: #ffffff;
+      box-shadow: 0 14px 30px rgba(34, 197, 94, 0.28);
+    }
+
+    .btn-secondary {
       background: #ffffff;
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      box-shadow: 0 12px 35px rgba(6, 78, 59, 0.04);
+      color: var(--text);
+      border: 1px solid rgba(6, 78, 59, 0.10);
+      box-shadow: 0 12px 30px rgba(6, 78, 59, 0.08);
     }
 
-    .gold-ring {
-      box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.16), 0 14px 34px rgba(16, 185, 129, 0.08);
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .btn-gold {
+      background: linear-gradient(135deg, #d8bd66, var(--accent));
+      color: #ffffff;
+      box-shadow: 0 14px 30px rgba(201, 168, 76, 0.26);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+      padding: 34px 0 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      margin-bottom: 18px;
     }
 
-    .comparison-table {
-      width: 100%;
-      background: white;
-      border-collapse: collapse;
+    h1, h2, h3, .serif {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      line-height: 1.05;
+      margin: 0;
     }
 
-    .comparison-table th,
-    .comparison-table td {
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(6, 78, 59, 0.08);
+    h1 {
+      font-size: clamp(42px, 5vw, 72px);
+      letter-spacing: -0.03em;
+      max-width: 12ch;
     }
 
-    .comparison-table th {
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #047857;
-      font-weight: 600;
-      background: #ecfdf5;
+    .hero-copy p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(6, 78, 59, 0.86);
+      max-width: 58ch;
+      margin: 18px 0 22px;
     }
 
-    .gradient-border {
+    .price-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0 26px;
+    }
+
+    .highlight-tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(201,168,76,0.12);
+      color: #7c5c00;
+      font-weight: 800;
+      border: 1px solid rgba(201,168,76,0.28);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .badge-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+      max-width: 760px;
+    }
+
+    .trust-chip {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(6, 78, 59, 0.05);
+    }
+
+    .panel-card {
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(6, 78, 59, 0.06);
+    }
+
+    .hero-card {
+      padding: 24px;
       position: relative;
-      background: #fff;
+      overflow: hidden;
+      align-self: start;
     }
 
-    .gradient-border::before {
+    .hero-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      padding: 1px;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.45), rgba(16, 185, 129, 0.22));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
+      background:
+        linear-gradient(135deg, rgba(201,168,76,0.12), transparent 35%),
+        linear-gradient(180deg, rgba(134,239,172,0.18), transparent 60%);
       pointer-events: none;
     }
 
-    .pulse-dot {
-      animation: pulseDot 1.8s infinite;
+    .hero-visual {
+      position: relative;
+      min-height: 100%;
     }
 
-    @keyframes pulseDot {
-      0% { transform: scale(1); opacity: 0.85; }
-      50% { transform: scale(1.45); opacity: 0.4; }
-      100% { transform: scale(1); opacity: 0.85; }
+    .premium-asset {
+      height: 250px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0)),
+        linear-gradient(160deg, #dcfce7 0%, #bbf7d0 48%, #86efac 100%);
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(6, 78, 59, 0.08);
     }
 
-    .sticky-bar {
-      transform: translateY(0);
-      transition: transform 0.3s ease;
+    .asset-inner {
+      width: 90%;
+      height: 82%;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.35));
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.45);
     }
 
-    .sticky-hidden {
-      transform: translateY(120%);
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(6, 78, 59, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 78, 59, 0.08) 1px, transparent 1px);
+      background-size: 42px 42px;
     }
 
-    .field-input {
-      outline: none;
-      transition: all 0.2s;
+    .plot-mark {
+      position: absolute;
+      right: 10%;
+      top: 18%;
+      width: 38%;
+      height: 42%;
+      border-radius: 20px;
+      border: 2px solid rgba(201,168,76,0.75);
+      background: rgba(255,255,255,0.35);
+      box-shadow: 0 0 0 12px rgba(201,168,76,0.10);
     }
 
-    .field-input:focus {
-      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
-      border-color: #10b981;
+    .plot-mark::after {
+      content: "Growth Corridor";
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
     }
 
-    /* Header & Nav */
-    header {
+    .asset-road {
+      position: absolute;
+      left: -8%;
+      bottom: 18%;
+      width: 62%;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(6,78,59,0.15), rgba(6,78,59,0.3));
+      transform: rotate(-10deg);
+    }
+
+    .asset-road::before,
+    .asset-road::after {
+      content: "";
+      position: absolute;
+      top: 7px;
       width: 100%;
+      height: 3px;
+      background: repeating-linear-gradient(90deg, #ffffff 0 16px, transparent 16px 28px);
+      opacity: 0.8;
     }
 
-    nav {
+    .timer-box {
+      padding: 18px;
+      border-radius: 18px;
+      background: #f7fff9;
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      position: relative;
+      z-index: 1;
+    }
+
+    .timer-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .brand-flex {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+    .timer-header strong {
+      font-size: 16px;
     }
 
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-    }
-
-    .brand-text {
-      line-height: 1.3;
-    }
-
-    .brand-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: #10b981;
-    }
-
-    .brand-tagline {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.7);
-    }
-
-    .nav-links {
-      display: none;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.7);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: #064e3b;
-    }
-
-    .nav-cta {
-      padding: 0.75rem 1.25rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: white;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      background: #10b981;
-      display: inline-block;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
-    }
-
-    /* Hero Section */
-    .hero-section {
+    .timer-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
-      align-items: center;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
     }
 
-    .hero-content h1 {
-      font-size: 3rem;
-      font-family: "Fraunces", serif;
-      line-height: 1.06;
-      letter-spacing: -0.03em;
-      color: #064e3b;
-      margin-top: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero-content p {
-      font-size: 1rem;
-      color: rgba(6, 78, 59, 0.72);
-      line-height: 2;
-      margin-bottom: 2rem;
-      max-width: 32rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-radius: 9999px;
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(201, 168, 76, 0.2);
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.8);
-      box-shadow: 0 2px 8px rgba(6, 78, 59, 0.08);
-      margin-bottom: 1.5rem;
-    }
-
-    .badge i {
-      width: 10px;
-      height: 10px;
-    }
-
-    .cta-group {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      border-radius: 9999px;
-      padding: 1rem 1.75rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s;
+    .time-unit {
       text-align: center;
+      background: #ffffff;
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      border-radius: 14px;
+      padding: 14px 8px;
+      box-shadow: 0 8px 18px rgba(6, 78, 59, 0.04);
     }
 
-    .cta-primary {
-      background: #10b981;
-      color: white;
-      box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+    .time-unit span {
+      display: block;
+      font-weight: 800;
+      font-size: 26px;
+      color: var(--text);
     }
 
-    .cta-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(16, 185, 129, 0.4);
+    .time-unit small {
+      font-size: 12px;
+      color: rgba(6, 78, 59, 0.72);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
-    .cta-secondary {
-      background: white;
-      color: #064e3b;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      box-shadow: 0 2px 8px rgba(6, 78, 59, 0.05);
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 26px;
     }
 
-    .cta-secondary:hover {
-      border-color: #10b981;
-      box-shadow: 0 4px 12px rgba(6, 78, 59, 0.1);
+    .section-head .kicker {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #7c5c00;
+      font-weight: 800;
+      margin-bottom: 8px;
     }
 
-    .trust-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+    .section-head h2 {
+      font-size: clamp(34px, 4vw, 52px);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
     }
 
-    .trust-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-radius: 9999px;
-      background: white;
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.8);
-      border: 1px solid rgba(6, 78, 59, 0.06);
-      box-shadow: 0 2px 6px rgba(6, 78, 59, 0.05);
+    .section-head p {
+      font-size: 17px;
+      color: rgba(6, 78, 59, 0.82);
+      line-height: 1.7;
+      margin: 0;
     }
 
-    .trust-badge i {
-      width: 16px;
-      height: 16px;
-      color: #10b981;
-    }
-
-    /* Stats Grid */
-    .stats-grid {
+    .stats-grid,
+    .why-grid,
+    .highlights-grid,
+    .steps-grid,
+    .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      gap: 18px;
     }
 
-    .stat-card {
-      border-radius: 28px;
-      padding: 1.5rem;
-      background: white;
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      box-shadow: 0 12px 35px rgba(6, 78, 59, 0.04);
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .why-grid,
+    .highlights-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-card,
+    .info-card,
+    .step-card,
+    .testimonial-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(6, 78, 59, 0.06);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
     }
 
     .stat-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(6, 78, 59, 0.55);
-      margin-bottom: 0.75rem;
+      font-size: 15px;
+      color: rgba(6, 78, 59, 0.78);
+      font-weight: 700;
     }
 
-    .stat-value {
-      font-size: 2rem;
+    .icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(34,197,94,0.18));
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .info-card h3,
+    .step-card h3,
+    .testimonial-card h3 {
+      font-size: 27px;
+      margin-bottom: 10px;
+    }
+
+    .info-card p,
+    .step-card p,
+    .testimonial-card p {
+      margin: 0;
+      line-height: 1.7;
+      color: rgba(6, 78, 59, 0.78);
+      font-size: 15px;
+    }
+
+    .step-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(201,168,76,0.14);
+      color: #7c5c00;
       font-weight: 800;
-      color: #064e3b;
-      margin-bottom: 0.5rem;
+      font-size: 14px;
+      margin-bottom: 14px;
     }
 
-    .stat-desc {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.65);
+    .compare-shell {
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(6, 78, 59, 0.06);
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+
+    thead th {
+      text-align: left;
+      background: #f7fff9;
+      color: var(--text);
+      padding: 18px 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(6, 78, 59, 0.08);
+    }
+
+    tbody td {
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(6, 78, 59, 0.08);
+      font-size: 15px;
+      color: rgba(6, 78, 59, 0.84);
+      font-weight: 600;
+    }
+
+    tbody tr.highlight-row {
+      background: linear-gradient(90deg, rgba(201,168,76,0.12), rgba(34,197,94,0.08));
+    }
+
+    .tick {
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .cross {
+      color: #9ca3af;
+      font-weight: 900;
+    }
+
+    .urgency-box {
+      background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(255,255,255,0.9));
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(201, 168, 76, 0.24);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .scarcity-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .scarcity-item {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 18px rgba(6, 78, 59, 0.04);
+      font-weight: 700;
+    }
+
+    .availability-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 24px;
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      box-shadow: 0 12px 28px rgba(6, 78, 59, 0.06);
+    }
+
+    .availability-card h3 {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .progress-shell {
+      width: 100%;
+      height: 14px;
+      background: #e5f8ec;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 16px 0 10px;
+    }
+
+    .progress-bar {
+      width: 78%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      border-radius: 999px;
+      transition: width 0.8s ease;
+    }
+
+    .tiny-note {
+      font-size: 13px;
+      color: rgba(6, 78, 59, 0.74);
       line-height: 1.6;
     }
 
-    /* Hero Card */
-    .hero-card {
-      border-radius: 32px;
-      padding: 1.75rem;
-      box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.16), 0 14px 34px rgba(16, 185, 129, 0.08);
-    }
-
-    .countdown-header {
+    .stars {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 6px;
+      margin-bottom: 14px;
+      color: var(--accent);
     }
 
-    .countdown-badge {
-      display: inline-flex;
-      border-radius: 8px;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: white;
-      background: #10b981;
-    }
-
-    .countdown-timer {
-      border-radius: 24px;
-      background: #064e3b;
-      color: white;
-      padding: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .countdown-title {
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 1rem;
-    }
-
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
-    }
-
-    .countdown-item {
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 0.75rem;
-      text-align: center;
-    }
-
-    .countdown-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    .countdown-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .card-grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .mini-stat {
-      border-radius: 24px;
-      background: white;
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      padding: 1rem;
-    }
-
-    .mini-stat-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(6, 78, 59, 0.5);
-      margin-bottom: 0.5rem;
-    }
-
-    .mini-stat-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #064e3b;
-      margin-bottom: 0.25rem;
-    }
-
-    .mini-stat-desc {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.65);
-    }
-
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .feature-card {
-      border-radius: 28px;
-      padding: 1.5rem;
-      background: white;
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      box-shadow: 0 12px 35px rgba(6, 78, 59, 0.04);
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+    .person-row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      background: #10b981;
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .feature-icon i {
-      width: 20px;
-      height: 20px;
-    }
-
-    .feature-title {
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: #064e3b;
-      margin-top: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-desc {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.65);
-      line-height: 1.75;
-    }
-
-    /* How it works */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .step-card {
-      border-radius: 28px;
-      padding: 1.5rem;
-      background: white;
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      box-shadow: 0 12px 35px rgba(6, 78, 59, 0.04);
-    }
-
-    .step-number {
+    .avatar {
       width: 48px;
       height: 48px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 1.25rem;
-      background: #064e3b;
-    }
-
-    .step-title {
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: #064e3b;
-      margin-top: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .step-desc {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.65);
-      line-height: 1.75;
-    }
-
-    /* Urgency Section */
-    .urgency-section {
-      border-radius: 32px;
-      overflow: hidden;
-      background: #064e3b;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-    }
-
-    .urgency-content {
-      padding: 3rem;
-      color: white;
-    }
-
-    .urgency-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: #bbf7d0;
-      margin-bottom: 0.75rem;
-    }
-
-    .urgency-title {
-      font-family: "Fraunces", serif;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: 1rem;
-    }
-
-    .urgency-text {
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 2;
-      margin-bottom: 2rem;
-    }
-
-    .urgency-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .urgency-stat {
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 1rem;
-    }
-
-    .urgency-stat-label {
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 0.5rem;
-    }
-
-    .urgency-stat-value {
-      font-size: 2rem;
+      place-items: center;
       font-weight: 800;
+      color: var(--text);
+      border: 1px solid rgba(6, 78, 59, 0.08);
     }
 
-    .urgency-sidebar {
-      background: white;
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 22px;
+      align-items: stretch;
     }
 
-    .scarcity-card {
-      border-radius: 28px;
-      background: #ecfdf5;
+    .form-side,
+    .benefit-side {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
       border: 1px solid rgba(6, 78, 59, 0.06);
-      padding: 1.5rem;
     }
 
-    .scarcity-live {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-      color: #064e3b;
-    }
-
-    .scarcity-pulse {
-      position: relative;
-      display: flex;
-      width: 12px;
-      height: 12px;
-    }
-
-    .scarcity-pulse-inner {
-      position: absolute;
-      display: inline-flex;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: #047857;
-      opacity: 0.75;
-      animation: pulseDot 1.8s infinite;
-    }
-
-    .scarcity-pulse-dot {
-      position: relative;
-      display: inline-flex;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #047857;
-    }
-
-    .scarcity-info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.62);
-      margin-bottom: 0.5rem;
-    }
-
-    .scarcity-bar-container {
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(6, 78, 59, 0.08);
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-    }
-
-    .scarcity-bar {
-      height: 100%;
-      border-radius: 999px;
-      background: #C9A84C;
-      transition: width 0.7s ease;
-    }
-
-    .cta-filled {
-      display: inline-flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      border-radius: 9999px;
-      padding: 1rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: white;
-      background: #047857;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-    }
-
-    .cta-filled:hover {
-      transform: translateY(-1px);
-    }
-
-    /* Testimonials */
-    .testimonials-grid {
+    .form-stack {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
+      gap: 16px;
     }
 
-    .testimonial-card {
-      border-radius: 28px;
-      padding: 1.5rem;
-      background: white;
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      box-shadow: 0 12px 35px rgba(6, 78, 59, 0.04);
+    .field-wrap label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
     }
 
-    .star-rating {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      color: #C9A84C;
+    .field-wrap input {
+      width: 100%;
+      border: 1px solid rgba(6, 78, 59, 0.14);
+      background: #fafffc;
+      border-radius: 14px;
+      padding: 15px 16px;
+      font-size: 15px;
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
-    .star-rating i {
-      width: 16px;
-      height: 16px;
+    .field-wrap input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
+      background: #ffffff;
     }
 
-    .testimonial-text {
-      margin-top: 1.25rem;
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.72);
-      line-height: 2;
-      margin-bottom: 1.5rem;
-    }
-
-    .testimonial-author {
+    .field-error {
+      display: none;
+      font-size: 13px;
+      color: #b45309;
+      margin-top: 8px;
       font-weight: 700;
-      color: #064e3b;
-      margin-bottom: 0.25rem;
     }
 
-    .testimonial-role {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.55);
+    .field-wrap.invalid input {
+      border-color: #d97706;
+      background: #fffbeb;
     }
 
-    /* Lead Form */
-    .form-section {
+    .field-wrap.invalid .field-error {
+      display: block;
+    }
+
+    .inline-message {
+      display: none;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .inline-message.success {
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .inline-message.error {
+      background: #fffbeb;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+    }
+
+    .benefit-list {
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 2.5rem;
-      align-items: flex-start;
-    }
-
-    .form-benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      gap: 14px;
+      margin-top: 18px;
     }
 
     .benefit-item {
       display: flex;
+      gap: 12px;
       align-items: flex-start;
-      gap: 1rem;
+      padding: 14px 0;
+      border-bottom: 1px dashed rgba(6, 78, 59, 0.12);
     }
 
-    .benefit-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      flex-shrink: 0;
+    .benefit-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
     }
 
-    .benefit-content h4 {
-      font-weight: 600;
-      color: #064e3b;
-      margin-bottom: 0.25rem;
-    }
-
-    .benefit-content p {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.65);
-      line-height: 1.6;
-    }
-
-    .form-container {
-      border-radius: 32px;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.95);
+    .sticky-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: calc(100% - 22px);
+      max-width: 760px;
+      z-index: 60;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      box-shadow: 0 18px 50px rgba(6, 78, 59, 0.16);
+      border-radius: 999px;
+      padding: 10px;
       backdrop-filter: blur(14px);
-      border: 1px solid rgba(16, 185, 129, 0.12);
-      box-shadow: 0 16px 50px rgba(6, 78, 59, 0.05);
     }
 
-    .form-group {
-      margin-bottom: 1.25rem;
+    .sticky-inner {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      align-items: center;
     }
 
-    .form-label {
+    .sticky-copy {
+      padding-left: 12px;
+    }
+
+    .sticky-copy strong {
       display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #064e3b;
-      margin-bottom: 0.5rem;
+      font-size: 14px;
     }
 
-    .form-input {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(6, 78, 59, 0.1);
-      background: white;
-      padding: 1rem;
-      color: #064e3b;
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 1rem;
-      transition: all 0.2s;
+    .sticky-copy span {
+      display: block;
+      font-size: 12px;
+      color: rgba(6, 78, 59, 0.75);
+      margin-top: 3px;
+      font-weight: 700;
     }
 
-    .form-input::placeholder {
-      color: rgba(6, 78, 59, 0.4);
-    }
-
-    .form-input:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
-      border-color: #10b981;
-    }
-
-    .form-submit {
-      width: 100%;
-      margin-top: 0.5rem;
-      border-radius: 9999px;
-      padding: 1rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: white;
-      background: #047857;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .form-submit:hover:not(:disabled) {
-      transform: translateY(-1px);
-    }
-
-    .form-submit:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-    .form-message {
-      margin-top: 1rem;
-      border-radius: 16px;
-      border: 1px solid;
-      padding: 1rem;
-      font-size: 0.875rem;
-    }
-
-    .form-message.success {
-      border-color: rgba(4, 120, 87, 0.2);
-      background: rgba(4, 120, 87, 0.08);
-      color: #047857;
-    }
-
-    .form-message.error {
-      border-color: rgba(220, 38, 38, 0.2);
-      background: rgba(220, 38, 38, 0.08);
-      color: #991b1b;
-    }
-
-    .form-disclaimer {
-      font-size: 0.75rem;
-      color: rgba(6, 78, 59, 0.52);
-      line-height: 1.6;
-    }
-
-    /* Floating Button */
-    .floating-cta {
+    .wa-float {
       position: fixed;
-      bottom: 6rem;
-      right: 1.5rem;
-      width: 56px;
-      height: 56px;
+      right: 18px;
+      bottom: 92px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      background: #047857;
-      box-shadow: 0 8px 24px rgba(4, 120, 87, 0.3);
-      transition: transform 0.2s;
-      text-decoration: none;
-      cursor: pointer;
-      z-index: 40;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff;
+      box-shadow: 0 18px 36px rgba(22, 163, 74, 0.34);
+      z-index: 65;
+      transition: transform 0.25s ease;
     }
 
-    .floating-cta:hover {
-      transform: scale(1.05);
+    .wa-float:hover,
+    .wa-float:focus-visible {
+      transform: translateY(-3px) scale(1.03);
+      outline: none;
     }
 
-    .floating-cta i {
-      width: 24px;
-      height: 24px;
+    .fade-up {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    /* Sticky CTA Bar */
-    .sticky-cta {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 30;
-      border-top: 1px solid rgba(6, 78, 59, 0.08);
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
+    .fade-up.in-view {
+      opacity: 1;
       transform: translateY(0);
-      transition: transform 0.3s ease;
     }
 
-    .sticky-bar-content {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0.75rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+    .focus-visible:focus-visible,
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid rgba(201, 168, 76, 0.45);
+      outline-offset: 2px;
     }
 
-    .sticky-text {
+    footer {
+      padding: 30px 0 110px;
       text-align: center;
-    }
-
-    .sticky-headline {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #064e3b;
-    }
-
-    .sticky-subline {
-      font-size: 0.75rem;
-      color: rgba(6, 78, 59, 0.58);
-    }
-
-    .sticky-buttons {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .sticky-btn {
-      flex: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      border-radius: 9999px;
-      padding: 0.75rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-    }
-
-    .sticky-btn-primary {
-      background: #047857;
-      color: white;
-    }
-
-    .sticky-btn-secondary {
-      background: white;
-      color: #064e3b;
-      border: 1px solid rgba(201, 168, 76, 0.28);
-    }
-
-    /* Container */
-    .max-w-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 48rem;
-      margin: 0 auto;
-    }
-
-    .section-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: #C9A84C;
-    }
-
-    .section-title {
-      font-family: "Fraunces", serif;
-      font-size: 2rem;
-      color: #064e3b;
-      margin-top: 0.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .section-desc {
-      font-size: 1rem;
-      color: rgba(6, 78, 59, 0.68);
-      line-height: 2;
-    }
-
-    main {
-      padding-bottom: 6rem;
-    }
-
-    /* Two Column Layout */
-    .two-column {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-    }
-
-    .highlights-content h4 {
-      font-size: 1.125rem;
+      color: rgba(6, 78, 59, 0.7);
+      font-size: 14px;
       font-weight: 700;
-      color: #064e3b;
     }
 
-    .highlights-content p {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.65);
-      line-height: 1.75;
-      margin-top: 0.5rem;
-    }
-
-    .highlight-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .highlight-item {
-      border-radius: 24px;
-      padding: 1.25rem;
-      background: white;
-      border: 1px solid rgba(16, 185, 129, 0.1);
-      display: flex;
-      gap: 1rem;
-    }
-
-    .highlight-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      background: #10b981;
-      flex-shrink: 0;
-    }
-
-    .highlight-text h4 {
-      font-weight: 700;
-      color: #064e3b;
-      margin-bottom: 0.25rem;
-    }
-
-    .highlight-text p {
-      font-size: 0.875rem;
-      color: rgba(6, 78, 59, 0.65);
-      line-height: 1.75;
-    }
-
-    .investor-box {
-      border-radius: 28px;
-      background: #064e3b;
-      color: white;
-      padding: 2rem;
-    }
-
-    .investor-box-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: #10b981;
-    }
-
-    .investor-box h3 {
-      font-family: "Fraunces", serif;
-      font-size: 1.875rem;
-      color: white;
-      margin-top: 0.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .investor-box p {
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 2;
-      margin-bottom: 1.5rem;
-    }
-
-    .investor-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .investor-grid-item {
-      border-radius: 16px;
-      background: #ecfdf5;
-      padding: 1.25rem;
-      border: 1px solid rgba(6, 78, 59, 0.06);
-    }
-
-    .investor-grid-label {
-      font-size: 0.75rem;
-      color: rgba(6, 78, 59, 0.55);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .investor-grid-value {
-      font-weight: 700;
-      color: #064e3b;
-    }
-
-    .advisor-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-radius: 9999px;
-      padding: 1rem 1.5rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: white;
-      background: #10b981;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .advisor-link:hover {
-      transform: translateY(-1px);
-    }
-
-    .advisor-link i {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hero-grid, .hero-section, .two-column {
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .urgency-box,
+      .lead-grid {
         grid-template-columns: 1fr;
       }
 
-      .urgency-section {
-        grid-template-columns: 1fr;
+      .why-grid,
+      .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .urgency-sidebar {
-        padding: 2rem;
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .form-section {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-
-      .section-title {
-        font-size: 1.875rem;
-      }
-
-      .sticky-bar-content {
-        flex-direction: column;
-      }
-
-      .sticky-buttons {
-        width: 100%;
-      }
-
-      .sticky-btn {
-        flex: 1;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
-
-      .stats-grid,
-      .features-grid,
-      .steps-grid,
       .testimonials-grid {
         grid-template-columns: 1fr;
       }
-
-      .cta-group {
-        flex-direction: column;
-      }
-
-      .sticky-btn {
-        padding: 0.5rem;
-        font-size: 0.75rem;
-      }
-
-      .countdown-grid {
-        gap: 0.5rem;
-      }
-
-      .countdown-value {
-        font-size: 1.25rem;
-      }
-
-      .urgency-content {
-        padding: 2rem;
-      }
-
-      .form-section {
-        padding: 0;
-      }
-
-      main {
-        padding-bottom: 8rem;
-      }
     }
 
-    @media (max-width: 640px) {
-      .max-w-container {
-        padding: 0 1rem;
+    @media (max-width: 760px) {
+      .section {
+        padding: 38px 0;
       }
 
-      body {
-        font-size: 14px;
+      .nav-row {
+        align-items: flex-start;
       }
 
-      .sticky-bar-content {
-        padding: 0.5rem;
+      .nav-actions {
+        width: 100%;
       }
 
-      .sticky-headline {
-        font-size: 0.75rem;
-      }
-
-      .sticky-subline {
-        font-size: 0.65rem;
-      }
-
-      .card-grid-2 {
+      .badge-row,
+      .timer-grid,
+      .steps-grid,
+      .stats-grid,
+      .why-grid,
+      .highlights-grid {
         grid-template-columns: 1fr;
       }
 
-      .section-header {
-        max-width: 100%;
+      .hero-card,
+      .form-side,
+      .benefit-side,
+      .stat-card,
+      .info-card,
+      .step-card,
+      .testimonial-card {
+        padding: 22px;
       }
 
-      .investor-grid {
+      .sticky-bar {
+        border-radius: 24px;
+      }
+
+      .sticky-inner {
         grid-template-columns: 1fr;
       }
 
-      main {
-        padding-bottom: 10rem;
+      .sticky-copy {
+        padding: 4px 8px 0;
       }
-    }
 
-    .spinner {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+      .sticky-inner .btn {
+        width: 100%;
+      }
 
-    .spinner-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: white;
-      opacity: 0.4;
-      animation: spin 1.2s infinite;
-    }
-
-    .spinner-dot:nth-child(1) { animation-delay: 0s; }
-    .spinner-dot:nth-child(2) { animation-delay: 0.2s; }
-    .spinner-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes spin {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+      .wa-float {
+        bottom: 152px;
+      }
     }
   </style>
   <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
  </head>
- <body>
-  <div id="app" style="height: 100%; width: 100%; overflow-y: auto; overflow-x: hidden;" class="premium-bg">
-   <header class="w-full">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 1rem; padding-top: 1.25rem; padding-bottom: 1.25rem;">
-     <nav class="flex items-center justify-between">
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-       <div id="brand-mark" style="width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
-        HG
+ <body class="h-full">
+  <div class="page-shell h-full w-full">
+   <header class="topbar">
+    <div class="wrap">
+     <div class="nav-row">
+      <div class="brand" aria-label="Brand">
+       <div class="brand-mark"><i data-lucide="building-2" aria-hidden="true"></i>
        </div>
        <div>
-        <p style="font-size: 0.75rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 600; color: #10b981; margin: 0;">Premium Land Investment</p>
-        <p style="font-size: 0.875rem; color: rgba(6, 78, 59, 0.7); margin: 0;">Hyderabad Growth Corridor</p>
+        Hyderabad Growth Corridor <small>Premium fractional land investment</small>
        </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 0.75rem; gap: 0.75rem;"><a href="#highlights" style="font-size: 0.875rem; color: rgba(6, 78, 59, 0.7); text-decoration: none; transition: color 0.2s; display: none;">Project Highlights</a> <a href="#comparison" style="font-size: 0.875rem; color: rgba(6, 78, 59, 0.7); text-decoration: none; transition: color 0.2s; display: none;">Compare Returns</a> <a href="#lead-form" id="nav-cta" style="padding: 0.75rem 1.25rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; color: white; background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; display: none;">Book Consultation</a>
+      <div class="nav-actions"><a class="pill" href="tel:+916399021515" aria-label="Call +91 63990 21515"> <i data-lucide="phone-call" aria-hidden="true"></i> <span>+91 63990 21515</span> </a> <a class="btn btn-secondary" href="#lead-form">Book Consultation</a>
       </div>
-     </nav>
+     </div>
     </div>
    </header>
    <main>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-12 sm:pb-16">
-     <div class="hero-grid items-center">
-      <div class="fade-in">
-       <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/90 border border-[#C9A84C]/20 text-sm text-[#064e3b]/80 shadow-sm"><span class="w-2.5 h-2.5 rounded-full bg-[#10b981] pulse-dot"></span> Fast-moving investment opportunity in Hyderabad's expansion belt
-       </div>
-       <h1 id="hero-title" class="headline-font mt-6 text-4xl sm:text-5xl lg:text-6xl leading-[1.06] tracking-[-0.03em] text-[#064e3b] max-w-3xl">Invest Early in Hyderabad Growth Corridor Land Before the Next Price Surge</h1>
-       <p id="hero-subtitle" class="mt-5 max-w-2xl text-base sm:text-lg leading-8 text-[#064e3b]/72">Secure premium plotted land access with strong appreciation potential, investor-first structuring, and a clear path to high ROI in one of Hyderabad's fastest-growing zones.</p>
-       <div class="mt-8 flex flex-col sm:flex-row gap-4"><a href="#lead-form" id="hero-primary-cta" class="inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-sm sm:text-base font700 text-white shadow-xl transition duration-300 hover:translate-y-[-1px]" style="background:#10b981;"> <i data-lucide="calendar-check" class="w-5 h-5"></i> <span>Book Consultation</span> </a> <a href="https://wa.me/919999999999?text=Hi%20I%20want%20details%20about%20Hyderabad%20Growth%20Corridor%20investment." target="_blank" rel="noopener noreferrer" id="hero-secondary-cta" class="inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-sm sm:text-base font-semibold border border-[#10b981]/30 bg-white text-[#064e3b] shadow-sm transition hover:border-[#10b981] hover:shadow-md"> <i data-lucide="message-circle" class="w-5 h-5"></i> <span>WhatsApp Us</span> </a>
-       </div>
-       <div class="mt-8 flex flex-wrap items-center gap-3">
-        <div class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-[#064e3b]/80 border border-[#064e3b]/6 shadow-sm"><i data-lucide="badge-check" class="w-4 h-4 text-[#10b981]"></i> Verified project details
+    <section class="section">
+     <div class="wrap">
+      <div class="hero-grid">
+       <div class="hero-copy fade-up">
+        <div class="eyebrow"><i data-lucide="map-pinned" aria-hidden="true"></i> Hyderabad Growth Corridor Opportunity
         </div>
-        <div class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-[#064e3b]/80 border border-[#064e3b]/6 shadow-sm"><i data-lucide="shield-check" class="w-4 h-4 text-[#10b981]"></i> Documentation clarity
-        </div>
-        <div class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-[#064e3b]/80 border border-[#064e3b]/6 shadow-sm"><i data-lucide="trending-up" class="w-4 h-4 text-[#10b981]"></i> High-growth micro-market
-        </div>
-       </div>
-      </div>
-      <div class="fade-in">
-       <div class="glass-card rounded-[2rem] p-5 sm:p-7 gold-ring">
-        <div class="flex items-start justify-between gap-4">
-         <div>
-          <p class="text-xs uppercase tracking-[0.24em] text-[#10b981] font-semibold">Priority Investor Window</p>
-          <h2 class="headline-font mt-2 text-2xl sm:text-3xl text-[#064e3b]">Offer closes soon</h2>
+        <h1 id="hero-title">Own a premium share of Hyderabad land before prices move higher.</h1>
+        <p id="hero-subtitle">Entry level investment less than ₹5 Lakhs. Built for smart investors, working professionals, NRIs, and high ROI seekers looking for a low-entry land opportunity in a fast-growing corridor.</p>
+        <div class="price-line">
+         <div class="highlight-tag">
+          Entry level investment less than ₹5 Lakhs
          </div>
-         <div class="rounded-2xl px-3 py-2 text-xs font-semibold text-white" style="background:#10b981;">
-          Limited Access
+         <div class="pill"><i data-lucide="shield-check" aria-hidden="true"></i> Verified documentation
          </div>
         </div>
-        <div class="mt-6 rounded-3xl bg-[#064e3b] text-white p-5 sm:p-6">
-         <p class="text-sm text-white/70">Next price revision in</p>
-         <div id="countdown" class="mt-4 grid grid-cols-4 gap-3">
-          <div class="rounded-2xl bg-white/8 p-3 text-center">
-           <div id="days" class="text-2xl sm:text-3xl font-extrabold">
-            00
-           </div>
-           <div class="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">
-            Days
-           </div>
-          </div>
-          <div class="rounded-2xl bg-white/8 p-3 text-center">
-           <div id="hours" class="text-2xl sm:text-3xl font-extrabold">
-            00
-           </div>
-           <div class="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">
-            Hours
-           </div>
-          </div>
-          <div class="rounded-2xl bg-white/8 p-3 text-center">
-           <div id="minutes" class="text-2xl sm:text-3xl font-extrabold">
-            00
-           </div>
-           <div class="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">
-            Minutes
-           </div>
-          </div>
-          <div class="rounded-2xl bg-white/8 p-3 text-center">
-           <div id="seconds" class="text-2xl sm:text-3xl font-extrabold">
-            00
-           </div>
-           <div class="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">
-            Seconds
-           </div>
+        <div class="hero-actions"><a class="btn btn-primary" href="tel:+916399021515"> <i data-lucide="phone" aria-hidden="true"></i> Call Now </a> <a class="btn btn-gold" href="https://wa.me/916399021515?text=Hi%2C%20I%20want%20details%20about%20Hyderabad%20Growth%20Corridor%20land%20investment." target="_blank" rel="noopener noreferrer"> <i data-lucide="message-circle" aria-hidden="true"></i> WhatsApp Now </a>
+        </div>
+        <div class="badge-row" aria-label="Trust badges">
+         <div class="trust-chip"><i data-lucide="badge-check" aria-hidden="true"></i> Legal clarity
+         </div>
+         <div class="trust-chip"><i data-lucide="trending-up" aria-hidden="true"></i> Growth-led location
+         </div>
+         <div class="trust-chip"><i data-lucide="users" aria-hidden="true"></i> Investor-friendly model
+         </div>
+        </div>
+       </div>
+       <aside class="hero-card panel-card fade-up" aria-label="Offer timer and featured card">
+        <div class="hero-visual">
+         <div class="premium-asset" aria-hidden="true">
+          <div class="asset-inner">
+           <div class="grid-lines"></div>
+           <div class="plot-mark"></div>
+           <div class="asset-road"></div>
           </div>
          </div>
-        </div>
-        <div class="mt-5 grid grid-cols-2 gap-4">
-         <div class="soft-card rounded-3xl p-4">
-          <p class="text-xs uppercase tracking-[0.15em] text-[#064e3b]/50">Starting From</p>
-          <p class="mt-2 text-2xl font-extrabold text-[#064e3b]">₹8.5L</p>
-          <p class="mt-1 text-sm text-[#064e3b]/65">Investor entry point</p>
-         </div>
-         <div class="soft-card rounded-3xl p-4">
-          <p class="text-xs uppercase tracking-[0.15em] text-[#064e3b]/50">Expected Upside</p>
-          <p class="mt-2 text-2xl font-extrabold text-[#064e3b]">18–28%</p>
-          <p class="mt-1 text-sm text-[#064e3b]/65">Potential annual appreciation</p>
-         </div>
-        </div>
-        <div class="mt-5 rounded-3xl gradient-border p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;"><i data-lucide="sparkles" class="w-5 h-5"></i>
+         <div class="timer-box">
+          <div class="timer-header"><strong>Priority pricing ends in</strong> <span class="highlight-tag" style="padding:8px 12px;">Limited allotment</span>
           </div>
-          <div>
-           <p class="font-semibold text-[#064e3b]">High-demand corridor</p>
-           <p class="text-sm text-[#064e3b]/65">Driven by infrastructure, connectivity, and investor appetite.</p>
+          <div class="timer-grid" id="timer" aria-live="polite">
+           <div class="time-unit">
+            <span id="days">00</span><small>Days</small>
+           </div>
+           <div class="time-unit">
+            <span id="hours">00</span><small>Hours</small>
+           </div>
+           <div class="time-unit">
+            <span id="minutes">00</span><small>Minutes</small>
+           </div>
+           <div class="time-unit">
+            <span id="seconds">00</span><small>Seconds</small>
+           </div>
+          </div>
+          <p class="tiny-note" style="margin:14px 0 0;">Speak to our team now to lock in the current pricing before the next revision cycle.</p>
+         </div>
+        </div>
+       </aside>
+      </div>
+     </div>
+    </section>
+    <section class="section-tight">
+     <div class="wrap">
+      <div class="stats-grid">
+       <article class="stat-card fade-up">
+        <div class="stat-number">
+         17%
+        </div>
+        <div class="stat-label">
+         Annual growth potential in developing corridors
+        </div>
+       </article>
+       <article class="stat-card fade-up">
+        <div class="stat-number">
+         3X
+        </div>
+        <div class="stat-label">
+         Upside outlook compared to traditional slow-yield assets
+        </div>
+       </article>
+       <article class="stat-card fade-up">
+        <div class="stat-number">
+         ₹5L
+        </div>
+        <div class="stat-label">
+         Accessible entry point for first-time land investors
+        </div>
+       </article>
+       <article class="stat-card fade-up">
+        <div class="stat-number">
+         High
+        </div>
+        <div class="stat-label">
+         Demand driven by expansion, access, and future development
+        </div>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section class="section" id="why-invest">
+     <div class="wrap">
+      <div class="section-head fade-up">
+       <div class="kicker">
+        Why invest now
+       </div>
+       <h2>Land remains the simplest premium asset when bought early and bought right.</h2>
+       <p>This opportunity is designed to reduce entry barriers while keeping the long-term upside of land ownership intact.</p>
+      </div>
+      <div class="why-grid">
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="landmark" aria-hidden="true"></i>
+        </div>
+        <h3>Real asset value</h3>
+        <p>Unlike paper assets, land is tangible, scarce, and directly linked to urban expansion and infrastructure growth.</p>
+       </article>
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="coins" aria-hidden="true"></i>
+        </div>
+        <h3>Low entry barrier</h3>
+        <p>Start with less than ₹5 Lakhs and gain access to an opportunity that often feels out of reach for many investors.</p>
+       </article>
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="rocket" aria-hidden="true"></i>
+        </div>
+        <h3>Growth corridor upside</h3>
+        <p>Early positioning in high-growth zones can create a meaningful wealth multiplier as demand and access rise.</p>
+       </article>
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="briefcase-business" aria-hidden="true"></i>
+        </div>
+        <h3>Made for busy professionals</h3>
+        <p>Fractional participation and streamlined onboarding make it easier to invest without daily involvement.</p>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <div class="wrap">
+      <div class="section-head fade-up">
+       <div class="kicker">
+        Project highlights
+       </div>
+       <h2>Premium investment structure built for clarity, convenience, and confidence.</h2>
+      </div>
+      <div class="highlights-grid">
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="map" aria-hidden="true"></i>
+        </div>
+        <h3>Prime location</h3>
+        <p>Strategically placed in the Hyderabad Growth Corridor with strong long-term appreciation appeal.</p>
+       </article>
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="file-check-2" aria-hidden="true"></i>
+        </div>
+        <h3>Legal documentation</h3>
+        <p>Clear paperwork and structured documentation help investors move forward with more peace of mind.</p>
+       </article>
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="pie-chart" aria-hidden="true"></i>
+        </div>
+        <h3>Fractional ownership</h3>
+        <p>Get exposure to land value growth without needing to buy an entire large parcel upfront.</p>
+       </article>
+       <article class="info-card fade-up">
+        <div class="icon-circle">
+         <i data-lucide="settings-2" aria-hidden="true"></i>
+        </div>
+        <h3>Zero hassle management</h3>
+        <p>Built for investors who want a simple ownership journey without operational complexity.</p>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <div class="wrap">
+      <div class="section-head fade-up">
+       <div class="kicker">
+        How it works
+       </div>
+       <h2>A simple 3-step path to enter a high-potential land opportunity.</h2>
+      </div>
+      <div class="steps-grid">
+       <article class="step-card fade-up">
+        <div class="step-no">
+         01
+        </div>
+        <h3>Choose share</h3>
+        <p>Select the investment share that fits your budget and preferred exposure level.</p>
+       </article>
+       <article class="step-card fade-up">
+        <div class="step-no">
+         02
+        </div>
+        <h3>Make payment</h3>
+        <p>Complete your booking with guided assistance and transparent next-step support.</p>
+       </article>
+       <article class="step-card fade-up">
+        <div class="step-no">
+         03
+        </div>
+        <h3>Watch growth</h3>
+        <p>Benefit from land value appreciation as the corridor continues to expand and attract demand.</p>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <div class="wrap">
+      <div class="section-head fade-up">
+       <div class="kicker">
+        Investment comparison
+       </div>
+       <h2>Why land stands out for long-term wealth creation.</h2>
+      </div>
+      <div class="compare-shell fade-up">
+       <div class="table-wrap">
+        <table aria-label="Investment comparison table">
+         <thead>
+          <tr>
+           <th>Asset</th>
+           <th>Growth Potential</th>
+           <th>Stability</th>
+           <th>Inflation Hedge</th>
+           <th>Entry Appeal</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="highlight-row">
+           <td><strong>Land</strong></td>
+           <td><span class="tick">Excellent</span></td>
+           <td><span class="tick">Strong</span></td>
+           <td><span class="tick">High</span></td>
+           <td><span class="tick">Best for early smart entry</span></td>
+          </tr>
+          <tr>
+           <td>FD</td>
+           <td><span class="cross">Low</span></td>
+           <td><span class="tick">High</span></td>
+           <td><span class="cross">Weak</span></td>
+           <td><span class="cross">Limited upside</span></td>
+          </tr>
+          <tr>
+           <td>Stocks</td>
+           <td><span class="tick">High</span></td>
+           <td><span class="cross">Volatile</span></td>
+           <td><span class="tick">Moderate</span></td>
+           <td><span class="cross">Requires active monitoring</span></td>
+          </tr>
+          <tr>
+           <td>Gold</td>
+           <td><span class="cross">Moderate</span></td>
+           <td><span class="tick">Good</span></td>
+           <td><span class="tick">Good</span></td>
+           <td><span class="cross">Usually slower appreciation</span></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <div class="wrap">
+      <div class="urgency-box fade-up">
+       <div>
+        <div class="section-head" style="margin-bottom:0;">
+         <div class="kicker">
+          Urgency
+         </div>
+         <h2 id="urgency-title">Only limited shares available at current pricing.</h2>
+         <p>Demand is rising, investor attention is increasing, and prices are moving up month by month. Early decisions usually capture the biggest gains.</p>
+        </div>
+        <div class="scarcity-list">
+         <div class="scarcity-item"><i data-lucide="flame" aria-hidden="true"></i> Prices increasing every month
+         </div>
+         <div class="scarcity-item"><i data-lucide="clock-3" aria-hidden="true"></i> Priority allocation window is closing
+         </div>
+         <div class="scarcity-item"><i data-lucide="users-2" aria-hidden="true"></i> Strong interest from professionals and NRIs
+         </div>
+        </div>
+       </div>
+       <div class="availability-card">
+        <h3>Availability snapshot</h3>
+        <p class="tiny-note">Current investor response suggests limited inventory remains in this allotment cycle.</p>
+        <div class="progress-shell" aria-hidden="true">
+         <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;"><strong>78% reserved</strong> <span class="highlight-tag" style="padding:8px 12px;">Fast moving</span>
+        </div>
+        <p class="tiny-note" style="margin-top:14px;">Act now to secure a conversation, get complete details, and evaluate your entry before the next price update.</p>
+        <div style="margin-top:18px;"><a class="btn btn-primary" href="#lead-form">Check Availability</a>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <div class="wrap">
+      <div class="section-head fade-up">
+       <div class="kicker">
+        Testimonials
+       </div>
+       <h2>What serious investors love about this opportunity.</h2>
+      </div>
+      <div class="testimonials-grid">
+       <article class="testimonial-card fade-up">
+        <div class="stars" aria-label="5 star rating"><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i>
+        </div>
+        <p>“I wanted land exposure without a huge initial amount. This model made it easy to enter a promising Hyderabad location with confidence.”</p>
+        <div class="person-row">
+         <div class="avatar">
+          RK
+         </div>
+         <div>
+          <strong>Rahul K.</strong><br><span class="tiny-note">IT Professional</span>
+         </div>
+        </div>
+       </article>
+       <article class="testimonial-card fade-up">
+        <div class="stars" aria-label="5 star rating"><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i>
+        </div>
+        <p>“The documentation clarity and low entry point were the biggest reasons I moved ahead. It felt premium, organized, and investor-focused.”</p>
+        <div class="person-row">
+         <div class="avatar">
+          SA
+         </div>
+         <div>
+          <strong>Shweta A.</strong><br><span class="tiny-note">Business Owner</span>
+         </div>
+        </div>
+       </article>
+       <article class="testimonial-card fade-up">
+        <div class="stars" aria-label="5 star rating"><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i><i data-lucide="star" aria-hidden="true"></i>
+        </div>
+        <p>“As an NRI, I was looking for something simple and growth-oriented. The process felt straightforward and the location story was compelling.”</p>
+        <div class="person-row">
+         <div class="avatar">
+          MN
+         </div>
+         <div>
+          <strong>Meera N.</strong><br><span class="tiny-note">NRI Investor</span>
+         </div>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section class="section" id="lead-form">
+     <div class="wrap">
+      <div class="lead-grid">
+       <div class="benefit-side fade-up">
+        <div class="section-head" style="margin-bottom:0;">
+         <div class="kicker">
+          Get the details
+         </div>
+         <h2 id="form-title-display">Talk to an advisor before the next price revision.</h2>
+         <p>Share your details and get a free consultation on pricing, availability, process, and suitability for your investment goals.</p>
+        </div>
+        <div class="benefit-list">
+         <div class="benefit-item">
+          <div class="icon-circle" style="width:42px;height:42px;border-radius:12px;flex:0 0 auto;margin:0;"><i data-lucide="phone-forwarded" aria-hidden="true"></i>
+          </div>
+          <div><strong>Quick callback</strong>
+           <p class="tiny-note" style="margin:4px 0 0;">Our team will connect to explain the opportunity clearly.</p>
+          </div>
+         </div>
+         <div class="benefit-item">
+          <div class="icon-circle" style="width:42px;height:42px;border-radius:12px;flex:0 0 auto;margin:0;"><i data-lucide="scroll-text" aria-hidden="true"></i>
+          </div>
+          <div><strong>Project details</strong>
+           <p class="tiny-note" style="margin:4px 0 0;">Understand location, structure, documents, and growth potential.</p>
+          </div>
+         </div>
+         <div class="benefit-item">
+          <div class="icon-circle" style="width:42px;height:42px;border-radius:12px;flex:0 0 auto;margin:0;"><i data-lucide="badge-indian-rupee" aria-hidden="true"></i>
+          </div>
+          <div><strong>Investment fit check</strong>
+           <p class="tiny-note" style="margin:4px 0 0;">See whether this entry point matches your budget and return expectations.</p>
           </div>
          </div>
         </div>
        </div>
-      </div>
-     </div>
-    </section>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12">
-     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-      <div class="soft-card rounded-[1.75rem] p-5 sm:p-6 fade-in">
-       <p class="text-sm text-[#064e3b]/55">Growth Potential</p>
-       <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-[#064e3b]">32%</p>
-       <p class="mt-2 text-sm text-[#064e3b]/65">Area appreciation driven by corridor expansion and strategic demand.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-5 sm:p-6 fade-in">
-       <p class="text-sm text-[#064e3b]/55">Projected ROI</p>
-       <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-[#064e3b]">2.4x</p>
-       <p class="mt-2 text-sm text-[#064e3b]/65">Medium-term wealth creation potential versus passive savings options.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-5 sm:p-6 fade-in">
-       <p class="text-sm text-[#064e3b]/55">Starting Investment</p>
-       <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-[#064e3b]">₹8.5L</p>
-       <p class="mt-2 text-sm text-[#064e3b]/65">Accessible investor entry for professionals, families, and NRIs.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-5 sm:p-6 fade-in">
-       <p class="text-sm text-[#064e3b]/55">Market Demand</p>
-       <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-[#064e3b]">High</p>
-       <p class="mt-2 text-sm text-[#064e3b]/65">Premium plotted inventory remains limited in well-connected locations.</p>
-      </div>
-     </div>
-    </section>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-     <div class="text-center max-w-3xl mx-auto fade-in">
-      <p class="text-xs uppercase tracking-[0.28em] text-[#C9A84C] font-semibold">Why Smart Investors Enter Early</p>
-      <h2 class="headline-font mt-3 text-3xl sm:text-4xl text-[#064e3b]">Built for high-conviction land investors</h2>
-      <p class="mt-4 text-[#064e3b]/68 text-base sm:text-lg">A premium opportunity designed for buyers who want clarity, upside, and low-friction entry into one of Hyderabad's strongest future corridors.</p>
-     </div>
-     <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-        <i data-lucide="map-pinned" class="w-5 h-5"></i>
-       </div>
-       <h3 class="mt-5 text-lg font-bold text-[#064e3b]">High-growth location</h3>
-       <p class="mt-2 text-sm leading-7 text-[#064e3b]/65">Positioned near expanding infrastructure, employment zones, and future residential demand.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-        <i data-lucide="file-check-2" class="w-5 h-5"></i>
-       </div>
-       <h3 class="mt-5 text-lg font-bold text-[#064e3b]">Clear paperwork</h3>
-       <p class="mt-2 text-sm leading-7 text-[#064e3b]/65">Structured for confidence with transparent legal documentation and guided review support.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-        <i data-lucide="pie-chart" class="w-5 h-5"></i>
-       </div>
-       <h3 class="mt-5 text-lg font-bold text-[#064e3b]">Fractional access</h3>
-       <p class="mt-2 text-sm leading-7 text-[#064e3b]/65">Start lean, diversify smarter, and participate in premium land opportunities without overextending capital.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-        <i data-lucide="briefcase-business" class="w-5 h-5"></i>
-       </div>
-       <h3 class="mt-5 text-lg font-bold text-[#064e3b]">Busy-professional friendly</h3>
-       <p class="mt-2 text-sm leading-7 text-[#064e3b]/65">A guided, low-hassle process tailored for working professionals and global investors.</p>
-      </div>
-     </div>
-    </section>
-    <section id="highlights" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-     <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
-      <div class="fade-in">
-       <p class="text-xs uppercase tracking-[0.28em] text-[#C9A84C] font-semibold">Project Highlights</p>
-       <h2 class="headline-font mt-3 text-3xl sm:text-4xl text-[#064e3b]">Premium land investment with built-in confidence</h2>
-       <p class="mt-4 text-[#064e3b]/68 text-base sm:text-lg leading-8">Everything here is designed to reduce friction and increase decision clarity for serious investors.</p>
-       <div class="mt-8 space-y-4">
-        <div class="soft-card rounded-[1.5rem] p-5 flex gap-4">
-         <div class="w-12 h-12 shrink-0 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-          <i data-lucide="navigation" class="w-5 h-5"></i>
-         </div>
-         <div>
-          <h3 class="font-bold text-[#064e3b]">Strategic location benefits</h3>
-          <p class="mt-1 text-sm text-[#064e3b]/65 leading-7">Near key growth arteries, future infrastructure zones, and high-demand investment belts.</p>
-         </div>
-        </div>
-        <div class="soft-card rounded-[1.5rem] p-5 flex gap-4">
-         <div class="w-12 h-12 shrink-0 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-          <i data-lucide="stamp" class="w-5 h-5"></i>
-         </div>
-         <div>
-          <h3 class="font-bold text-[#064e3b]">Legal documentation support</h3>
-          <p class="mt-1 text-sm text-[#064e3b]/65 leading-7">Clear review framework so investors feel informed before making a commitment.</p>
-         </div>
-        </div>
-        <div class="soft-card rounded-[1.5rem] p-5 flex gap-4">
-         <div class="w-12 h-12 shrink-0 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-          <i data-lucide="layers-3" class="w-5 h-5"></i>
-         </div>
-         <div>
-          <h3 class="font-bold text-[#064e3b]">Fractional ownership model</h3>
-          <p class="mt-1 text-sm text-[#064e3b]/65 leading-7">Makes premium land more accessible while helping diversify across opportunities.</p>
-         </div>
-        </div>
-        <div class="soft-card rounded-[1.5rem] p-5 flex gap-4">
-         <div class="w-12 h-12 shrink-0 rounded-2xl flex items-center justify-center text-white" style="background:#10b981;">
-          <i data-lucide="settings-2" class="w-5 h-5"></i>
-         </div>
-         <div>
-          <h3 class="font-bold text-[#064e3b]">Zero-hassle management</h3>
-          <p class="mt-1 text-sm text-[#064e3b]/65 leading-7">Built for people who want land exposure without the usual time and process burden.</p>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="fade-in">
-       <div class="glass-card rounded-[2rem] p-6 sm:p-8 h-full">
-        <div class="rounded-[1.75rem] p-6 text-white" style="background:#064e3b;">
-         <p class="text-xs uppercase tracking-[0.28em] text-[#10b981] font-semibold">Investor Snapshot</p>
-         <h3 class="headline-font mt-3 text-3xl">Why this corridor stands out</h3>
-         <p class="mt-4 text-white/72 leading-8">Strong road connectivity, expanding residential catchments, and rising investor attention continue to support premium plotted demand.</p>
-        </div>
-        <div class="mt-6 grid sm:grid-cols-2 gap-4">
-         <div class="rounded-[1.5rem] bg-[#ecfdf5] p-5 border border-[#064e3b]/6">
-          <p class="text-sm text-[#064e3b]/55">Investor Fit</p>
-          <p class="mt-2 font-bold text-[#064e3b]">Professionals • NRIs • ROI-focused buyers</p>
-         </div>
-         <div class="rounded-[1.5rem] bg-[#ecfdf5] p-5 border border-[#064e3b]/6">
-          <p class="text-sm text-[#064e3b]/55">Demand Driver</p>
-          <p class="mt-2 font-bold text-[#064e3b]">Infrastructure-led expansion</p>
-         </div>
-         <div class="rounded-[1.5rem] bg-[#ecfdf5] p-5 border border-[#064e3b]/6">
-          <p class="text-sm text-[#064e3b]/55">Ownership Style</p>
-          <p class="mt-2 font-bold text-[#064e3b]">Structured and convenient</p>
-         </div>
-         <div class="rounded-[1.5rem] bg-[#ecfdf5] p-5 border border-[#064e3b]/6">
-          <p class="text-sm text-[#064e3b]/55">Ideal Goal</p>
-          <p class="mt-2 font-bold text-[#064e3b]">Capital appreciation</p>
-         </div>
-        </div><a href="#lead-form" class="mt-6 inline-flex items-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition hover:translate-y-[-1px]" style="background:#10b981;"> <i data-lucide="phone-call" class="w-4 h-4"></i> Speak to an advisor </a>
-       </div>
-      </div>
-     </div>
-    </section>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-     <div class="text-center max-w-3xl mx-auto fade-in">
-      <p class="text-xs uppercase tracking-[0.28em] text-[#10b981] font-semibold">How It Works</p>
-      <h2 class="headline-font mt-3 text-3xl sm:text-4xl text-[#064e3b]">Three simple steps to reserve your position</h2>
-     </div>
-     <div class="mt-10 grid md:grid-cols-3 gap-5">
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold" style="background:#064e3b;">
-        1
-       </div>
-       <h3 class="mt-5 text-xl font-bold text-[#064e3b]">Get expert consultation</h3>
-       <p class="mt-2 text-sm leading-7 text-[#064e3b]/65">Share your goals and get a tailored overview of entry points, pricing, and upside potential.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold" style="background:#C9A84C;">
-        2
-       </div>
-       <h3 class="mt-5 text-xl font-bold text-[#064e3b]">Review project details</h3>
-       <p class="mt-2 text-sm leading-7 text-[#064e3b]/65">Understand location logic, paperwork structure, ownership model, and investor suitability.</p>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold" style="background:#047857;">
-        3
-       </div>
-       <h3 class="mt-5 text-xl font-bold text-[#064e3b]">Lock your allocation</h3>
-       <p class="mt-2 text-sm leading-7 text-[#064e3b]/65">Reserve before inventory tightens and before the next scheduled pricing update.</p>
-      </div>
-     </div>
-    </section>
-    <section id="comparison" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-     <div class="fade-in">
-      <p class="text-xs uppercase tracking-[0.28em] text-[#C9A84C] font-semibold text-center">Investment Comparison</p>
-      <h2 class="headline-font mt-3 text-3xl sm:text-4xl text-[#064e3b] text-center">Why land often wins for long-term wealth building</h2>
-     </div>
-     <div class="mt-10 soft-card rounded-[2rem] overflow-hidden fade-in">
-      <div class="overflow-x-auto">
-       <table class="comparison-table w-full min-w-[720px] bg-white">
-        <thead class="bg-[#ecfdf5]">
-         <tr>
-          <th>Asset</th>
-          <th>Growth Potential</th>
-          <th>Volatility</th>
-          <th>Liquidity</th>
-          <th>Effort Required</th>
-          <th>Investor Appeal</th>
-         </tr>
-        </thead>
-        <tbody>
-         <tr class="bg-[#f0fdf4]">
-          <td class="font-bold text-[#064e3b]">Land</td>
-          <td class="text-[#047857] font-semibold">High</td>
-          <td>Low to Medium</td>
-          <td>Medium</td>
-          <td>Low with guided support</td>
-          <td>Strong capital appreciation potential</td>
-         </tr>
-         <tr>
-          <td class="font-bold text-[#064e3b]">FD</td>
-          <td>Low</td>
-          <td>Very Low</td>
-          <td>High</td>
-          <td>Very Low</td>
-          <td>Safe but limited upside</td>
-         </tr>
-         <tr>
-          <td class="font-bold text-[#064e3b]">Stocks</td>
-          <td>Medium to High</td>
-          <td>High</td>
-          <td>High</td>
-          <td>High monitoring</td>
-          <td>Higher risk and fluctuations</td>
-         </tr>
-         <tr>
-          <td class="font-bold text-[#064e3b]">Gold</td>
-          <td>Medium</td>
-          <td>Medium</td>
-          <td>High</td>
-          <td>Low</td>
-          <td>Good hedge, modest wealth acceleration</td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </div>
-    </section>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-     <div class="rounded-[2rem] overflow-hidden fade-in" style="background:#064e3b;">
-      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-0">
-       <div class="p-7 sm:p-10 lg:p-12 text-white">
-        <p class="text-xs uppercase tracking-[0.28em] text-[#bbf7d0] font-semibold">Urgency</p>
-        <h2 id="urgency-title" class="headline-font mt-3 text-3xl sm:text-4xl">Only a few investor slots remain in this release</h2>
-        <p id="urgency-subtitle" class="mt-4 text-white/72 text-base sm:text-lg leading-8">Early investors often secure the strongest pricing. Once this tranche is filled, the next phase is expected to open at a higher entry point.</p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4">
-         <div class="rounded-[1.5rem] bg-white/8 px-5 py-4">
-          <p class="text-sm text-white/60">Available shares</p>
-          <p id="share-count" class="mt-2 text-3xl font-extrabold">17</p>
-         </div>
-         <div class="rounded-[1.5rem] bg-white/8 px-5 py-4">
-          <p class="text-sm text-white/60">Next price revision</p>
-          <p class="mt-2 text-3xl font-extrabold">Soon</p>
-         </div>
-        </div>
-       </div>
-       <div class="bg-white p-7 sm:p-10 lg:p-12">
-        <div class="rounded-[1.75rem] bg-[#ecfdf5] border border-[#064e3b]/6 p-6">
-         <div class="flex items-center gap-3"><span class="relative flex h-3 w-3"> <span class="pulse-dot absolute inline-flex h-full w-full rounded-full bg-[#047857] opacity-75"></span> <span class="relative inline-flex rounded-full h-3 w-3 bg-[#047857]"></span> </span>
-          <p class="font-semibold text-[#064e3b]">Investor activity is rising this week</p>
-         </div>
-         <div class="mt-6">
-          <div class="flex justify-between text-sm text-[#064e3b]/62 mb-2"><span>Current allocation status</span> <span id="scarcity-text">83% filled</span>
+       <div class="form-side fade-up">
+        <form id="consultation-form" novalidate>
+         <div class="form-stack">
+          <div class="field-wrap" id="name-wrap"><label for="name">Full Name</label> <input id="name" name="name" type="text" placeholder="Enter your full name" autocomplete="name">
+           <div class="field-error">
+            Please enter your name.
+           </div>
           </div>
-          <div class="h-3 rounded-full bg-[#064e3b]/8 overflow-hidden">
-           <div id="scarcity-bar" class="h-full rounded-full transition-all duration-700" style="width:83%;background:#C9A84C;"></div>
+          <div class="field-wrap" id="phone-wrap"><label for="phone">Phone Number</label> <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="Enter your phone number" autocomplete="tel">
+           <div class="field-error">
+            Please enter a valid phone number.
+           </div>
           </div>
-         </div><a href="#lead-form" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition hover:translate-y-[-1px]" style="background:#047857;"> <i data-lucide="arrow-right" class="w-4 h-4"></i> Reserve your consultation </a>
-        </div>
+          <div class="field-wrap" id="email-wrap"><label for="email">Email Address</label> <input id="email" name="email" type="email" placeholder="Enter your email address" autocomplete="email">
+           <div class="field-error">
+            Please enter a valid email address.
+           </div>
+          </div><button id="submit-btn" class="btn btn-primary" type="submit"> <i data-lucide="send" aria-hidden="true"></i> <span id="submit-btn-text">Get Free Consultation</span> </button>
+          <div id="form-success" class="inline-message success" role="status" aria-live="polite"></div>
+          <div id="form-error" class="inline-message error" role="alert" aria-live="assertive"></div>
+          <p class="tiny-note" style="margin:0;">By submitting, you agree to be contacted regarding this investment opportunity.</p>
+         </div>
+        </form>
        </div>
       </div>
      </div>
     </section>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-     <div class="text-center max-w-3xl mx-auto fade-in">
-      <p class="text-xs uppercase tracking-[0.28em] text-[#C9A84C] font-semibold">Testimonials</p>
-      <h2 class="headline-font mt-3 text-3xl sm:text-4xl text-[#064e3b]">Trusted by investors who value clarity and growth</h2>
-     </div>
-     <div class="mt-10 grid lg:grid-cols-3 gap-5">
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="flex items-center gap-1 text-[#C9A84C]"><i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-       </div>
-       <p class="mt-5 text-[#064e3b]/72 leading-8">"I wanted a cleaner alternative to volatile assets. The consultation was transparent, and the corridor story made immediate sense."</p>
-       <div class="mt-6">
-        <p class="font-bold text-[#064e3b]">Rahul S.</p>
-        <p class="text-sm text-[#064e3b]/55">Tech Professional, Hyderabad</p>
-       </div>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="flex items-center gap-1 text-[#C9A84C]"><i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-       </div>
-       <p class="mt-5 text-[#064e3b]/72 leading-8">"As an NRI, I needed a low-friction process. This felt premium, organized, and genuinely investor-focused from start to finish."</p>
-       <div class="mt-6">
-        <p class="font-bold text-[#064e3b]">Naveena R.</p>
-        <p class="text-sm text-[#064e3b]/55">NRI Investor, Dubai</p>
-       </div>
-      </div>
-      <div class="soft-card rounded-[1.75rem] p-6 fade-in">
-       <div class="flex items-center gap-1 text-[#C9A84C]"><i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i> <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-       </div>
-       <p class="mt-5 text-[#064e3b]/72 leading-8">"The biggest win was confidence. Good location logic, easy-to-understand steps, and a very clear urgency to act before prices moved."</p>
-       <div class="mt-6">
-        <p class="font-bold text-[#064e3b]">Pradeep K.</p>
-        <p class="text-sm text-[#064e3b]/55">Senior Manager, Bengaluru</p>
-       </div>
-      </div>
-     </div>
-    </section>
-    <section id="lead-form" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-24 sm:pb-28">
-     <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-10 items-start">
-      <div class="fade-in">
-       <p class="text-xs uppercase tracking-[0.28em] text-[#C9A84C] font-semibold">Lead Form</p>
-       <h2 id="form-title" class="headline-font mt-3 text-3xl sm:text-4xl text-[#064e3b]">Get a free investment consultation</h2>
-       <p class="mt-4 text-[#064e3b]/68 text-base sm:text-lg leading-8">Speak with our team to understand pricing, project structure, expected upside, and whether this opportunity matches your investment goals.</p>
-       <div class="mt-8 space-y-4">
-        <div class="flex items-start gap-4">
-         <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-white shrink-0" style="background:#047857;">
-          <i data-lucide="badge-indian-rupee" class="w-5 h-5"></i>
-         </div>
-         <div>
-          <p class="font-semibold text-[#064e3b]">Entry guidance</p>
-          <p class="text-sm text-[#064e3b]/65">Understand the most suitable ticket size for your budget and target return profile.</p>
-         </div>
-        </div>
-        <div class="flex items-start gap-4">
-         <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-white shrink-0" style="background:#C9A84C;">
-          <i data-lucide="file-search" class="w-5 h-5"></i>
-         </div>
-         <div>
-          <p class="font-semibold text-[#064e3b]">Project clarity</p>
-          <p class="text-sm text-[#064e3b]/65">Get a clear walkthrough of corridor logic, demand drivers, and ownership structure.</p>
-         </div>
-        </div>
-        <div class="flex items-start gap-4">
-         <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-white shrink-0" style="background:#047857;">
-          <i data-lucide="clock-3" class="w-5 h-5"></i>
-         </div>
-         <div>
-          <p class="font-semibold text-[#064e3b]">Fast response</p>
-          <p class="text-sm text-[#064e3b]/65">Share your details and get priority contact while this tranche is still open.</p>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="fade-in">
-       <form id="consultation-form" class="glass-card rounded-[2rem] p-6 sm:p-8">
-        <div class="grid gap-5">
-         <div><label for="name" class="block text-sm font-semibold text-[#064e3b] mb-2">Full name</label> <input id="name" name="name" type="text" class="field-input w-full rounded-2xl border border-[#064e3b]/10 bg-white px-4 py-4 text-[#064e3b]" placeholder="Enter your name" required>
-         </div>
-         <div><label for="phone" class="block text-sm font-semibold text-[#064e3b] mb-2">Phone number</label> <input id="phone" name="phone" type="tel" class="field-input w-full rounded-2xl border border-[#064e3b]/10 bg-white px-4 py-4 text-[#064e3b]" placeholder="Enter your phone number" required>
-         </div>
-         <div><label for="email" class="block text-sm font-semibold text-[#064e3b] mb-2">Email address</label> <input id="email" name="email" type="email" class="field-input w-full rounded-2xl border border-[#064e3b]/10 bg-white px-4 py-4 text-[#064e3b]" placeholder="Enter your email" required>
-         </div><button id="form-submit" type="submit" class="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm sm:text-base font-semibold text-white shadow-lg transition hover:translate-y-[-1px] disabled:opacity-70 disabled:cursor-not-allowed" style="background:#047857;"> <i data-lucide="send" class="w-5 h-5"></i> <span id="form-button-text">Get Free Consultation</span> </button>
-         <div id="form-message" class="hidden rounded-2xl border px-4 py-4 text-sm"></div>
-         <p class="text-xs text-[#064e3b]/52 leading-6">By submitting this form, you agree to be contacted regarding project details and consultation scheduling.</p>
-        </div>
-       </form>
-      </div>
-     </div>
-    </section>
-   </main><a href="https://wa.me/919999999999?text=Hi%20I%20want%20to%20book%20a%20consultation%20for%20Hyderabad%20Growth%20Corridor." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-24 right-4 sm:right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition hover:scale-105" style="background:#047857;"> <i data-lucide="message-circle" class="w-6 h-6"></i> </a>
-   <div id="sticky-cta" class="sticky-bar fixed bottom-0 left-0 right-0 z-30 border-t border-[#064e3b]/8 bg-white/95 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-     <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div class="text-center sm:text-left">
-       <p class="text-sm font-semibold text-[#064e3b]">Investor window is active</p>
-       <p class="text-xs text-[#064e3b]/58">Reserve your consultation before the next price update.</p>
-      </div>
-      <div class="flex items-center gap-3 w-full sm:w-auto"><a href="#lead-form" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white shadow-md" style="background:#047857;"> <i data-lucide="calendar-plus" class="w-4 h-4"></i> Book Consultation </a> <a href="https://wa.me/919999999999?text=Hi%20I%20want%20details%20about%20this%20land%20investment." target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold border border-[#C9A84C]/28 text-[#064e3b] bg-white"> <i data-lucide="message-square" class="w-4 h-4"></i> WhatsApp </a>
-      </div>
-     </div>
+   </main>
+   <footer>
+    <div class="wrap">
+     Hyderabad Growth Corridor • Premium land investment opportunity • Call +91 63990 21515
     </div>
-   </div>
+   </footer>
+   <div class="sticky-bar" aria-label="Sticky contact actions">
+    <div class="sticky-inner">
+     <div class="sticky-copy"><strong>Entry level investment less than ₹5 Lakhs</strong> <span>Speak to an advisor and check current availability</span>
+     </div><a class="btn btn-secondary" href="tel:+916399021515"> <i data-lucide="phone" aria-hidden="true"></i> Call Now </a> <a class="btn btn-primary" href="#lead-form"> <i data-lucide="arrow-right" aria-hidden="true"></i> Enquire Now </a>
+    </div>
+   </div><a class="wa-float" href="https://wa.me/916399021515?text=Hi%2C%20I%20want%20details%20about%20Hyderabad%20Growth%20Corridor%20land%20investment." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"> <i data-lucide="message-circle" aria-hidden="true"></i> </a>
   </div>
   <script>
     const defaultConfig = {
       background_color: "#ecfdf5",
       surface_color: "#ffffff",
       text_color: "#064e3b",
-      primary_action_color: "#047857",
-      secondary_action_color: "#C9A84C",
-      font_family: "Fraunces",
+      primary_action_color: "#16a34a",
+      secondary_action_color: "#22c55e",
+      font_family: "Cormorant Garamond",
       font_size: 16,
-      hero_title: "Invest Early in Hyderabad Growth Corridor Land Before the Next Price Surge",
-      hero_subtitle: "Secure premium plotted land access with strong appreciation potential, investor-first structuring, and a clear path to high ROI in one of Hyderabad's fastest-growing zones.",
-      hero_primary_cta: "Book Consultation",
-      hero_secondary_cta: "WhatsApp Us",
-      urgency_title: "Only a few investor slots remain in this release",
-      urgency_subtitle: "Early investors often secure the strongest pricing. Once this tranche is filled, the next phase is expected to open at a higher entry point.",
-      form_title: "Get a free investment consultation",
+      hero_title: "Own a premium share of Hyderabad land before prices move higher.",
+      hero_subtitle: "Entry level investment less than ₹5 Lakhs. Built for smart investors, working professionals, NRIs, and high ROI seekers looking for a low-entry land opportunity in a fast-growing corridor.",
+      urgency_title: "Only limited shares available at current pricing.",
+      form_title: "Talk to an advisor before the next price revision.",
       form_button_text: "Get Free Consultation"
     };
 
-    const els = {};
+    const heroTitleEl = document.getElementById("hero-title");
+    const heroSubtitleEl = document.getElementById("hero-subtitle");
+    const urgencyTitleEl = document.getElementById("urgency-title");
+    const formTitleDisplayEl = document.getElementById("form-title-display");
+    const submitBtnTextEl = document.getElementById("submit-btn-text");
+    const pageShellEl = document.querySelector(".page-shell");
+    const topbarEl = document.querySelector(".topbar");
+    const allCards = document.querySelectorAll(".panel-card, .stat-card, .info-card, .step-card, .testimonial-card, .form-side, .benefit-side, .compare-shell, .availability-card, .timer-box, .trust-chip");
+    const allTextTargets = document.querySelectorAll("body, p, span, strong, small, td, th, label, input, .tiny-note, .pill, .highlight-tag, .stat-label, .sticky-copy");
+    const headingTargets = document.querySelectorAll("h1, h2, h3, .serif");
+    const buttonTargets = document.querySelectorAll(".btn");
 
-    function cacheElements() {
-      els.app = document.getElementById("app");
-      els.heroTitle = document.getElementById("hero-title");
-      els.heroSubtitle = document.getElementById("hero-subtitle");
-      els.heroPrimaryCta = document.getElementById("hero-primary-cta");
-      els.heroSecondaryCta = document.getElementById("hero-secondary-cta");
-      els.navCta = document.getElementById("nav-cta");
-      els.brandMark = document.getElementById("brand-mark");
-      els.urgencyTitle = document.getElementById("urgency-title");
-      els.urgencySubtitle = document.getElementById("urgency-subtitle");
-      els.formTitle = document.getElementById("form-title");
-      els.formButtonText = document.getElementById("form-button-text");
-      els.formSubmit = document.getElementById("form-submit");
-      els.body = document.body;
-    }
+    function applyConfig(config) {
+      const current = {
+        ...defaultConfig,
+        ...(config || {})
+      };
 
-    async function applyConfig(config) {
-      const current = { ...defaultConfig, ...(config || {}) };
-      const baseSize = Number(current.font_size || defaultConfig.font_size);
-      const displayFont = current.font_family || defaultConfig.font_family;
-      const headlineStack = `${displayFont}, "Fraunces", serif`;
-      const bodyStack = `"Plus Jakarta Sans", sans-serif`;
+      document.documentElement.style.setProperty("--bg", current.background_color);
+      document.documentElement.style.setProperty("--surface", current.surface_color);
+      document.documentElement.style.setProperty("--text", current.text_color);
+      document.documentElement.style.setProperty("--primary", current.primary_action_color);
+      document.documentElement.style.setProperty("--secondary-action", current.secondary_action_color);
 
-      els.body.style.backgroundColor = current.background_color;
-      els.body.style.color = current.text_color;
-      els.app.style.background = `
-        radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 30%),
-        radial-gradient(circle at left center, rgba(16, 185, 129, 0.06), transparent 26%),
-        linear-gradient(180deg, ${current.background_color} 0%, #f0fdf4 56%, #dcfce7 100%)
-      `;
+      pageShellEl.style.background = "radial-gradient(circle at top left, rgba(201,168,76,0.14), transparent 20%), radial-gradient(circle at 85% 10%, rgba(134,239,172,0.45), transparent 18%), linear-gradient(180deg, " + current.background_color + " 0%, #d1fae5 52%, " + current.background_color + " 100%)";
+      topbarEl.style.background = "rgba(236, 253, 245, 0.78)";
 
-      document.querySelectorAll(".headline-font").forEach((el) => {
-        el.style.fontFamily = headlineStack;
+      heroTitleEl.textContent = current.hero_title;
+      heroSubtitleEl.textContent = current.hero_subtitle;
+      urgencyTitleEl.textContent = current.urgency_title;
+      formTitleDisplayEl.textContent = current.form_title;
+      submitBtnTextEl.textContent = current.form_button_text;
+
+      const baseSize = Number(current.font_size) || 16;
+      const titleFontStack = `${current.font_family}, Georgia, serif`;
+      const bodyFontStack = `"Plus Jakarta Sans", ${current.font_family}, sans-serif`;
+
+      document.body.style.fontFamily = bodyFontStack;
+
+      headingTargets.forEach((el) => {
+        el.style.fontFamily = titleFontStack;
       });
 
-      document.querySelectorAll("body, p, a, button, input, label, th, td, div, span").forEach((el) => {
-        if (!el.classList.contains("headline-font")) {
-          el.style.fontFamily = bodyStack;
+      heroTitleEl.style.fontSize = (baseSize * 3.2) + "px";
+      document.querySelectorAll("h2").forEach((el) => {
+        el.style.fontSize = (baseSize * 2.3) + "px";
+      });
+      document.querySelectorAll("h3").forEach((el) => {
+        el.style.fontSize = (baseSize * 1.55) + "px";
+      });
+
+      allTextTargets.forEach((el) => {
+        el.style.color = current.text_color;
+        if (el.matches("p, td, input, .tiny-note, .stat-label")) {
+          el.style.fontSize = baseSize + "px";
+        }
+        if (el.matches("small, .kicker")) {
+          el.style.fontSize = (baseSize * 0.78) + "px";
         }
       });
 
-      document.querySelectorAll("h1").forEach(el => el.style.fontSize = `${baseSize * 3.5}px`);
-      document.querySelectorAll("h2").forEach(el => el.style.fontSize = `${baseSize * 2.3}px`);
-      document.querySelectorAll("h3").forEach(el => el.style.fontSize = `${baseSize * 1.2}px`);
-      document.querySelectorAll("p, input, button, a, td, th, label").forEach(el => {
-        if (el.tagName === "TH") {
-          el.style.fontSize = `${baseSize * 0.78}px`;
-        } else if (el.tagName === "LABEL") {
-          el.style.fontSize = `${baseSize * 0.9}px`;
-        } else {
-          el.style.fontSize = `${baseSize}px`;
-        }
+      allCards.forEach((card) => {
+        card.style.backgroundColor = current.surface_color;
       });
 
-      els.heroTitle.textContent = current.hero_title;
-      els.heroSubtitle.textContent = current.hero_subtitle;
-      els.heroPrimaryCta.querySelector("span").textContent = current.hero_primary_cta;
-      els.navCta.textContent = current.hero_primary_cta;
-      els.heroSecondaryCta.querySelector("span").textContent = current.hero_secondary_cta;
-      els.urgencyTitle.textContent = current.urgency_title;
-      els.urgencySubtitle.textContent = current.urgency_subtitle;
-      els.formTitle.textContent = current.form_title;
-      els.formButtonText.textContent = current.form_button_text;
-
-      els.body.style.color = current.text_color;
-      els.heroTitle.style.color = current.text_color;
-      els.heroSubtitle.style.color = hexToRgba(current.text_color, 0.72);
-      els.urgencyTitle.style.color = "#ffffff";
-      els.urgencySubtitle.style.color = "rgba(255,255,255,0.72)";
-      els.formTitle.style.color = current.text_color;
-
-      els.heroPrimaryCta.style.backgroundColor = current.primary_action_color;
-      els.navCta.style.backgroundColor = current.primary_action_color;
-      els.formSubmit.style.backgroundColor = current.primary_action_color;
-      els.brandMark.style.backgroundColor = current.primary_action_color;
-
-      document.querySelectorAll('[style*="background:#10b981;"]').forEach(el => {
-        el.style.background = current.primary_action_color;
-      });
-
-      document.querySelectorAll('[style*="background:#047857;"]').forEach(el => {
-        el.style.background = current.primary_action_color;
-      });
-
-      document.querySelectorAll('[style*="background:#C9A84C;"]').forEach(el => {
-        el.style.background = current.secondary_action_color;
-      });
-
-      document.querySelectorAll('.text-\\[\\#C9A84C\\], [style*="#C9A84C"]').forEach(el => {
-        if (!el.style.background || el.style.background === "transparent") {
-          el.style.color = current.secondary_action_color;
-        }
-      });
-
-      document.querySelectorAll(".soft-card, .glass-card, .gradient-border, input").forEach(el => {
-        el.style.backgroundColor = current.surface_color;
-      });
-
-      document.querySelectorAll("p, h1, h2, h3, td, th, label").forEach(el => {
-        if (!el.closest('[style*="background:#064e3b"]') && !el.closest('[style*="background: rgb(6, 78, 59)"]')) {
-          if (el.tagName === "P" || el.tagName === "TD" || el.tagName === "TH" || el.tagName === "LABEL") {
-            el.style.color = hexToRgba(current.text_color, 0.9);
-          } else {
-            el.style.color = current.text_color;
-          }
+      buttonTargets.forEach((btn) => {
+        if (btn.classList.contains("btn-primary")) {
+          btn.style.background = `linear-gradient(135deg, ${current.secondary_action_color}, ${current.primary_action_color})`;
+          btn.style.color = "#ffffff";
         }
       });
     }
-
-    function hexToRgba(hex, alpha) {
-      const clean = hex.replace("#", "");
-      const bigint = parseInt(clean, 16);
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
-      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    }
-
-    function initCountdown() {
-      const targetDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000 + 7 * 60 * 60 * 1000 + 23 * 60 * 1000 + 14 * 1000);
-
-      function updateCountdown() {
-        const now = new Date();
-        let diff = targetDate - now;
-
-        if (diff < 0) {
-          diff = 0;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        document.getElementById("days").textContent = String(days).padStart(2, "0");
-        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-        document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    }
-
-    function initScrollAnimations() {
-      const items = document.querySelectorAll(".fade-in");
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, { threshold: 0.12 });
-
-      items.forEach((item, index) => {
-        item.style.transitionDelay = `${Math.min(index * 0.05, 0.3)}s`;
-        observer.observe(item);
-      });
-    }
-
-    function initForm() {
-      const form = document.getElementById("consultation-form");
-      const button = document.getElementById("form-submit");
-      const message = document.getElementById("form-message");
-
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        button.disabled = true;
-        const original = button.innerHTML;
-        button.innerHTML = '<span class="inline-flex items-center gap-2"><span class="w-4 h-4 rounded-full border-2 border-white/40 border-t-white inline-block animate-spin"></span>Submitting...</span>';
-
-        setTimeout(() => {
-          button.disabled = false;
-          button.innerHTML = original;
-          if (window.lucide) lucide.createIcons();
-
-          message.classList.remove("hidden");
-          message.className = "rounded-2xl border px-4 py-4 text-sm border-[#047857]/20 bg-[#047857]/8 text-[#047857]";
-          message.textContent = "Thanks — your consultation request has been captured. Our team will contact you shortly.";
-          form.reset();
-        }, 1200);
-      });
-    }
-
-    function initStickyBar() {
-      const stickyBar = document.getElementById("sticky-cta");
-      let lastY = window.scrollY;
-
-      window.addEventListener("scroll", () => {
-        const currentY = window.scrollY;
-        if (currentY > 180 && currentY > lastY) {
-          stickyBar.classList.remove("sticky-hidden");
-        } else {
-          stickyBar.classList.remove("sticky-hidden");
-        }
-        lastY = currentY;
-      });
-    }
-
-    function initScarcityCounter() {
-      const shareCount = document.getElementById("share-count");
-      const scarcityText = document.getElementById("scarcity-text");
-      const scarcityBar = document.getElementById("scarcity-bar");
-
-      let shares = 17;
-      let fill = 83;
-
-      setInterval(() => {
-        if (shares > 11) {
-          shares -= 1;
-          fill += 2;
-          shareCount.textContent = shares;
-          scarcityText.textContent = `${fill}% filled`;
-          scarcityBar.style.width = `${fill}%`;
-        }
-      }, 7000);
-    }
-
-    function initSmoothAnchors() {
-      document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener("click", (e) => {
-          const targetId = link.getAttribute("href");
-          const target = document.querySelector(targetId);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
-      });
-    }
-
-    cacheElements();
 
     if (window.elementSdk) {
       window.elementSdk.init({
         defaultConfig,
         onConfigChange: async (config) => {
-          await applyConfig(config || defaultConfig);
+          applyConfig(config);
         },
         mapToCapabilities: (config) => ({
           recolorables: [
@@ -2136,31 +1561,199 @@
         mapToEditPanelValues: (config) => new Map([
           ["hero_title", config.hero_title || defaultConfig.hero_title],
           ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
-          ["hero_primary_cta", config.hero_primary_cta || defaultConfig.hero_primary_cta],
-          ["hero_secondary_cta", config.hero_secondary_cta || defaultConfig.hero_secondary_cta],
           ["urgency_title", config.urgency_title || defaultConfig.urgency_title],
-          ["urgency_subtitle", config.urgency_subtitle || defaultConfig.urgency_subtitle],
           ["form_title", config.form_title || defaultConfig.form_title],
           ["form_button_text", config.form_button_text || defaultConfig.form_button_text]
         ])
       });
-    } else {
-      applyConfig(defaultConfig);
     }
 
-    initCountdown();
-    initScrollAnimations();
-    initForm();
-    initStickyBar();
-    initScarcityCounter();
-    initSmoothAnchors();
+    applyConfig(window.elementSdk ? window.elementSdk.config : defaultConfig);
 
-    window.addEventListener("load", () => {
-      if (window.lucide) {
-        lucide.createIcons();
+    let leadCount = 0;
+    let dataReady = false;
+
+    async function initData() {
+      if (!window.dataSdk) {
+        return;
       }
-      applyConfig((window.elementSdk && window.elementSdk.config) ? window.elementSdk.config : defaultConfig);
+
+      const handler = {
+        onDataChanged(data) {
+          leadCount = data.length;
+        }
+      };
+
+      const initResult = await window.dataSdk.init(handler);
+      if (initResult.isOk) {
+        dataReady = true;
+      } else {
+        dataReady = false;
+      }
+    }
+
+    initData();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const storedDeadline = sessionStorage.getItem("landing_deadline");
+      let deadline = storedDeadline ? Number(storedDeadline) : 0;
+
+      if (!deadline || deadline < now) {
+        deadline = now + (2 * 24 * 60 * 60 * 1000) + (11 * 60 * 60 * 1000) + (43 * 60 * 1000) + (27 * 1000);
+        sessionStorage.setItem("landing_deadline", String(deadline));
+      }
+
+      const distance = deadline - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(Math.max(0, days)).padStart(2, "0");
+      document.getElementById("hours").textContent = String(Math.max(0, hours)).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(Math.max(0, minutes)).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(Math.max(0, seconds)).padStart(2, "0");
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
+
+    const progressBar = document.getElementById("progress-bar");
+    setTimeout(() => {
+      progressBar.style.width = "82%";
+    }, 700);
+
+    const form = document.getElementById("consultation-form");
+    const nameInput = document.getElementById("name");
+    const phoneInput = document.getElementById("phone");
+    const emailInput = document.getElementById("email");
+    const submitBtn = document.getElementById("submit-btn");
+    const successBox = document.getElementById("form-success");
+    const errorBox = document.getElementById("form-error");
+
+    function showMessage(type, text) {
+      successBox.style.display = "none";
+      errorBox.style.display = "none";
+      if (type === "success") {
+        successBox.textContent = text;
+        successBox.style.display = "block";
+      } else {
+        errorBox.textContent = text;
+        errorBox.style.display = "block";
+      }
+    }
+
+    function clearMessage() {
+      successBox.style.display = "none";
+      errorBox.style.display = "none";
+      successBox.textContent = "";
+      errorBox.textContent = "";
+    }
+
+    function setInvalid(wrapperId, invalid) {
+      const wrapper = document.getElementById(wrapperId);
+      if (invalid) {
+        wrapper.classList.add("invalid");
+      } else {
+        wrapper.classList.remove("invalid");
+      }
+    }
+
+    function validateName() {
+      const valid = nameInput.value.trim().length >= 2;
+      setInvalid("name-wrap", !valid);
+      return valid;
+    }
+
+    function validatePhone() {
+      const cleanPhone = phoneInput.value.replace(/\s+/g, "").trim();
+      const valid = /^[0-9+\-()]{10,15}$/.test(cleanPhone);
+      setInvalid("phone-wrap", !valid);
+      return valid;
+    }
+
+    function validateEmail() {
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+      setInvalid("email-wrap", !valid);
+      return valid;
+    }
+
+    [nameInput, phoneInput, emailInput].forEach((input) => {
+      input.addEventListener("input", () => {
+        clearMessage();
+      });
     });
+
+    nameInput.addEventListener("blur", validateName);
+    phoneInput.addEventListener("blur", validatePhone);
+    emailInput.addEventListener("blur", validateEmail);
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearMessage();
+
+      const isNameValid = validateName();
+      const isPhoneValid = validatePhone();
+      const isEmailValid = validateEmail();
+
+      if (!isNameValid || !isPhoneValid || !isEmailValid) {
+        showMessage("error", "Please fill in all details correctly so our advisor can reach you.");
+        return;
+      }
+
+      if (!dataReady) {
+        showMessage("error", "The enquiry form is getting ready. Please try again in a moment.");
+        return;
+      }
+
+      if (leadCount >= 999) {
+        showMessage("error", "We have reached the current enquiry limit. Please contact us directly on +91 63990 21515.");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.7";
+      submitBtnTextEl.textContent = "Submitting...";
+
+      const result = await window.dataSdk.create({
+        name: nameInput.value.trim(),
+        phone: phoneInput.value.trim(),
+        email: emailInput.value.trim(),
+        created_at: new Date().toISOString(),
+        source: "landing_page"
+      });
+
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = "1";
+      submitBtnTextEl.textContent = (window.elementSdk && window.elementSdk.config.form_button_text) || defaultConfig.form_button_text;
+
+      if (result.isOk) {
+        form.reset();
+        setInvalid("name-wrap", false);
+        setInvalid("phone-wrap", false);
+        setInvalid("email-wrap", false);
+        showMessage("success", "Thank you. Your consultation request has been received. Our team will contact you shortly.");
+      } else {
+        showMessage("error", "We could not submit your request right now. Please try again or call +91 63990 21515.");
+      }
+    });
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e1c55e740882f6d',t:'MTc3NDQyNTE0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e1c951115ff2f6d',t:'MTc3NDQyNzcyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
